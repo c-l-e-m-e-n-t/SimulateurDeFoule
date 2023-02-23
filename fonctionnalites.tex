@@ -9,8 +9,11 @@
 \usepackage[utf8]{inputenc}   
 \usepackage[T1]{fontenc}
 \usepackage{newunicodechar}
-\usepackage{parskip} 
+\usepackage{subcaption}
+\usepackage[export]{adjustbox}
+\usepackage{wrapfig}
 \begin{document}
+
 
 \begin{figure}[t]
 \centering
@@ -18,9 +21,8 @@
 \end{figure}
 
 \title{\vspace{4cm} \textbf{Liste des fonctionnalités du projet de technologie objet\\Simulateur de foule}}
-\author{de Brandois Félix, Cognard Clément, El Guerraoui Oussama, Fresco Alan\\ Mimoun Ibtissam, Fraine Sofiane, Vithursan\\}
-\date{\vspace{7cm} Département Sciences du Numérique - Premiére année \\
-2022-2023 }
+\author{de Brandois Félix, Cognard Clément, El Guerraoui Oussama, Fresco Alan\\ Mimoun Ibtissam, Fraine Sofiane, Vithursan}
+\date{\vspace{7cm} Département Sciences du Numérique - Premiére année - 2022-2023 }
 
 \maketitle
 
@@ -53,11 +55,52 @@ Ce projet est un simulateur qui représente de manière précise le déplacement
     
     \subsection{Rapports automatiques}
     A la fin de la simulation, différentes courbes seront affichées, ces dernières montreront plusieurs statistiques relatives à l'évacuation telles que le temps de sortie moyen, la pression maximale subie, le nombre de morts, ... 
+
+    \subsection{Scan de plan}
+    Le logiciel doit être capable de scanner des plans et de lancer une simulation directement dessus.
     
 \section{Interface utilisateur envisagée}
+     Voici les interfaces envisagées :
+    \begin{figure}[ht!]
+        \begin{subfigure}{0.5\textwidth}
+            \includegraphics[width=0.9\linewidth, height=6cm]{Diagram - CrowdSimulator (3).png}
+            \caption{Page d'accueil du logiciel \label{fig : PageAccueil}}
+        \end{subfigure}
+        \begin{subfigure}{0.5\textwidth}
+            \includegraphics[width=0.9\linewidth, height=6cm]{Diagram - CrowdSimulator.png}
+            \caption{Page d'une simulation de base \label{fig : SimulationBase}}
+        \end{subfigure}\\
+        \begin{subfigure}{0.5\textwidth}
+            \includegraphics[width=0.9\linewidth, height=6cm]{Diagram - CrowdSimulator (2).png}
+            \caption{Page d'une simulation aléatoire \label{fig : SimulationAléatoire}}
+        \end{subfigure}
+        \begin{subfigure}{0.5\textwidth}
+            \includegraphics[width=0.9\linewidth, height=6cm]{Diagram - CrowdSimulator (1).png}
+            \caption{Page d'une simulation personalisée \label{fig : SimulationPerso}}
+        \end{subfigure}
+        \caption{Interface utilisateur \label{fig : Interface}}
+    \end{figure}
 
 \section{Scénarios}
-
+    \subsection{Incendie}
+    Le logiciel doit être capable de simuler l'évacuation d'une foule lors d'un incendie.
+    
+    \subsection{Stade}
+    Il doit être possible de simuler l'évacuation d'une foule lors de grands évènements.
+    
+    \subsection{Attentats}
+    Le logiciel doit être capable de simuler l'évacuation d'une foule lors d'un attentat.
+    
+    \subsection{Ecole}
+    Le logiciel doit être capable de simuler le déplacement des élèves lors d'un changement de salle.
+    
 \section{Difficultés}
+    \begin{itemize}
+        \item Gestion des collisions
+        \item Modélisation du comportement humain
+        \item Implémentation de l'IHM
+        \item Scan de plan
+        \item Implémentation en 3D
+    \end{itemize}
 
 \end{document}
