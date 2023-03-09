@@ -140,6 +140,7 @@ public class Deplacement {
 		return force;
 	}
 
+
 	private double[] forceMurs (int i) {
 		double[] forceTotale = {0, 0};
 		for (int j = 0; j < this.murs.length; j++) {
