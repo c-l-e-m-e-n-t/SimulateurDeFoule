@@ -6,5 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/felix/Cours/S6/TOB/Afficheur/afficheur.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
