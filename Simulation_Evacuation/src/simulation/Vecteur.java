@@ -64,6 +64,14 @@ public class Vecteur {
 		this.y += dy;
 	}
 
+	public static Vecteur[] initialiser(int n) {
+		Vecteur[] vecteur = new Vecteur[n];
+		for (int i = 0; i < n; i++) {
+			vecteur[i] = new Vecteur(0, 0);
+		}
+		return vecteur;
+	}
+
 	/** Renvoie la norme du vecteur. */
 	public static double norme(Vecteur v) {
 		return Math.sqrt(Math.pow(v.getX(), 2) + Math.pow(v.getY(), 2));
