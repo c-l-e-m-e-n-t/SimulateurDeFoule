@@ -13,7 +13,7 @@ public class Agent {
 	private Point cible;
 
 	/** Vitesse désirée en norme de l'agent. */
-	private double v0 = 1.5;
+	private double v0;
 
 
 	/** Rayon de l'agent. */
@@ -23,7 +23,7 @@ public class Agent {
 	private double masse;
 
 	/** Temps de réaction de l'agent. */
-	private double tau = 0.5;
+	private double tau;
 
 	/**  Construire un Agent à partir de ses caractéristiques.
 	 *  @param position	Position de l'agent
@@ -117,6 +117,21 @@ public class Agent {
 	public Vecteur calculVitesseDesiree(Agent[] agents) {
 		Vecteur e0 = this.calculDirectionDesiree(agents);
 		return Vecteur.multiplication(e0, this.v0);
+	}
+
+	public String toString() {
+		return "Position : " + this.position.toString()
+		+ "\n Vitesse : " + this.vitesse.toString()
+		+ "\n Cible : " + this.cible.toString()
+		+ "\n Vitesse Désirée : " + Double.toString(this.v0)
+		+ "\n Rayon : " + Double.toString(this.rayon)
+		+ "\n Masse : " + Double.toString(this.masse)
+		+ "\n Temps de réaction : " + Double.toString(this.tau);
+	}
+
+	/** Afficher les caractéristiques de l'agent. */
+	public void afficher() {
+		System.out.print(this);
 	}
 
 }

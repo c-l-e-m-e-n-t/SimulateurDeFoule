@@ -19,8 +19,8 @@ public class Vecteur {
 	}
 
 	/** Construire un vecteur à partir de deux points.
-	 * @param vx abscisse
-	 * @param vy ordonnée
+	 * @param p1 début du vecteur
+	 * @param p2 fin du vecteur
 	 */
 	public Vecteur(Point p1, Point p2) {
 		this.x = p2.getX() - p1.getX();
@@ -53,6 +53,15 @@ public class Vecteur {
 	  */
 	public void setY(double vy) {
 		this.y = vy;
+	}
+
+	/** Modifier le vecteur.
+	* @param dx transformation suivant l'axe des X
+	* @param dy transformation suivant l'axe des Y
+	*/
+	public void translater(double dx, double dy) {
+		this.x += dx;
+		this.y += dy;
 	}
 
 	/** Renvoie la norme du vecteur. */
@@ -114,5 +123,14 @@ public class Vecteur {
 	public static Vecteur vecteurTangent(Point p1, Point p2) {
 		Vecteur n = Vecteur.vecteurNormal(p1, p2);
 		return new Vecteur(-n.getY(), n.getX());
+	}
+
+	public String toString() {
+		return "vec(" + this.x + ", " + this.y + ")";
+	}
+
+	/** Afficher le vecteur. */
+	public void afficher() {
+		System.out.print(this);
 	}
 }

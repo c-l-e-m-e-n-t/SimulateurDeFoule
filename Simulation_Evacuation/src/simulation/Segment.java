@@ -2,12 +2,10 @@ package simulation;
 
 public class Segment {
 
-	/** Début du mur.
-	 * Forme : [Dx, Dy] */
+	/** Début du segment. */
 	private Point extremite1;
 
-	/** Fin du mur.
-	 * Forme : [Fx, Fy] */
+	/** Fin du segment. */
 	private Point extremite2;
 
 
@@ -66,6 +64,15 @@ public class Segment {
 		Vecteur v3 = Vecteur.multiplication(v2, temp);
 		Point pointProche = new Point(segment.getExtremite1(), v3);
 		return pointProche;
+	}
+
+	public String toString() {
+		return "[" + this.extremite1.toString() + " - " + this.extremite2.toString() + "]";
+	}
+
+	/** Afficher le segment. */
+	public void afficher() {
+		System.out.print(this);
 	}
 
 }

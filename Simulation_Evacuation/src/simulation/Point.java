@@ -72,4 +72,13 @@ public class Point {
 					+ Math.pow(p1.getY() - p2.getY(), 2));
 	}
 
+	public String toString() {
+		return "(" + this.x + ", " + this.y + ")";
+	}
+
+	/** Afficher le point. */
+	public void afficher() {
+		System.out.print(this);
+	}
+
 }
