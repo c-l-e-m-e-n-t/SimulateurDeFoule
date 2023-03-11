@@ -27,9 +27,9 @@ public class Test {
 		Point sortie = new Point(0, 2.5);
 		ecran.dessinerPoint(sortie.getX(), sortie.getY(), Color.green);
 
-		Agent agent1 = new Agent(new Point(2, 2), sortie, 1.5, 1, 80, 0.5);
-		Agent agent2 = new Agent(new Point(3.5, 2), sortie, 1.5, 3, 80, 0.5);
-		Agent agent3 = new Agent(new Point(1.5, 3), sortie, 1.5, 3, 80, 0.5);
+		Agent agent1 = new Agent(new Point(2, 2), sortie, 1.5, 0.2, 80, 0.5);
+		Agent agent2 = new Agent(new Point(3.5, 2), sortie, 1.5, 0.2, 80, 0.5);
+		Agent agent3 = new Agent(new Point(1.5, 3), sortie, 1.5, 0.2, 80, 0.5);
 		
 		Agent[] agents = {agent1, agent2, agent3};
 
@@ -38,7 +38,7 @@ public class Test {
 		for (int k = 0; k < 500; k++) {
 			for (int i = 0; i < agents.length; i++) {
 				Point agentI = agents[i].getPosition();
-				ecran.dessinerPoint(agentI.getX(), agentI.getY(), Color.green);
+				ecran.dessinerCercle(agentI.getX(), agentI.getY(), agents[i].getRayon(), Color.yellow);
 			}
 			Deplacement.euler(agents, murs);
 			ecran.rafraichir();
