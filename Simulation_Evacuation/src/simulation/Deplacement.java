@@ -27,6 +27,7 @@ public class Deplacement {
 	}
 
 	/** Renvoie la force exercée par l'agent j sur l'agent i.
+	 * @param agents les agents de la simulation
 	 * @param i numéro de l'agent
 	 * @param j numéro de l'agent
 	 * @return la force exercée par l'agent j sur l'agent i 
@@ -53,9 +54,9 @@ public class Deplacement {
 		return force;
 	}
 
-	/** Renvoie la force exercée par les agents sur l'agent i.
-	 * @param i numéro de l'agent
-	 * @return la force exercée par les agents sur l'agent i 
+	/** Renvoie la force exercée par les agents entre eux.
+	 * @param agents les agents de la simulation
+	 * @return la force exercée par les agents entre eux
 	 */
 	private static Vecteur[] forceAgents(Agent[] agents) {
 		Vecteur[] forceTotale = Vecteur.initialiser(agents.length);
@@ -70,6 +71,8 @@ public class Deplacement {
 	}
 
 	/** Renvoie la force exercée par le mur j sur l'agent i.
+	 * @param agents les agents de la simulation
+	 * @param murs les murs de la simulation
 	 * @param i numéro de l'agent
 	 * @param j numéro du mur
 	 * @return la force exercée par le mur j sur l'agent i 
@@ -95,9 +98,10 @@ public class Deplacement {
 		return force;
 	}
 
-	/** Renvoie la force exercée par les murs sur l'agent i.
-	 * @param i numéro de l'agent
-	 * @return la force exercée par les murs sur l'agent i 
+	/** Renvoie la force exercée par les murs sur les agents.
+	 * @param agents les agents de la simulation
+	 * @param murs les murs de la simulation
+	 * @return la force exercée par les murs sur les agents 
 	 */
 	private static Vecteur[] forceMurs(Agent[] agents, Segment[] murs) {
 		Vecteur[] forceTotale = Vecteur.initialiser(agents.length);
@@ -111,9 +115,10 @@ public class Deplacement {
 	}
 
 
-	/** Renvoie l'accéleration subie par l'agent i.
-	 * @param i numéro de l'agent
-	 * @return l'accéleration subie par l'agent i
+	/** Renvoie l'accéleration subie par les agents.
+	 * @param agents les agents de la simulation
+	 * @param murs les murs de la simulation
+	 * @return l'accéleration subie par les agents
 	 */
 	private static Vecteur[] calculAcceleration(Agent[] agents, Segment[] murs) {
 
