@@ -18,18 +18,21 @@ public class Test {
 		// Construire un écran
 		Ecran ecran = new Ecran("ExempleEcran", 400, 250, 15);
 
-		Segment mur1 = new Segment(new Point(0, 0), new Point(0, 5));
+		Segment mur1 = new Segment(new Point(0, 0), new Point(0, 2));
+		Segment mur12 = new Segment(new Point(0, 3), new Point(0, 5));
 		Segment mur2 = new Segment(new Point(0, 5), new Point(5, 5));
 		Segment mur3 = new Segment(new Point(5, 5), new Point(5, 0));
 		Segment mur4 = new Segment(new Point(5, 0), new Point(0, 0));
+		Segment mur5 = new Segment(new Point(2, 1), new Point(2, 3));
 
 		ecran.dessinerLigne(0, 0, 0, 5, Color.red);
 		ecran.dessinerLigne(0, 5, 5, 5, Color.red);
 		ecran.dessinerLigne(5, 5, 5, 0, Color.red);
 		ecran.dessinerLigne(5, 0, 0, 0, Color.red);
+		ecran.dessinerLigne(2, 1, 2, 3, Color.red);
 
 
-		Segment[] murs = {mur1, mur2, mur3, mur4};
+		Segment[] murs = {mur1, mur12, mur2, mur3, mur4, mur5};
 		
 		Point sortie = new Point(0, 2.5);
 		ecran.dessinerPoint(sortie.getX(), sortie.getY(), Color.green);
