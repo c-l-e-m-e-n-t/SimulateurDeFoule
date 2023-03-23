@@ -11,9 +11,11 @@ public class Agent {
 	/** Cible de l'agent. */
 	private Point cible;
 
+	/** Sortie de la simulation. */
+	private Point sortie;
+
 	/** Vitesse désirée en norme de l'agent. */
 	private double v0;
-
 
 	/** Rayon de l'agent. */
 	private double rayon;
@@ -24,17 +26,21 @@ public class Agent {
 	/** Temps de réaction de l'agent. */
 	private double tau;
 
+	/** Pression subie par l'agent. */
+	private double pression;
+
 	/**  Construire un Agent à partir de ses caractéristiques.
 	 *  @param position	Position de l'agent
-	 *  @param cible Cible de l'agent
+	 *  @param sortie Sortie de la simulation
 	 *  @param v0 Vitesse désirée en norme de l'agent
 	 *  @param rayon Rayon de l'agent
 	 *  @param masse Masse de l'agent
 	 *  @param tau Temps de réaction de l'agent
 	 */
-	public Agent(Point position, Point cible, double v0, double rayon, double masse, double tau) {
+	public Agent(Point position, Point sortie, double v0, double rayon, double masse, double tau) {
 		this.position = position;
-		this.cible = cible;
+		this.cible = sortie;
+		this.sortie = sortie;
 		this.v0 = v0;
 		this.rayon = rayon;
 		this.masse = masse;
@@ -70,6 +76,20 @@ public class Agent {
 		this.cible = nouvelleCible;
 	}
 
+	/** Obtenir la sortie de la simulation.
+	 * @return la sortie de la simulation
+	 */
+	public Point getSortie() {
+		return this.sortie;
+	}
+
+	/** Changer la sortie de la simulation.
+	 * @param la nouvelle sortie de la simulation
+	 */
+	public void setSortie(Point nouvelleSortie) {
+		this.sortie = nouvelleSortie;
+	}
+
 	/** Obtenir la vitesse désirée de l'agent.
 	 * @return la vitesse désirée de l'agent
 	 */
@@ -98,6 +118,20 @@ public class Agent {
 		return this.tau;
 	}
 
+	/** Obtenir la pression subie par l'agent.
+	 * @return la pression subie par l'agent
+	 */
+	public double getPression() {
+		return this.pression;
+	}
+
+	/** Changer la pression subie par l'agent.
+	 * @param la nouvelle pression subie par l'agent
+	 */
+	public void setPression(double pression) {
+		this.pression = pression;
+	}
+
 	/** Renvoie la direction désirée de l'agent.
 	 * @return la direction désirée de l'agent
 	 */
@@ -124,14 +158,66 @@ public class Agent {
 		return Point.distancePoint(agent1.getPosition(), agent2.getPosition());
 	}
 
+	/** Renvoie le mur le plus proche dans le chemin de l'agent.
+	 * @param murs Les murs de la simulation
+	 * @return le mur le plus proche dans le chemin de l'agent
+	 */
+	public Segment obstacleSurRoute(Segment[] murs, Segment direction) {
+		Segment Obstacle = null;
+		double distance = -1;
+		for (int i = 0; i < murs.length; i++) {
+			//Calcul des murs sur la trajectoire
+			Point intersect = Segment.intersectionDroites(direction, murs[i]);
+			if (Segment.contient(direction, intersect)) {
+				//Parmi ceux trouvés, celui le plus proche
+				if (Point.distancePoint(intersect, position) < distance || distance == -1) {
+					Obstacle = murs[i];
+					distance = Point.distancePoint(intersect, position);
+				}
+			}
+		}
+		return Obstacle;
+	}
+
+	/** Calcule la nouvelle cible de l'agent.
+	 * @param murs Les murs de la simulation
+	 */
+	public void calculCible(Segment[] murs) {
+		Segment direction = new Segment(this.position, this.cible);
+		Segment obstacle = obstacleSurRoute(murs, direction);
+		if (obstacle != null) {
+			// Calculer les points de passage potentiel
+			Vecteur obstacleVecteur = new Vecteur(obstacle);
+			// Marge de 10 cm de distance au mur
+			obstacleVecteur = Vecteur.multiplication(obstacleVecteur, (this.rayon + 0.5) / Vecteur.norme(obstacleVecteur));
+			Point d1 = new Point(obstacle.getExtremite1(), Vecteur.difference(new Vecteur(0, 0), obstacleVecteur));
+			Point d2 = new Point(obstacle.getExtremite2(), obstacleVecteur);
+
+			// Vérifier si les points sont à l'intérieur de la pièce
+
+			// Calcul de la déviation minimale entre la direction initiale, et celle calculée
+			if (Segment.cosinus(direction, new Segment(this.position, d1))
+					> Segment.cosinus(direction, new Segment(this.position, d2))) {
+				this.cible = d1;
+			} else {
+				this.cible = d2;
+			}
+		}
+	    // Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
+		if (Point.distancePoint(this.position, this.cible) < 0.1) {
+			this.cible = this.sortie;
+		}
+	}
+
+
 	public String toString() {
 		return "Position : " + this.position.toString()
 		+ "\n Vitesse : " + this.vitesse.toString()
 		+ "\n Cible : " + this.cible.toString()
-		+ "\n Vitesse Désirée : " + Double.toString(this.v0)
-		+ "\n Rayon : " + Double.toString(this.rayon)
-		+ "\n Masse : " + Double.toString(this.masse)
-		+ "\n Temps de réaction : " + Double.toString(this.tau);
+		+ "\n Vitesse Désirée : " + Double.toString(this.v0) + "m/s"
+		+ "\n Rayon : " + Double.toString(this.rayon) + "m"
+		+ "\n Masse : " + Double.toString(this.masse) + "kg"
+		+ "\n Temps de réaction : " + Double.toString(this.tau) + "s";
 	}
 
 	/** Afficher les caractéristiques de l'agent. */

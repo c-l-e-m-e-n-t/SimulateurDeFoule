@@ -4,10 +4,10 @@ package simulation;
 public class Deplacement {
 
 	/** Constantes. */
-	private static double A = 2*Math.pow(10,	3);
-	private static double B = 0.08;
-	private static double k = 1.2*Math.pow(10, 5);
-	private static double kappa = 2.4*Math.pow(10, 5);
+	private final static double A = 2*Math.pow(10,	3);
+	private final static double B = 0.08;
+	private final static double k = 1.2*Math.pow(10, 5);
+	private final static double kappa = 2.4*Math.pow(10, 5);
 
 	/** Pas d'intégration. */
 	private static double dt = 0.01;
@@ -127,6 +127,10 @@ public class Deplacement {
 		Vecteur[] forceMurs = forceMurs(agents, murs);
 
 		for (int i = 0; i < agents.length; i++) {
+			agents[i].calculCible(murs);
+
+			agents[i].setPression(Vecteur.norme(forceAgents[i]) + Vecteur.norme(forceMurs[i]));
+
 			Vecteur v0e0 = agents[i].calculVitesseDesiree();
 			Vecteur v = agents[i].getVitesse();
 			double tau = agents[i].getTau();

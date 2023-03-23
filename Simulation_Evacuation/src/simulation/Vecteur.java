@@ -27,6 +27,14 @@ public class Vecteur {
 		this.y = p2.getY() - p1.getY();
 	}
 
+	/** Construire un vecteur à partir d'un segment.
+	 * @param segment le segment
+	 */
+	public Vecteur(Segment segment) {
+		this.x = segment.getExtremite2().getX() - segment.getExtremite1().getX();
+		this.y = segment.getExtremite2().getY() - segment.getExtremite1().getY();
+	}
+
 	/** Obtenir l'abscisse du vecteur.
 	 * @return abscisse du vecteur
 	 */

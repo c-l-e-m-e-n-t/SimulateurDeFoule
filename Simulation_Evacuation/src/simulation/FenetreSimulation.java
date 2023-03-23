@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class FenetreSimulation {
 
-    //création de la fenetre de simulation
+    // Création de la fenetre de simulation
     public static void main(String[] args) {
         JFrame fenetre = new JFrame("Simulation d'évacuation");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
