@@ -141,6 +141,16 @@ public class Vecteur {
 		return new Vecteur(-n.getY(), n.getX());
 	}
 
+	/** Renvoie le cosinus entre les vecteurs.
+	 * @param vec1 le premier vecteur
+	 * @param vec2 le deuxième vecteur
+	 * @return le cosinus entre les deux vecteurs
+	 */
+	public static double cosinus(Vecteur vec1, Vecteur vec2) {
+		double produitScalaire = Vecteur.produitScalaire(vec1, vec2);
+		return produitScalaire / (Vecteur.norme(vec1) + Vecteur.norme(vec2));
+	}
+
 	public String toString() {
 		return "vec(" + this.x + ", " + this.y + ")";
 	}

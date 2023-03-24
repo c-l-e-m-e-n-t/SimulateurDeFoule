@@ -4,7 +4,7 @@ package simulation;
 public class Deplacement {
 
 	/** Constantes. */
-	private final static double A = 2*Math.pow(10,	3);
+	private final static double A = 2*Math.pow(10, 3);
 	private final static double B = 0.08;
 	private final static double k = 1.2*Math.pow(10, 5);
 	private final static double kappa = 2.4*Math.pow(10, 5);
@@ -77,7 +77,7 @@ public class Deplacement {
 	 * @param j numéro du mur
 	 * @return la force exercée par le mur j sur l'agent i 
 	 */
-	private static Vecteur forceEntreMurEtAgent(Agent[] agents, Segment[] murs, int i, int j) {
+	public static Vecteur forceEntreMurEtAgent(Agent[] agents, Segment[] murs, int i, int j) {
 
 		Point positionI = agents[i].getPosition();
 		Vecteur vitesseI = agents[i].getVitesse();
@@ -127,7 +127,7 @@ public class Deplacement {
 		Vecteur[] forceMurs = forceMurs(agents, murs);
 
 		for (int i = 0; i < agents.length; i++) {
-			agents[i].calculCible(murs);
+			//agents[i].calculCible(murs);
 
 			agents[i].setPression(Vecteur.norme(forceAgents[i]) + Vecteur.norme(forceMurs[i]));
 
@@ -135,6 +135,10 @@ public class Deplacement {
 			Vecteur v = agents[i].getVitesse();
 			double tau = agents[i].getTau();
 			double m = agents[i].getMasse();
+			
+			System.out.println(forceMurs[i]);
+			System.out.println(forceAgents[i]);
+			System.out.println();
 
 			// (v0e0 - v) / tau
 			Vecteur a1 = Vecteur.multiplication(Vecteur.difference(v0e0, v), 1 / tau);

@@ -50,6 +50,7 @@ public class Segment {
 
 	/** Renvoie le point du segment le plus proche du point en entrée.
 	 * @param p Le point
+	 * @param segment Le segment
 	 * @return Le point du segment le plus proche du point en entrée
 	 */
 	public static Point distanceAvecSegment(Point p, Segment segment) {
@@ -72,19 +73,27 @@ public class Segment {
 	 * @return le point d'intersection des droites droite1 et droite2
 	 */
 	public static Point intersectionDroites(Segment droite1, Segment droite2) {
-		// A1A2
-		Vecteur a1a2 = new Vecteur(droite1);
-		// B1B2
-		Vecteur b1b2 = new Vecteur(droite2);
-		// B1A1
-		Vecteur b1a1 = new Vecteur(droite2.getExtremite1(), droite1.getExtremite1());
-		// A1A2 tangent
-		Vecteur a1a2T = new Vecteur(- a1a2.getY(), a1a2.getX());
+		Point intersection;
 
-		// temp = A1A2T.B1A1 / A1A2T.B1B2
-		double temp = Vecteur.produitScalaire(a1a2T, b1a1) / Vecteur.produitScalaire(a1a2T, b1b2);
+		Point a1 = droite1.getExtremite1();
+		Point a2 = droite1.getExtremite2();
+		Point b1 = droite2.getExtremite1();
+		Point b2 = droite2.getExtremite2();
 
-		return new Point(droite2.getExtremite1(), Vecteur.multiplication(b1b2, temp));
+		// Calcul des coefficients des droites : y = mx + p
+		double m1 = (a2.getY() - a1.getY()) / (a2.getX() - a1.getX());
+		double p1 = a1.getY() - m1 * a1.getX();
+		double m2 = (b2.getY() - b1.getY()) / (b2.getX() - b1.getX());
+		double p2 = b1.getY() - m2 * b1.getX();
+
+		if (Math.abs(m2 - m1) < 0.0001) {
+			intersection = null;
+		} else {
+			double x = (p2 - p1) / (m1 - m2);
+			double y = m1 * x + p1;
+			intersection = new Point(x, y);
+		}
+		return intersection;
 	}
 
 	/** Renvoie true si le point p appartient au segment.
@@ -98,19 +107,6 @@ public class Segment {
 		double d2 = Point.distancePoint(segment.getExtremite2(), p);
 		return dtot - d1 - d2 < 0.0001;
 	}
-
-	/** Renvoie le cosinus entre les deux segments.
-	 * @param seg1 le premier segment
-	 * @param seg2 le deuxième segment
-	 * @return le cosinus entre les deux segments
-	 */
-	public static double cosinus(Segment seg1, Segment seg2) {
-		Vecteur vec1 = new Vecteur(seg1);
-		Vecteur vec2 = new Vecteur(seg2);
-		double produitScalaire = Vecteur.produitScalaire(vec1, vec2);
-		return produitScalaire / (Vecteur.norme(vec1) + Vecteur.norme(vec2));
-	}
-
 
 	public String toString() {
 		return "[" + this.extremite1.toString() + " - " + this.extremite2.toString() + "]";

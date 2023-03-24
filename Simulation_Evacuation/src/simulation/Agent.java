@@ -162,19 +162,25 @@ public class Agent {
 	 * @param murs Les murs de la simulation
 	 * @return le mur le plus proche dans le chemin de l'agent
 	 */
-	public Segment obstacleSurRoute(Segment[] murs, Segment direction) {
+	public Segment obstacleProche(Segment[] murs, Segment direction) {
 		Segment Obstacle = null;
 		double distance = -1;
 		for (int i = 0; i < murs.length; i++) {
-			//Calcul des murs sur la trajectoire
-			Point intersect = Segment.intersectionDroites(direction, murs[i]);
-			if (Segment.contient(direction, intersect)) {
-				//Parmi ceux trouvés, celui le plus proche
-				if (Point.distancePoint(intersect, position) < distance || distance == -1) {
-					Obstacle = murs[i];
-					distance = Point.distancePoint(intersect, position);
+			// Calcul des murs sur la trajectoire
+			Point intersection = Segment.intersectionDroites(direction, murs[i]);
+			if (intersection != null) {
+				// Si le mur est sur le chemin de l'agent
+				if (Segment.contient(direction, intersection)
+						|| Vecteur.cosinus(new Vecteur(direction),
+								new Vecteur(direction.getExtremite1(), intersection)) > 0) {
+					//Parmi ceux trouvés, celui le plus proche
+					if (Point.distancePoint(intersection, position) < distance || distance == -1) {
+						Obstacle = murs[i];
+						distance = Point.distancePoint(intersection, position);
+					}
 				}
 			}
+			
 		}
 		return Obstacle;
 	}
@@ -184,7 +190,7 @@ public class Agent {
 	 */
 	public void calculCible(Segment[] murs) {
 		Segment direction = new Segment(this.position, this.cible);
-		Segment obstacle = obstacleSurRoute(murs, direction);
+		Segment obstacle = obstacleProche(murs, direction);
 		if (obstacle != null) {
 			// Calculer les points de passage potentiel
 			Vecteur obstacleVecteur = new Vecteur(obstacle);
@@ -196,8 +202,8 @@ public class Agent {
 			// Vérifier si les points sont à l'intérieur de la pièce
 
 			// Calcul de la déviation minimale entre la direction initiale, et celle calculée
-			if (Segment.cosinus(direction, new Segment(this.position, d1))
-					> Segment.cosinus(direction, new Segment(this.position, d2))) {
+			if (Vecteur.cosinus(new Vecteur(direction), new Vecteur(this.position, d1))
+					> Vecteur.cosinus(new Vecteur(direction), new Vecteur(this.position, d2))) {
 				this.cible = d1;
 			} else {
 				this.cible = d2;
