@@ -136,9 +136,6 @@ class FenetreSimulation {
         JLabel auteur = new JLabel("ENSEEIHT - Brandois Félix - Cognard Clément - El Guerraoui Oussama - Fresco Alan - Mimoun Ibtissam - Fraine Sofiane - Murugesapillai Vithursan - 2023");
         bandeauBas.add(auteur);
 
-
-
-
         //rendre la fentre visible
         fenetre.setVisible(true);
     }
