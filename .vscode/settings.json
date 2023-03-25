@@ -1,0 +1,7 @@
+{
+    "java.addExports": [
+        "javax.swing",
+        "java.awt"
+        ],
+        "java.debug.settings.onBuildFailureProceed": true,
+}
