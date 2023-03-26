@@ -8,7 +8,7 @@ class FenetreSimulation {
     public static void main(String[] args) {
         JFrame fenetre = new JFrame("Simulation d'évacuation");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(800, 600);
+        fenetre.setSize(1080, 720);
         fenetre.setLocationRelativeTo(null);
 
         //creer le container de la fenetre
@@ -135,6 +135,14 @@ class FenetreSimulation {
         fenetre.add(bandeauBas, BorderLayout.SOUTH);
         JLabel auteur = new JLabel("ENSEEIHT - Brandois Félix - Cognard Clément - El Guerraoui Oussama - Fresco Alan - Mimoun Ibtissam - Fraine Sofiane - Murugesapillai Vithursan - 2023");
         bandeauBas.add(auteur);
+
+
+        //creation de la zone de simulation
+        JPanel cadreSimulation = new JPanel();
+        cadreSimulation.setBackground(Color.WHITE);
+        //mettre des bordures autour de la zone de simulation
+        cadreSimulation.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        fenetre.add(cadreSimulation, BorderLayout.CENTER);
 
         //rendre la fentre visible
         fenetre.setVisible(true);
