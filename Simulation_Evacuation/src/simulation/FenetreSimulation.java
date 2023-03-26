@@ -2,9 +2,10 @@ package simulation;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.TextEvent;
+import java.awt.event.*;
 
 class FenetreSimulation {
+    boolean construction  = true;
     public static void main(String[] args) {
         JFrame fenetre = new JFrame("Simulation d'évacuation");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -147,4 +148,8 @@ class FenetreSimulation {
         //rendre la fentre visible
         fenetre.setVisible(true);
     }
+
 }
+
+
+
