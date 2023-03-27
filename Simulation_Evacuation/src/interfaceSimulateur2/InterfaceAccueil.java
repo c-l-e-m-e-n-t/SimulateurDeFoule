@@ -54,10 +54,8 @@ public class InterfaceAccueil extends JFrame{
 		setJMenuBar(Barre_de_Menu);
 		cardLayout.show(cards, "Accueil" );
 	}
-	
-		
-		
-	
+
+
    public static void main(String[] args) {
 	 new  InterfaceAccueil();  
    }
