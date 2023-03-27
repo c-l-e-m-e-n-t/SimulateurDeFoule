@@ -118,7 +118,7 @@ class FenetreSimulation {
 
 
         //ajout d'un label nombre de personnes
-        JLabel etiquetteNombrePersonnes = new JLabel("Nombre de personnes");
+        JLabel etiquetteNombrePersonnes = new JLabel("Nombre de personnes : 0");
         grilleParamDroite.add(etiquetteNombrePersonnes);
 
         //ajout d'un slider pour le nombre de personnes allant de 0 à 100 en ffichant le nombre courrant
@@ -126,6 +126,13 @@ class FenetreSimulation {
         sliderNombrePersonnes.setLabelTable(sliderNombrePersonnes.createStandardLabels(10));
         sliderNombrePersonnes.setPaintLabels(true);
         grilleParamDroite.add(sliderNombrePersonnes);
+        sliderNombrePersonnes.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                JSlider slider = (JSlider) e.getSource();
+                etiquetteNombrePersonnes.setText("Nombre de personnes : " + slider.getValue());
+            }
+        });
+
 
         //creer une grille de 2 colonnes
         JPanel grilleMasse = new JPanel();
@@ -133,16 +140,16 @@ class FenetreSimulation {
         grilleParamDroite.add(grilleMasse);
 
         //ajout du label masse
-        JLabel etiquetteMasse = new JLabel("Masse : ");
+        JLabel etiquetteMasse = new JLabel("Masse : 0 - 100");
         grilleMasse.add(etiquetteMasse);
 
         //ajout d'un range slider pour la masse allant de 0 à 100
         RangeSlider sliderMasse = new RangeSlider();
         sliderMasse.setMinimum(0);
         sliderMasse.setMaximum(100);
+        sliderMasse.setValue(0);
+        sliderMasse.setUpperValue(100);
         grilleMasse.add(sliderMasse);
-
-
         sliderMasse.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 RangeSlider slider = (RangeSlider) e.getSource();
@@ -156,13 +163,15 @@ class FenetreSimulation {
         grilleParamDroite.add(grilleRayon);
 
         //ajout du label rayon
-        JLabel etiquetteRayon = new JLabel("Rayon : ");
+        JLabel etiquetteRayon = new JLabel("Rayon : 0 - 100");
         grilleRayon.add(etiquetteRayon);
 
         //ajout d'un range slider pour le rayon allant de 0 à 100
         RangeSlider sliderRayon = new RangeSlider();
         sliderRayon.setMinimum(0);
         sliderRayon.setMaximum(100);
+        sliderRayon.setValue(0);
+        sliderRayon.setUpperValue(100);
         grilleRayon.add(sliderRayon);
         sliderRayon.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -177,13 +186,15 @@ class FenetreSimulation {
         grilleParamDroite.add(grilleVitesse);
 
         //ajout du label vitesse
-        JLabel etiquetteVitesse = new JLabel("Vitesse : ");
+        JLabel etiquetteVitesse = new JLabel("Vitesse : 0 - 100");
         grilleVitesse.add(etiquetteVitesse);
         
         //ajout d'un range slider pour la vitesse allant de 0 à 100
         RangeSlider sliderVitesse = new RangeSlider();
         sliderVitesse.setMinimum(0);
         sliderVitesse.setMaximum(100);
+        sliderVitesse.setValue(0);
+        sliderVitesse.setUpperValue(100);
         grilleVitesse.add(sliderVitesse);
         sliderVitesse.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
