@@ -6,7 +6,109 @@ import java.awt.*;
 import java.awt.event.*;
 
 class FenetreSimulation {
+    static int x1 = -1;
+    static int y1 = -1;
+    static int x2;
+    static int y2;
     boolean construction  = true;
+    private static void PannelEdit (JFrame fenetre){
+        //creer une grille de 11 lignes et 1 colonne
+        JPanel grilleParamDroite = new JPanel();
+        grilleParamDroite.setLayout(new GridLayout(11, 1));
+        fenetre.add(grilleParamDroite, BorderLayout.EAST);
+
+        // Ajouter un bouton lancer la simulation en haut de la grilleParamDroite
+        JButton boutonLancerSimu = new JButton("Lancer la simulation");
+        grilleParamDroite.add(boutonLancerSimu);
+
+        grilleParamDroite.add(new JLabel(" "));
+
+        //ajouter un bouton modeles
+        JButton boutonModele = new JButton("Modèles");
+        grilleParamDroite.add(boutonModele);
+        
+
+        //ajouter un labe outils
+        JLabel outils = new JLabel("Outils");
+        grilleParamDroite.add(outils);
+
+        //greer une grille de 2 colonnes
+        JPanel grilleOutils = new JPanel();
+        grilleOutils.setLayout(new GridLayout(1, 2));
+        grilleParamDroite.add(grilleOutils);
+
+        //ajouter un bouton pour ajouter des murs
+        JToggleButton boutonAjouterMurs = new JToggleButton("Mur");
+        grilleOutils.add(boutonAjouterMurs);
+
+        //ajouter un bouton pour ajouter des obstacles
+        JToggleButton boutonAjouterObstacles = new JToggleButton("Obstacle");
+        grilleOutils.add(boutonAjouterObstacles);
+
+        //ajouter une grille outils2 de 2 colonnes 
+        JPanel grilleOutils2 = new JPanel();
+        grilleOutils2.setLayout(new GridLayout(1, 2));
+        grilleParamDroite.add(grilleOutils2);
+
+        //ajouter un bouton pour ajouter des sorties
+        JToggleButton boutonAjouterSorties = new JToggleButton("Sortie");
+        grilleOutils2.add(boutonAjouterSorties);
+        //ajouter case vide
+        JLabel vide = new JLabel(" ");
+        grilleOutils2.add(vide);
+
+        //ajouter un bouton retour
+        JButton boutonRetour = new JButton("Retour");
+        grilleParamDroite.add(boutonRetour);
+
+        //revenir au pannel classique quand on clique sur le bouton retour
+        boutonRetour.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fenetre.remove(grilleParamDroite);
+                PannelClassique(fenetre);
+                fenetre.revalidate();
+                fenetre.repaint();
+            }
+        });
+
+
+
+        //dessiner des lignes dans le cadre de simulation
+        //debut de la ligne quand la souris est cliqué
+        //fin de la ligne quand la souris est relaché
+        //dessiner une ligne quand la souris est déplacé
+        fenetre.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if(boutonAjouterMurs.isSelected()){
+                    System.out.println("x: " + e.getX() + " y: " + e.getY());
+                    //enregiste les cordonnées du point de départ
+                    if(x1 == -1){
+                        x1 = e.getX();
+                        y1 = e.getY();
+                    }
+                    else
+                    {
+                        x2 = e.getX();
+                        y2 = e.getY();
+                        //dessiner une ligne
+                        Graphics g = fenetre.getGraphics();
+                        g.drawLine(x1, y1, x2, y2);
+                        x1 = -1;
+                    }
+                }
+            }
+        });
+
+        
+
+
+
+
+
+
+
+
+    }
     private static void PannelClassique(JFrame fenetre) {
         // Créer une grilleParamDroite dans la partie droite de la fenetre
         JPanel grilleParamDroite = new JPanel();
@@ -100,6 +202,17 @@ class FenetreSimulation {
                 //clear la partie east de la fenetre
                 fenetre.remove(grilleParamDroite);
                 PannelPersonnes(fenetre);
+                fenetre.revalidate();
+                fenetre.repaint();
+            }
+        });
+
+        //si je bouton configurer la piece est cliqué changer de menu et reupdate la partie droite de la fenetre
+        boutonConfigPiece.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //clear la partie east de la fenetre
+                fenetre.remove(grilleParamDroite);
+                PannelEdit(fenetre);
                 fenetre.revalidate();
                 fenetre.repaint();
             }
