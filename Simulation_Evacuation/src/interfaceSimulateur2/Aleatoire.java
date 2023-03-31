@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class Aleatoire extends JPanel implements ContenusDePanneaux  {
-	/*Création de page d'accueil*/
+	/*Création de page du mode aléatoire*/
 	public Aleatoire() {
 		super();
 		this.elementsdepanneau("Mon projet.jpg");
