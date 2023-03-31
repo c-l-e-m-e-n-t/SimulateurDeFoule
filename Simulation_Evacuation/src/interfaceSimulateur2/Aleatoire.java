@@ -20,7 +20,7 @@ public class Aleatoire extends JPanel implements ContenusDePanneaux  {
 	/*Création de page du mode aléatoire*/
 	public Aleatoire() {
 		super();
-		this.elementsdepanneau("Mon projet.jpg");
+		this.elementsdepanneau("crowd.jpg");
 
 	}
 	public void elementsdepanneau(String nom_image) {
