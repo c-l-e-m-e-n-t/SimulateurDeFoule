@@ -17,14 +17,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Accueil extends JPanel {
+public class Accueil extends JPanel implements ContenusDePanneaux  {
 	/*Constructeur qui crée la page d'accueil*/ 
 	public Accueil() {
 		super();
 		this.elementsdepanneau("Mon projet.jpg");
 
 	}
-	/* Cette éthode met en arrière plan une image et affiche un titre sur le panneau
+	/* Cette méthode met en arrière plan une image et affiche un titre sur le panneau
 	* @param nom_image image utilisée dans l'arrière-plan*/
 	public void elementsdepanneau(String nom_image) {
 		try {
