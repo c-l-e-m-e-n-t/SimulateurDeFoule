@@ -21,7 +21,7 @@ public class Accueil extends JPanel implements ContenusDePanneaux  {
 	/*Constructeur qui crée la page d'accueil*/ 
 	public Accueil() {
 		super();
-		this.elementsdepanneau("Mon projet.jpg");
+		this.elementsdepanneau("crowd.jpg");
 
 	}
 	/* Cette méthode met en arrière plan une image et affiche un titre sur le panneau
