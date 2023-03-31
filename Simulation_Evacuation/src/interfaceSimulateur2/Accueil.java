@@ -18,12 +18,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class Accueil extends JPanel {
+	/*Constructeur qui crée la page d'accueil*/ 
 	public Accueil() {
 		super();
-		this.elementsdeframe("Mon projet.jpg");
+		this.elementsdepanneau("Mon projet.jpg");
 
 	}
-	public void elementsdeframe(String nom_image) {
+	/* Cette éthode met en arrière plan une image et affiche un titre sur le panneau
+	* @param nom_image image utilisée dans l'arrière-plan*/
+	public void elementsdepanneau(String nom_image) {
 		try {
 			final JLabel titre = new JLabel("Bienvenue sur CrowdSimulator", SwingConstants.CENTER);
 			titre.setFont(new Font("Ink Free", Font.BOLD | Font.ITALIC, 32));
