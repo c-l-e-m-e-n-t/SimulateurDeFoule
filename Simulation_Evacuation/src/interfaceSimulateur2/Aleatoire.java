@@ -16,13 +16,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Aleatoire extends JPanel {
+public class Aleatoire extends JPanel implements ContenusDePanneaux  {
+	/*Création de page du mode aléatoire*/
 	public Aleatoire() {
 		super();
-		this.elementsdeframe("Mon projet.jpg");
+		this.elementsdepanneau("crowd.jpg");
 
 	}
-	public void elementsdeframe(String nom_image) {
+	public void elementsdepanneau(String nom_image) {
 		try {
 			
 			BufferedImage background = ImageIO.read(new File(nom_image));

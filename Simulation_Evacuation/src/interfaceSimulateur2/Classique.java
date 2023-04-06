@@ -16,13 +16,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Classique extends JPanel {
+public class Classique extends JPanel implements ContenusDePanneaux  {
+	/*Constructeur qui crée la page du mode classique*/ 
 	public Classique() {
 		super();
-		this.elementsdeframe("Mon projet.jpg");
+		this.elementsdepanneau("crowd.jpg");
 
 	}
-	public void elementsdeframe(String nom_image) {
+	public void elementsdepanneau(String nom_image) {
 		try {
 			
 			BufferedImage background = ImageIO.read(new File(nom_image));
