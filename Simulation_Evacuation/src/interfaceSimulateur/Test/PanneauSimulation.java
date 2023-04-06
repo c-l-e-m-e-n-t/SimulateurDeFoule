@@ -6,17 +6,21 @@ import javax.swing.Timer;
 
 public class PanneauSimulation extends JPanel {
 
-    private ArrayList<Point> points;
+    private ArrayList<Point> personnes;
     private Timer timer;
 
     public PanneauSimulation() {
-        points = new ArrayList<>();
+        personnes = new ArrayList<>();
         timer = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Point p : points) {
+                for (Point p : personnes) {
                     p.setLocation(p.getX() + 1, p.getY() + 1);
                 }
+
+                //ici, get la nouvelle position de la souris
+
+
                 repaint();
             }
         });
@@ -26,6 +30,7 @@ public class PanneauSimulation extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 timer.start();
             }
+            // a relier a l'autre bouton, j'avais un peu la flemme
         });
         JButton boutonArreter = new JButton("Arrêter");
         boutonArreter.addActionListener(new ActionListener() {
@@ -40,14 +45,17 @@ public class PanneauSimulation extends JPanel {
         setBackground(Color.WHITE);
     }
 
-    public void ajouterPoint(Point p) {
-        points.add(p);
+    public void ajouterPersonne(Point p) {
+        personnes.add(p);
+        p.setLocation(p.getX(), p.getY());
+        System.out.println("aaaaaaaaaaaaa" + personnes.size());
+        repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Point p : points) {
+        for (Point p : personnes) {
             g.setColor(Color.RED);
             g.fillOval((int) p.getX(), (int) p.getY(), 10, 10);
         }

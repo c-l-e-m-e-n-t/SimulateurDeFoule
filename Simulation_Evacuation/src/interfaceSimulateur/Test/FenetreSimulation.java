@@ -1,9 +1,12 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.random.*;
 
 public class FenetreSimulation extends JFrame {
-
+    int nbPersonnesCourant = 0;
     public FenetreSimulation() {
         super("Simulation d'évacuation");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -11,16 +14,29 @@ public class FenetreSimulation extends JFrame {
         setLocationRelativeTo(null);
 
         PanneauSimulation Simulation = new PanneauSimulation();
-        getContentPane().add(Simulation, BorderLayout.CENTER);
+        JPanel panSimulation = Simulation;
+        getContentPane().add(panSimulation, BorderLayout.CENTER);
 
-        Point point1 = new Point(100, 100);
-        Point point2 = new Point(200, 200);
-        Simulation.ajouterPoint(point1);
-        Simulation.ajouterPoint(point2);
-        getContentPane().add(Simulation);
+        JPanel paramSimulation = new PanneauDroite();
+        getContentPane().add(paramSimulation, BorderLayout.EAST);
 
-        JPanel panneauSimulation = new PanneauDroite();
-        getContentPane().add(panneauSimulation, BorderLayout.EAST);
+        JSlider sliderNbPersonnes = ((PanneauDroite) paramSimulation).getSliderNbPersonnes();
+
+        // Ajouter un ChangeListener au JSlider pour écouter les changements de valeur
+        sliderNbPersonnes.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent event) {
+                int nbPersonnes = sliderNbPersonnes.getValue();
+                while (nbPersonnesCourant < nbPersonnes) {
+                    int x = (int) (Math.random() * panSimulation.getWidth());
+                    int y = (int) (Math.random() * panSimulation.getHeight());
+                    Simulation.ajouterPersonne(new Point(x, y));
+                    nbPersonnesCourant++;
+                }
+                System.out.println("Nombre de personnes : " + nbPersonnes);
+                getContentPane().remove(Simulation);
+                getContentPane().add(Simulation);
+            }
+        });
 
         setVisible(true);
     }

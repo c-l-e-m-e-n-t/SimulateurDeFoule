@@ -11,6 +11,10 @@ public class PanneauDroite extends JPanel {
     private final JPanel carteMenu;
     private final JPanel carteEdition;
 
+    private int nombrePersonnes;
+
+    JSlider sliderNombrePersonnes = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+
 
     public PanneauDroite() {
         super(new BorderLayout());
@@ -205,7 +209,6 @@ public class PanneauDroite extends JPanel {
         grilleParamDroite.add(etiquetteNombrePersonnes);
 
         //ajout d'un slider pour le nombre de personnes allant de 0 à 100 en ffichant le nombre courrant
-        JSlider sliderNombrePersonnes = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
         sliderNombrePersonnes.setLabelTable(sliderNombrePersonnes.createStandardLabels(10));
         sliderNombrePersonnes.setPaintLabels(true);
         grilleParamDroite.add(sliderNombrePersonnes);
@@ -213,9 +216,9 @@ public class PanneauDroite extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 JSlider slider = (JSlider) e.getSource();
                 etiquetteNombrePersonnes.setText("Nombre de personnes : " + slider.getValue());
+                nombrePersonnes = slider.getValue();
             }
         });
-
 
         //creer une grille de 2 colonnes
         JPanel grilleMasse = new JPanel();
@@ -304,4 +307,11 @@ public class PanneauDroite extends JPanel {
         return pannelPersonnes;
 
     }
+
+    //getters
+
+    public JSlider getSliderNbPersonnes() {
+        return sliderNombrePersonnes;
+    }
+
 }
