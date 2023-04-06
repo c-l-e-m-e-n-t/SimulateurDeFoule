@@ -10,6 +10,15 @@ public class FenetreSimulation extends JFrame {
         setSize(1080, 720);
         setLocationRelativeTo(null);
 
+        PanneauSimulation Simulation = new PanneauSimulation();
+        getContentPane().add(Simulation, BorderLayout.CENTER);
+
+        Point point1 = new Point(100, 100);
+        Point point2 = new Point(200, 200);
+        Simulation.ajouterPoint(point1);
+        Simulation.ajouterPoint(point2);
+        getContentPane().add(Simulation);
+
         JPanel panneauSimulation = new PanneauDroite();
         getContentPane().add(panneauSimulation, BorderLayout.EAST);
 
