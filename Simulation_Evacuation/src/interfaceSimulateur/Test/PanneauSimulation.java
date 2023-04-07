@@ -20,12 +20,11 @@ public class PanneauSimulation extends JPanel {
                 for (Agent p : agents) {
                     Vecteur direction = new Vecteur(0, 0);
                     direction = p.calculDirectionDesiree();
-                    System.out.println(direction);
-                    System.out.println(p.getPosition());
-                    System.out.println(new Pt( p.getPosition().getX() +  direction.getX()*10, p.getPosition().getY() +  direction.getY()*10));
-                    p.setPosition(new Pt((int) p.getPosition().getX() + (int) (direction.getX()*10), (int) p.getPosition().getY() + (int) (direction.getY()*10)));
-                    System.out.println(p.getPosition());
-                    p.getPoint().setLocation((int) p.getPosition().getX() + (int) direction.getX()*10, (int) p.getPosition().getY() + (int) direction.getY()*10);
+                    p.setPosition(new Pt((int) p.getPosition().getX() + (int) (direction.getX()*p.getVitesseDesiree()), (int) p.getPosition().getY() + (int) (direction.getY()*p.getVitesseDesiree())));
+                    p.getPoint().setLocation((int) p.getPosition().getX() + (int) direction.getX()*p.getVitesseDesiree(), (int) p.getPosition().getY() + (int) direction.getY()*p.getVitesseDesiree());
+                    if (p.getPoint().distance(sortie) < 10) {
+                        p.setCouleur(Color.WHITE);
+                    }
                 }
                 repaint();
             }
@@ -67,10 +66,14 @@ public class PanneauSimulation extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        //affiche les personnes
         for (Agent p : agents) {
-            g.setColor(Color.RED);
-            g.fillOval((int) p.getPosition().getX(), (int) p.getPosition().getY(), 10, 10);
+            g.setColor(p.getCouleur());
+            g.fillOval((int) p.getPosition().getX(), (int) p.getPosition().getY(),(int) p.getRayon(),(int) p.getRayon());
         }
+
+        //affiche la sortie
         g.setColor(Color.BLACK);
         g.fillOval((int) sortie.getX(), (int) sortie.getY(), 10, 10);
     }

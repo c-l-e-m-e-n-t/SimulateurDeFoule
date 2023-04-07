@@ -3,7 +3,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import java.awt.*;
-import java.awt.event.*;
 
 public class PanneauDroite extends JPanel {
 
@@ -240,6 +239,8 @@ public class PanneauDroite extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 RangeSlider slider = (RangeSlider) e.getSource();
                 etiquetteMasse.setText("Masse : "+ String.valueOf(slider.getValue()) + " - " + String.valueOf(slider.getUpperValue()));
+                FenetreSimulation.parametresSimulation.setMasseMin(slider.getValue());
+                FenetreSimulation.parametresSimulation.setMasseMax(slider.getUpperValue());
             }
         });
 
@@ -263,6 +264,8 @@ public class PanneauDroite extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 RangeSlider slider = (RangeSlider) e.getSource();
                 etiquetteRayon.setText("Rayon : "+ String.valueOf(slider.getValue()) + " - " + String.valueOf(slider.getUpperValue()));
+                FenetreSimulation.parametresSimulation.setRayonMin(slider.getValue());
+                FenetreSimulation.parametresSimulation.setRayonMax(slider.getUpperValue());
             }
         });
 
@@ -286,6 +289,8 @@ public class PanneauDroite extends JPanel {
             public void stateChanged(ChangeEvent e) {
                 RangeSlider slider = (RangeSlider) e.getSource();
                 etiquetteVitesse.setText("Vitesse : "+ String.valueOf(slider.getValue()) + " - " + String.valueOf(slider.getUpperValue()));
+                FenetreSimulation.parametresSimulation.setVitesseMin(slider.getValue());
+                FenetreSimulation.parametresSimulation.setVitesseMax(slider.getUpperValue());
             }
         });
 

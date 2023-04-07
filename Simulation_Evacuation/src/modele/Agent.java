@@ -1,5 +1,7 @@
 package modele;
 
+import java.awt.Color;
+
 public class Agent {
 
 	/** Position de l'agent. */
@@ -29,6 +31,9 @@ public class Agent {
 	/** Pression subie par l'agent. */
 	private double pression;
 
+	/** Couleur de l'agent. */
+	private Color couleur;
+
 	/**  Construire un Agent à partir de ses caractéristiques.
 	 *  @param position	Position de l'agent
 	 *  @param sortie Sortie de la simulation
@@ -50,6 +55,22 @@ public class Agent {
 
 	public Agent(java.awt.Point point, java.awt.Point sortie2) {
     }
+
+	/** Obtenir la couleur de l'agent.
+	 * @return la couleur de l'agent
+	 */
+	public Color getCouleur() {
+		return this.couleur;
+	}
+
+	/** Changer la couleur de l'agent.
+	 * @param nouvelleCouleur la nouvelle couleur de l'agent
+	 */
+	public void setCouleur(Color nouvelleCouleur) {
+		this.couleur = nouvelleCouleur;
+	}
+
+	 
 
     /** Obtenir la position de l'agent.
 	 * @return la position de l'agent

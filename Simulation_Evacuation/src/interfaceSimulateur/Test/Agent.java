@@ -1,5 +1,7 @@
 import java.awt.Point;
 
+import java.awt.Color;
+
 public class Agent {
 	/** point de l'agnet */
 	private Point point;
@@ -31,6 +33,9 @@ public class Agent {
 	/** Pression subie par l'agent. */
 	private double pression;
 
+	/** Couleur de l'agent. */
+	private Color couleur;
+
 	/**  Construire un Agent à partir de ses caractéristiques.
 	 *  @param position	Position de l'agent
 	 *  @param sortie Sortie de la simulation
@@ -49,10 +54,22 @@ public class Agent {
 		this.tau = tau;
 		this.vitesse = this.calculVitesseDesiree();
 		this.point = new Point((int)position.getX(), (int)position.getY());
+		this.couleur = Color.RED;
 	}
 
-	public Agent(java.awt.Point point, java.awt.Point sortie2) {
-    }
+		/** Obtenir la couleur de l'agent.
+	 * @return la couleur de l'agent
+	 */
+	public Color getCouleur() {
+		return this.couleur;
+	}
+
+	/** Changer la couleur de l'agent.
+	 * @param nouvelleCouleur la nouvelle couleur de l'agent
+	 */
+	public void setCouleur(Color nouvelleCouleur) {
+		this.couleur = nouvelleCouleur;
+	}
 
 	/** Obtenir le point de l'agent
 	 * @return le point de l'agent

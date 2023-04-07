@@ -11,6 +11,7 @@ import javax.swing.event.ChangeListener;
 
 public class FenetreSimulation extends JFrame {
     int nbPersonnesCourant = 0;
+    public static ParamSimulation parametresSimulation = new ParamSimulation();
     public FenetreSimulation() {
         super("Simulation d'évacuation");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,8 +37,10 @@ public class FenetreSimulation extends JFrame {
                 while (nbPersonnesCourant < nbPersonnes) {
                     int x = (int) (Math.random() * panSimulation.getWidth());
                     int y = (int) (Math.random() * panSimulation.getHeight());
-                    //new Agent(new modele.Point(x, y), new modele.Point(sortie.getX(), sortie.getY()), 5.0, 0.5, 80.0, 0.5)
-                    Simulation.ajouterPersonne(new Agent(new Pt(x, y), new Pt(sortie.getX(), sortie.getY()), 1.1, 0.5, 80.0, 0.5));
+                    double vitesse = Math.random() * (parametresSimulation.getVitesseMax() - parametresSimulation.getVitesseMin()) + parametresSimulation.getVitesseMin()+0.01;
+                    double masse = Math.random() * (parametresSimulation.getMasseMax() - parametresSimulation.getMasseMin()) + parametresSimulation.getMasseMin();
+                    double rayon = (Math.random()*(FenetreSimulation.parametresSimulation.getRayonMin()+FenetreSimulation.parametresSimulation.getRayonMax())/2 + FenetreSimulation.parametresSimulation.getRayonMin())/2;
+                    Simulation.ajouterPersonne(new Agent(new Pt(x, y), new Pt(sortie.getX(), sortie.getY()), vitesse, rayon, masse, 0.5));
                     nbPersonnesCourant++;
                 }
                 
