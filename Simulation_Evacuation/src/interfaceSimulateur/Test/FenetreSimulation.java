@@ -22,6 +22,9 @@ public class FenetreSimulation extends JFrame {
 
         JSlider sliderNbPersonnes = ((PanneauDroite) paramSimulation).getSliderNbPersonnes();
 
+        Simulation.ajouterSortie(new Point(100, 100));
+        System.out.println("Sortie ajoutée");
+
         // Ajouter un ChangeListener au JSlider pour écouter les changements de valeur
         sliderNbPersonnes.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent event) {
@@ -33,8 +36,7 @@ public class FenetreSimulation extends JFrame {
                     nbPersonnesCourant++;
                 }
                 System.out.println("Nombre de personnes : " + nbPersonnes);
-                getContentPane().remove(Simulation);
-                getContentPane().add(Simulation);
+                
             }
         });
 

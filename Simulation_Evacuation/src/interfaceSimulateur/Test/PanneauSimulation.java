@@ -4,10 +4,14 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.Timer;
 
+import modele.Agent;
+
 public class PanneauSimulation extends JPanel {
 
     private ArrayList<Point> personnes;
+    private Point sortie;
     private Timer timer;
+    private ArrayList<Agent> Agents;
 
     public PanneauSimulation() {
         personnes = new ArrayList<>();
@@ -18,7 +22,7 @@ public class PanneauSimulation extends JPanel {
                     p.setLocation(p.getX() + 1, p.getY() + 1);
                 }
 
-                //ici, get la nouvelle position de la souris
+                //ici, get la nouvelle position de l'agent
 
 
                 repaint();
@@ -48,7 +52,12 @@ public class PanneauSimulation extends JPanel {
     public void ajouterPersonne(Point p) {
         personnes.add(p);
         p.setLocation(p.getX(), p.getY());
-        System.out.println("aaaaaaaaaaaaa" + personnes.size());
+        repaint();
+    }
+
+    public void ajouterSortie(Point p) {
+        sortie = p;
+        p.setLocation(p.getX(), p.getY());
         repaint();
     }
 
@@ -59,5 +68,7 @@ public class PanneauSimulation extends JPanel {
             g.setColor(Color.RED);
             g.fillOval((int) p.getX(), (int) p.getY(), 10, 10);
         }
+        g.setColor(Color.BLACK);
+        g.fillOval((int) sortie.getX(), (int) sortie.getY(), 10, 10);
     }
 }
