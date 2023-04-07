@@ -1,18 +1,20 @@
-package modele;
+import java.awt.Point;
 
 public class Agent {
+	/** point de l'agnet */
+	private Point point;
 
 	/** Position de l'agent. */
-	private Point position;
+	private Pt position;
 
 	/** Vitesse de l'agent. */
 	private Vecteur vitesse;
 
 	/** Cible de l'agent. */
-	private Point cible;
+	private Pt cible;
 
 	/** Sortie de la simulation. */
-	private Point sortie;
+	private Pt sortie;
 
 	/** Vitesse désirée en norme de l'agent. */
 	private double v0;
@@ -37,7 +39,7 @@ public class Agent {
 	 *  @param masse Masse de l'agent
 	 *  @param tau Temps de réaction de l'agent
 	 */
-	public Agent(Point position, Point sortie, double v0, double rayon, double masse, double tau) {
+	public Agent(Pt position, Pt sortie, double v0, double rayon, double masse, double tau) {
 		this.position = position;
 		this.cible = sortie;
 		this.sortie = sortie;
@@ -46,16 +48,38 @@ public class Agent {
 		this.masse = masse;
 		this.tau = tau;
 		this.vitesse = this.calculVitesseDesiree();
+		this.point = new Point((int)position.getX(), (int)position.getY());
 	}
 
 	public Agent(java.awt.Point point, java.awt.Point sortie2) {
     }
 
+	/** Obtenir le point de l'agent
+	 * @return le point de l'agent
+	 */
+	public Point getPoint() {
+		return this.point;
+	}
+
+	/** Changer le point de l'agent.
+	 * @param le nouveau point de l'agent
+	 */
+	public void setPoint(Point nouveauPoint) {
+		this.point = nouveauPoint;
+	}
+
     /** Obtenir la position de l'agent.
 	 * @return la position de l'agent
 	 */
-	public Point getPosition() {
+	public Pt getPosition() {
 		return this.position;
+	}
+
+	/** Changer la position de l'agent.
+	 * @param la nouvelle position de l'agent 
+	*/
+	public void setPosition(Pt nouvellePosition) {
+		this.position = nouvellePosition;
 	}
 
 	/** Obtenir la vitesse de l'agent.
@@ -68,28 +92,28 @@ public class Agent {
 	/** Obtenir la cible de l'agent.
 	 * @return la cible de l'agent
 	 */
-	public Point getCible() {
+	public Pt getCible() {
 		return this.cible;
 	}
 
 	/** Changer la cible de l'agent.
 	 * @param la nouvelle cible de l'agent
 	 */
-	public void setCible(Point nouvelleCible) {
+	public void setCible(Pt nouvelleCible) {
 		this.cible = nouvelleCible;
 	}
 
 	/** Obtenir la sortie de la simulation.
 	 * @return la sortie de la simulation
 	 */
-	public Point getSortie() {
+	public Pt getSortie() {
 		return this.sortie;
 	}
 
 	/** Changer la sortie de la simulation.
 	 * @param la nouvelle sortie de la simulation
 	 */
-	public void setSortie(Point nouvelleSortie) {
+	public void setSortie(Pt nouvelleSortie) {
 		this.sortie = nouvelleSortie;
 	}
 
@@ -158,7 +182,7 @@ public class Agent {
 	 * @return la distance entre deux agents
 	 */
 	public static double distanceAgents(Agent agent1, Agent agent2) {
-		return Point.distancePoint(agent1.getPosition(), agent2.getPosition());
+		return Pt.distancePoint(agent1.getPosition(), agent2.getPosition());
 	}
 
 	/** Renvoie le mur le plus proche dans le chemin de l'agent.
@@ -170,16 +194,16 @@ public class Agent {
 		double distance = -1;
 		for (int i = 0; i < murs.length; i++) {
 			// Calcul des murs sur la trajectoire
-			Point intersection = Segment.intersectionDroites(direction, murs[i]);
+			Pt intersection = Segment.intersectionDroites(direction, murs[i]);
 			if (intersection != null) {
 				// Si le mur est sur le chemin de l'agent
 				if (Segment.contient(direction, intersection)
 						|| Vecteur.cosinus(new Vecteur(direction),
 								new Vecteur(direction.getExtremite1(), intersection)) > 0) {
 					//Parmi ceux trouvés, celui le plus proche
-					if (Point.distancePoint(intersection, position) < distance || distance == -1) {
+					if (Pt.distancePoint(intersection, position) < distance || distance == -1) {
 						Obstacle = murs[i];
-						distance = Point.distancePoint(intersection, position);
+						distance = Pt.distancePoint(intersection, position);
 					}
 				}
 			}
@@ -199,8 +223,8 @@ public class Agent {
 			Vecteur obstacleVecteur = new Vecteur(obstacle);
 			// Marge de 10 cm de distance au mur
 			obstacleVecteur = Vecteur.multiplication(obstacleVecteur, (this.rayon + 0.5) / Vecteur.norme(obstacleVecteur));
-			Point d1 = new Point(obstacle.getExtremite1(), Vecteur.difference(new Vecteur(0, 0), obstacleVecteur));
-			Point d2 = new Point(obstacle.getExtremite2(), obstacleVecteur);
+			Pt d1 = new Pt(obstacle.getExtremite1(), Vecteur.difference(new Vecteur(0, 0), obstacleVecteur));
+			Pt d2 = new Pt(obstacle.getExtremite2(), obstacleVecteur);
 
 			// Vérifier si les points sont à l'intérieur de la pièce
 
@@ -213,7 +237,7 @@ public class Agent {
 			}
 		}
 	    // Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
-		if (Point.distancePoint(this.position, this.cible) < 0.1) {
+		if (Pt.distancePoint(this.position, this.cible) < 0.1) {
 			this.cible = this.sortie;
 		}
 	}

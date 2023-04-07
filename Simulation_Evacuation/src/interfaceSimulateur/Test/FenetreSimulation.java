@@ -1,9 +1,13 @@
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Point;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.random.*;
+
+
 
 public class FenetreSimulation extends JFrame {
     int nbPersonnesCourant = 0;
@@ -22,8 +26,8 @@ public class FenetreSimulation extends JFrame {
 
         JSlider sliderNbPersonnes = ((PanneauDroite) paramSimulation).getSliderNbPersonnes();
 
-        Simulation.ajouterSortie(new Point(100, 100));
-        System.out.println("Sortie ajoutée");
+        Point sortie = new Point(100, 100);
+        Simulation.ajouterSortie(sortie);
 
         // Ajouter un ChangeListener au JSlider pour écouter les changements de valeur
         sliderNbPersonnes.addChangeListener(new ChangeListener() {
@@ -32,10 +36,10 @@ public class FenetreSimulation extends JFrame {
                 while (nbPersonnesCourant < nbPersonnes) {
                     int x = (int) (Math.random() * panSimulation.getWidth());
                     int y = (int) (Math.random() * panSimulation.getHeight());
-                    Simulation.ajouterPersonne(new Point(x, y));
+                    //new Agent(new modele.Point(x, y), new modele.Point(sortie.getX(), sortie.getY()), 5.0, 0.5, 80.0, 0.5)
+                    Simulation.ajouterPersonne(new Agent(new Pt(x, y), new Pt(sortie.getX(), sortie.getY()), 1.1, 0.5, 80.0, 0.5));
                     nbPersonnesCourant++;
                 }
-                System.out.println("Nombre de personnes : " + nbPersonnes);
                 
             }
         });

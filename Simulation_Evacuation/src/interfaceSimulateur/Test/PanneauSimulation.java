@@ -3,28 +3,30 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.Timer;
+import java.awt.Point;
 
-import modele.Agent;
 
 public class PanneauSimulation extends JPanel {
 
-    private ArrayList<Point> personnes;
     private Point sortie;
     private Timer timer;
-    private ArrayList<Agent> Agents;
+    private ArrayList<Agent> agents;
 
     public PanneauSimulation() {
-        personnes = new ArrayList<>();
+        agents = new ArrayList<>();
         timer = new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (Point p : personnes) {
-                    p.setLocation(p.getX() + 1, p.getY() + 1);
+                for (Agent p : agents) {
+                    Vecteur direction = new Vecteur(0, 0);
+                    direction = p.calculDirectionDesiree();
+                    System.out.println(direction);
+                    System.out.println(p.getPosition());
+                    System.out.println(new Pt( p.getPosition().getX() +  direction.getX()*10, p.getPosition().getY() +  direction.getY()*10));
+                    p.setPosition(new Pt((int) p.getPosition().getX() + (int) (direction.getX()*10), (int) p.getPosition().getY() + (int) (direction.getY()*10)));
+                    System.out.println(p.getPosition());
+                    p.getPoint().setLocation((int) p.getPosition().getX() + (int) direction.getX()*10, (int) p.getPosition().getY() + (int) direction.getY()*10);
                 }
-
-                //ici, get la nouvelle position de l'agent
-
-
                 repaint();
             }
         });
@@ -49,9 +51,10 @@ public class PanneauSimulation extends JPanel {
         setBackground(Color.WHITE);
     }
 
-    public void ajouterPersonne(Point p) {
-        personnes.add(p);
-        p.setLocation(p.getX(), p.getY());
+    public void ajouterPersonne(Agent Agent) {
+        Point p = new Point();
+        p.setLocation(Agent.getPosition().getX(), Agent.getPosition().getY());
+        agents.add(Agent);
         repaint();
     }
 
@@ -64,9 +67,9 @@ public class PanneauSimulation extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Point p : personnes) {
+        for (Agent p : agents) {
             g.setColor(Color.RED);
-            g.fillOval((int) p.getX(), (int) p.getY(), 10, 10);
+            g.fillOval((int) p.getPosition().getX(), (int) p.getPosition().getY(), 10, 10);
         }
         g.setColor(Color.BLACK);
         g.fillOval((int) sortie.getX(), (int) sortie.getY(), 10, 10);
