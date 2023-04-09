@@ -1,5 +1,3 @@
-
-
 public class Segment {
 
 	/** Début du segment. */

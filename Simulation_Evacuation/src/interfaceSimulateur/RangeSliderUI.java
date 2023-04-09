@@ -1,5 +1,4 @@
 // Merci a @ernieyu et @johnchen902 pour sa version du slider a 2 curseurs
-package interfaceSimulateur;
 
 import java.awt.Color;
 import java.awt.Dimension;

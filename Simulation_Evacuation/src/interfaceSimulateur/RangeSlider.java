@@ -1,7 +1,5 @@
 // Merci a @ernieyu pour sa version du slider a 2 curseurs
 
-package interfaceSimulateur;
-
 import javax.swing.JSlider;
 
 /**

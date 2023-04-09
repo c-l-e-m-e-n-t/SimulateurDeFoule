@@ -10,8 +10,10 @@ import javax.swing.event.ChangeListener;
 
 
 public class FenetreSimulation extends JFrame {
-    int nbPersonnesCourant = 0;
+    private int nbPersonnesCourant = 0;
     public static ParamSimulation parametresSimulation = new ParamSimulation();
+    private JPanel paramSimulation = new PanneauDroite();
+    private JSlider sliderNbPersonnes = ((PanneauDroite) paramSimulation).getSliderNbPersonnes();
     public FenetreSimulation() {
         super("Simulation d'évacuation");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,10 +24,7 @@ public class FenetreSimulation extends JFrame {
         JPanel panSimulation = Simulation;
         getContentPane().add(panSimulation, BorderLayout.CENTER);
 
-        JPanel paramSimulation = new PanneauDroite();
         getContentPane().add(paramSimulation, BorderLayout.EAST);
-
-        JSlider sliderNbPersonnes = ((PanneauDroite) paramSimulation).getSliderNbPersonnes();
 
         Point sortie = new Point(100, 100);
         Simulation.ajouterSortie(sortie);
@@ -42,6 +41,10 @@ public class FenetreSimulation extends JFrame {
                     double rayon = (Math.random()*(FenetreSimulation.parametresSimulation.getRayonMin()+FenetreSimulation.parametresSimulation.getRayonMax())/2 + FenetreSimulation.parametresSimulation.getRayonMin())/2;
                     Simulation.ajouterPersonne(new Agent(new Pt(x, y), new Pt(sortie.getX(), sortie.getY()), vitesse, rayon, masse, 0.5));
                     nbPersonnesCourant++;
+                }
+                while (nbPersonnesCourant > nbPersonnes) {
+                    Simulation.supprimerPersonne();
+                    nbPersonnesCourant--;
                 }
                 
             }
