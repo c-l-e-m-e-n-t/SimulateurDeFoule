@@ -8,8 +8,3 @@ for root, dirs, files in os.walk(sys.path[0]):
             os.remove(os.path.join(root, file))
 
 
-os.system("javac ../Test/*.java")
-
-os.system("java -cp ../Test/ main")
-
-

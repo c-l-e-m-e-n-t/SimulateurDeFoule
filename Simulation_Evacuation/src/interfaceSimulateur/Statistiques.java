@@ -13,12 +13,12 @@ public class Statistiques {
     private int nbAgents;
     private int nbSorties;
     private int nbObstacles;
-
     private int nbAgentsSortis;
-
     private int nbAgentsBloques;
     private int nbAgentsMorts;
     private int nbAgentsMortsParPression;
+    private String titre;
+    private String description;
 
     public Statistiques() {
         this.nbAgents = 0;
@@ -28,26 +28,28 @@ public class Statistiques {
         this.nbAgentsBloques = 0;
         this.nbAgentsMorts = 0;
         this.nbAgentsMortsParPression = 0;
+        this.titre = "Rapport";
+        this.description = "Rapport de la simulation";
     }
 
-    public void setNbAgents(int nbAgents) {
-        this.nbAgents = nbAgents;
+    /** Ajouter un agent sorti
+     * 
+     */
+    public void addAgentSortis() {
+        this.nbAgentsSortis++;
     }
 
-    public void setNbSorties(int nbSorties) {
-        this.nbSorties = nbSorties;
-    }
+    private void majparam() {
+        this.nbAgents = ParamSimulation.getNbAgents();
+        this.nbSorties = ParamSimulation.getNbSorties();
+        this.nbObstacles = ParamSimulation.getNbObstacles();
+        this.nbAgentsBloques = this.nbAgents - this.nbAgentsSortis - this.nbAgentsMorts;
 
-    public void setNbObstacles(int nbObstacles) {
-        this.nbObstacles = nbObstacles;
-    }
-
-    public void setNbAgentsSortis(int nbAgentsSortis) {
-        this.nbAgentsSortis = nbAgentsSortis;
     }
 
     public void genererRapport() {
         //générer un pdf
+        majparam();
         PDDocument document = new PDDocument();
         try {
             PDPage page = new PDPage();

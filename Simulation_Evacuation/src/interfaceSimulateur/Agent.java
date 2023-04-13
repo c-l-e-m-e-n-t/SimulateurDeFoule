@@ -3,7 +3,11 @@ import java.awt.Point;
 import java.awt.Color;
 
 public class Agent {
-	/** point de l'agnet */
+	
+	/** Définis si l'agent est sorti*/
+	private boolean sortis;
+	
+	/** Point de l'agnet */
 	private Point point;
 
 	/** Position de l'agent. */
@@ -55,9 +59,17 @@ public class Agent {
 		this.vitesse = this.calculVitesseDesiree();
 		this.point = new Point((int)position.getX(), (int)position.getY());
 		this.couleur = Color.RED;
+		this.sortis = false;
 	}
 
-		/** Obtenir la couleur de l'agent.
+	/** Verifier si l'agent est sorti
+	 * @return sortis True si l'agent est sorti
+	 */
+	public boolean getSortis() {
+		return this.sortis;
+	}
+	
+	/** Obtenir la couleur de l'agent.
 	 * @return la couleur de l'agent
 	 */
 	public Color getCouleur() {
@@ -90,6 +102,13 @@ public class Agent {
 	 */
 	public Pt getPosition() {
 		return this.position;
+	}
+	
+	/** Changer si l'agent est sorti
+	 * @param sortis la nouvelle valeur de sortis
+	 */
+	public void setSortis(boolean sortis) {
+		this.sortis = sortis;
 	}
 
 	/** Changer la position de l'agent.

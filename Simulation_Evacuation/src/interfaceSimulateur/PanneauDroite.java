@@ -216,6 +216,7 @@ public class PanneauDroite extends JPanel {
                 JSlider slider = (JSlider) e.getSource();
                 etiquetteNombrePersonnes.setText("Nombre de personnes : " + slider.getValue());
                 nombrePersonnes = slider.getValue();
+                ParamSimulation.setNbAgents(nombrePersonnes);
             }
         });
 

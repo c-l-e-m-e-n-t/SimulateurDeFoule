@@ -11,6 +11,8 @@ public class PanneauSimulation extends JPanel {
     private Point sortie;
     private Timer timer;
     private ArrayList<Agent> agents;
+    private Statistiques stat = new Statistiques();
+    int x = 0;
 
     public PanneauSimulation() {
         agents = new ArrayList<>();
@@ -26,6 +28,10 @@ public class PanneauSimulation extends JPanel {
                     p.getPoint().setLocation((int) p.getPosition().getX() + (int) direction.getX()*p.getVitesseDesiree(), (int) p.getPosition().getY() + (int) direction.getY()*p.getVitesseDesiree());
                     if (p.getPoint().distance(sortie) < 10) {
                         p.setCouleur(Color.WHITE);
+                        if (!p.getSortis()) {
+                        	p.setSortis(true);
+                        	stat.addAgentSortis();
+                        }
                     }
                     indAgents++;
                 }
@@ -47,6 +53,7 @@ public class PanneauSimulation extends JPanel {
         boutonArreter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                stat.genererRapport();
                 timer.stop();
             }
         });

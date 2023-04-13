@@ -1,5 +1,3 @@
-package interfaceSimulateur;
-
 import javax.swing.*;
 import java.awt.*;
 

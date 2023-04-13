@@ -6,6 +6,9 @@ public class ParamSimulation {
     private int vitesseMax;
     private int rayonMin;
     private int rayonMax;
+    private static int nbAgents;
+    private static int nbSorties;
+    private static int nbObstacles;
 
     public ParamSimulation() {
         this.masseMin = 0;
@@ -14,6 +17,7 @@ public class ParamSimulation {
         this.vitesseMax = 8;
         this.rayonMin = 5;
         this.rayonMax = 50;
+        this.nbAgents = 0;
     }
 
     /** Obtenir la masse minimale
@@ -58,6 +62,27 @@ public class ParamSimulation {
         return rayonMax;
     }
 
+    /** Obtenir le nombre d'agents
+     * @return le nombre d'agents
+     */
+    public static int getNbAgents() {
+        return nbAgents;
+    }
+
+    /** Obtenir le nombre de sorties
+     * @return le nombre de sorties
+     */
+    public static int getNbSorties() {
+        return nbSorties;
+    }
+
+    /** Obtenir le nombre d'obstacles
+     * @return le nombre d'obstacles
+     */
+    public static int getNbObstacles() {
+        return nbObstacles;
+    }
+
     /** Redéginir la masse minimale
      * @param masseMin
      */
@@ -100,5 +125,26 @@ public class ParamSimulation {
         this.rayonMax = rayonMax;
     }
 
+    /** Redéfinir le nombre d'agents
+     * @param nbAgents
+     */
+    public static void setNbAgents(int nbrAgents) {
+        nbAgents = nbrAgents;
+    }
+
+    /** Redéfinir le nombre de sorties
+     * @param nbSorties
+     */
+    public static void setNbSorties(int nbrSorties) {
+        nbSorties = nbrSorties;
+    }
+
+    /** Redéfinir le nombre d'obstacles
+     * @param nbObstacles
+     */
+    public static void setNbObstacles(int nbrObstacles) {
+        nbObstacles = nbrObstacles;
+    }
     
 }
+

@@ -1,5 +1,3 @@
-
-
 /** Point modélise un point géométrique dans un plan équipé d'un
  * repère cartésien.
  */
