@@ -41,13 +41,12 @@ public class PanneauSimulation extends JPanel {
                 repaint();
             }
         });
-        JButton boutonDemarrer = new JButton("Démarrer");
-        boutonDemarrer.addActionListener(new ActionListener() {
+        JButton boutonLancer = new JButton("Lancer");
+        boutonLancer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                timer.start();
+            	lancer();
             }
-            // a relier a l'autre bouton, j'avais un peu la flemme
         });
         JButton boutonArreter = new JButton("Arrêter");
         boutonArreter.addActionListener(new ActionListener() {
@@ -57,10 +56,14 @@ public class PanneauSimulation extends JPanel {
                 timer.stop();
             }
         });
-        this.add(boutonDemarrer);
+        this.add(boutonLancer);
         this.add(boutonArreter);
         setPreferredSize(new Dimension(400, 400));
         setBackground(Color.WHITE);
+    }
+    
+    public void lancer() {
+    	timer.start();
     }
 
     /** Ajouter un agent a la fenetre

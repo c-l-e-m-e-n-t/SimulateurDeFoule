@@ -15,9 +15,9 @@ public class PanneauDroite extends JPanel {
     JSlider sliderNombrePersonnes = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
 
 
-    public PanneauDroite() {
+    public PanneauDroite(JButton boutonLancerSimu) {
         super(new BorderLayout());
-
+        
         cardLayout = new CardLayout();
         setLayout(cardLayout);
 
@@ -43,10 +43,6 @@ public class PanneauDroite extends JPanel {
         JPanel grilleParamDroite = new JPanel();
         grilleParamDroite.setLayout(new GridLayout(11, 1));
         pannelEdit.add(grilleParamDroite, BorderLayout.CENTER);
-    
-        //Ajouter un bouton lancer la simulation en haut de la grilleParamDroite
-        JButton boutonLancerSimu = new JButton("Lancer la simulation");
-        grilleParamDroite.add(boutonLancerSimu);
     
         grilleParamDroite.add(new JLabel(" "));
     
@@ -99,10 +95,6 @@ public class PanneauDroite extends JPanel {
         JPanel grilleParamDroite = new JPanel();
         grilleParamDroite.setLayout(new GridLayout(11, 1));
         pannelClassic.add(grilleParamDroite, BorderLayout.CENTER);
-
-        // Ajouter un bouton lancer la simulation en haut de la grilleParamDroite
-        JButton boutonLancerSimu = new JButton("Lancer la simulation");
-        grilleParamDroite.add(boutonLancerSimu);
 
         // Sauter une ligne
         JLabel vide = new JLabel(" ");
@@ -197,11 +189,6 @@ public class PanneauDroite extends JPanel {
         JPanel grilleParamDroite = new JPanel();
         grilleParamDroite.setLayout(new GridLayout(11, 1));
         pannelPersonnes.add(grilleParamDroite, BorderLayout.EAST);
-
-        // Ajouter un bouton lancer la simulation en haut de la grilleParamDroite
-        JButton boutonLancerSimu = new JButton("Lancer la simulation");
-        grilleParamDroite.add(boutonLancerSimu);
-
 
         //ajout d'un label nombre de personnes
         JLabel etiquetteNombrePersonnes = new JLabel("Nombre de personnes : 0");

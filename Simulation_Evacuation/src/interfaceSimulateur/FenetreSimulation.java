@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Point;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -10,9 +11,11 @@ import javax.swing.event.ChangeListener;
 
 
 public class FenetreSimulation extends JFrame {
+	JButton boutonLancerSimu = new JButton("Lancer la simulation");
     private int nbPersonnesCourant = 0;
     public static ParamSimulation parametresSimulation = new ParamSimulation();
-    private JPanel paramSimulation = new PanneauDroite();
+    private JPanel paramSimulation = new PanneauDroite(this.boutonLancerSimu);
+    PanneauSimulation Simulation = new PanneauSimulation();
     private JSlider sliderNbPersonnes = ((PanneauDroite) paramSimulation).getSliderNbPersonnes();
     public FenetreSimulation() {
         super("Simulation d'évacuation");
@@ -20,7 +23,6 @@ public class FenetreSimulation extends JFrame {
         setSize(1080, 720);
         setLocationRelativeTo(null);
 
-        PanneauSimulation Simulation = new PanneauSimulation();
         JPanel panSimulation = Simulation;
         getContentPane().add(panSimulation, BorderLayout.CENTER);
 
@@ -51,5 +53,11 @@ public class FenetreSimulation extends JFrame {
         });
 
         setVisible(true);
+    }
+    
+    public JButton start() {
+    	System.out.println("bbbb");
+    	this.boutonLancerSimu.addActionListener(e -> Simulation.lancer());
+    	return this.boutonLancerSimu;
     }
 }
