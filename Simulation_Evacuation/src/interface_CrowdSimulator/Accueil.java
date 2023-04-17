@@ -23,7 +23,7 @@ public class Accueil extends JPanel implements ContenusDePanneaux {
 	BufferedImage background;
 	public Accueil() {
 		super();
-		this.elementsdepanneau("Mon projet.jpg");
+		this.elementsdepanneau("crowd.jpg");
 
 	}
 	
