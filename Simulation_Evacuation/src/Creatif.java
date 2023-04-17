@@ -22,7 +22,7 @@ public class Creatif extends JPanel implements ContenusDePanneaux {
 	/*Constructeur qui crée la page du mode créatif*/
 	public Creatif() {
 		super();
-		this.elementsdepanneau("couleurs.jpg");
+		this.elementsdepanneau("crowd.jpg");
 
 	}
 	public void elementsdepanneau(String nom_image) {
