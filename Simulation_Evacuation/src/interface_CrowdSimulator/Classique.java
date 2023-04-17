@@ -30,7 +30,7 @@ public class Classique extends JPanel implements ContenusDePanneaux  {
 	/*Constructeur qui crée la page du mode classique*/ 
 	public Classique() {
 		super();
-		this.elementsdepanneau("homme1.jpg");
+		this.elementsdepanneau("crowd.jpg");
 
 	}
 	public void elementsdepanneau(String nom_image) {
