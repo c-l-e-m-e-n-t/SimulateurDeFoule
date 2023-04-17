@@ -1,9 +1,0 @@
-                                                            CrowdSimulator Manuel de l'utilisateur :
-                                                            
-                                                            
-   CrowdSimulator est une application Java conçue pour simuler et modéliser des foules dans divers scénarios, tels que les événements publics, les concerts, les manifestations, etc. Ce manuel utilisateur vous guidera à travers les fonctionnalités de base de l'application et vous expliquera comment exécuter le fichier InterfacAccueil pour démarrer la simulation.
-   Double-cliquez sur le fichier InterfaceAccueil.jar pour lancer l'application (ou bien vous pouvez compiler et exécuter le fichier InterfaceAccueil.java si vous disposez de Java sur vos machines).
-   Vous vous trouvez donc dans la page d'accueil. Au haut de la page à gauche, il y a le menu contenant nos 3 modes: Classique, Aléatoire et Créatif. Choisisez un, et vous serez diriger vers la page correspondante où vous configurez les paramètres de la simulation, tels que le nombre de personnes, la vitesse de déplacement, mode panique, etc., en utilisant les options fournies dans le menu de configuration à droite.
-   Cliquez sur le bouton "Démarrer" pour lancer la simulation . Vous pouvez maintenant observer la simulation de la foule en temps réel.
-   Pour arrêter la simulation, cliquez sur le bouton "Arrêter".
-   Félicitations ! Vous avez maintenant une compréhension de base de l'utilisation de CrowdSimulator pour simuler et modéliser des foules. N'hésitez pas à explorer les différentes fonctionnalités de l'application pour en tirer le meilleur parti. Si vous avez des questions ou des problèmes, consultez la documentation fournie avec l'application (fonctionnalites.pdf) .
