@@ -25,7 +25,7 @@ public class Aleatoire extends JPanel implements ContenusDePanneaux {
 	BufferedImage background;
 	public Aleatoire() {
 		super();
-		this.elementsdepanneau("Mon projet.jpg");
+		this.elementsdepanneau("crowd.jpg");
 	}
 	public void elementsdepanneau(String nom_image) {
 		try {
