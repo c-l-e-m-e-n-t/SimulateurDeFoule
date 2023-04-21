@@ -190,19 +190,19 @@ public class Agent {
 		Segment Obstacle = null;
 		double distance = -1;
 		for (int i = 0; i < murs.length; i++) {
+
 			// Calcul des murs sur la trajectoire
 			Point intersection = Segment.intersectionDroites(direction, murs[i]);
-			if (intersection != null) {
-				// Si le mur est sur le chemin de l'agent
-				if (Segment.contient(direction, intersection)
-						|| Vecteur.cosinus(new Vecteur(direction),
-								new Vecteur(direction.getExtremite1(), intersection)) > 0) {
-					//Parmi ceux trouvés, celui le plus proche
-					if (Point.distancePoint(intersection, position) < distance || distance == -1) {
-						Obstacle = murs[i];
-						distance = Point.distancePoint(intersection, position);
-					}
-				}
+
+			if (intersection != null // Si il y a une intersection entre le mur et le chemin de l'agent
+					|| Segment.contient(direction, intersection)
+					|| Vecteur.cosinus(new Vecteur(direction), // Si le mur est sur le chemin de l'agent
+							new Vecteur(direction.getExtremite1(), intersection)) > 0
+					|| Point.distancePoint(intersection, position) < distance || distance == -1) {
+				
+				// Parmi ceux trouvés, on garde le mur le plus proche
+				Obstacle = murs[i];
+				distance = Point.distancePoint(intersection, position);
 			}
 			
 		}
@@ -216,9 +216,11 @@ public class Agent {
 		Segment direction = new Segment(this.position, this.cible);
 		Segment obstacle = obstacleProche(murs, direction);
 		if (obstacle != null) {
+
 			// Calculer les points de passage potentiel
 			Vecteur obstacleVecteur = new Vecteur(obstacle);
-			// Marge de 10 cm de distance au mur
+
+			// Marge de distance au mur (0.5)
 			obstacleVecteur = Vecteur.multiplication(obstacleVecteur, (this.rayon + 0.5) / Vecteur.norme(obstacleVecteur));
 			Point d1 = new Point(obstacle.getExtremite1(), Vecteur.difference(new Vecteur(0, 0), obstacleVecteur));
 			Point d2 = new Point(obstacle.getExtremite2(), obstacleVecteur);
@@ -233,6 +235,7 @@ public class Agent {
 				this.cible = d2;
 			}
 		}
+
 	    // Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
 		if (Point.distancePoint(this.position, this.cible) < 0.1) {
 			this.cible = this.sortie;
