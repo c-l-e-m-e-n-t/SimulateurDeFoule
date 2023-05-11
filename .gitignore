@@ -1,3 +1,4 @@
 /.metadata/
 *.prefs
-
+.classpath
+.project
