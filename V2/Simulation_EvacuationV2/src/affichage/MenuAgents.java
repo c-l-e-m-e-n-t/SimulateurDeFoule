@@ -5,6 +5,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 
+import modele.*;
+import modele.Point;
 import outils.RangeSlider;
 
 public class MenuAgents {
@@ -27,6 +29,12 @@ public class MenuAgents {
         agentSlider.setMinorTickSpacing(5);
         agentSlider.setPaintTicks(true);
         agentSlider.setPaintLabels(true);
+        agentSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                SimulationData.N = agentSlider.getValue();
+            }
+        });
         panel.add(new JLabel("Nombre d'agents:"));
         panel.add(agentSlider);
 
@@ -39,7 +47,8 @@ public class MenuAgents {
         massSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                // Code to update the mass of agents
+            	SimulationData.masseMin = massSlider.getValue();
+            	SimulationData.masseMax = massSlider.getUpperValue();
             }
         });
         panel.add(new JLabel("Masse:"));
@@ -54,7 +63,8 @@ public class MenuAgents {
         radiusSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                // Code to update the radius of agents
+            	SimulationData.rayonMin = radiusSlider.getValue();
+            	SimulationData.rayonMax = radiusSlider.getUpperValue();
             }
         });
         panel.add(new JLabel("Rayon:"));
@@ -69,7 +79,8 @@ public class MenuAgents {
         speedSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                // Code to update the speed of agents
+            	SimulationData.vitesseMin = speedSlider.getValue();
+            	SimulationData.vitesseMax = speedSlider.getUpperValue();
             }
         });
         panel.add(new JLabel("Vitesse:"));

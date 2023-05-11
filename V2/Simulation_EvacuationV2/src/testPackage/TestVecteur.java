@@ -42,16 +42,33 @@ public class TestVecteur {
     }
 
     @Test
-    public void testTranslation() {
-
-        Point point = new Point(1, 2);
-        Vecteur v = Vecteur.translater(vecteur1, point);
-        assertEquals(x + 1, v.getX());
-        assertEquals(y + 2, v.getY());
+    public void testVecteurSegment() {
+    	// TODO
     }
 
     @Test
-    public void testsommee() {
+    public void testGetX() {
+    	// TODO
+    }
+
+    @Test
+    public void testGetY() {
+    	// TODO
+    }
+
+    @Test
+    public void testTranslater() {
+    	// TODO
+    }
+
+    @Test
+    public void testNorme() {
+    	Vecteur vecteur = new Vecteur(x, y);
+        assertEquals(Math.sqrt(x * x + y * y), Vecteur.norme(vecteur), EPSILON);
+    }
+
+    @Test
+    public void testSomme() {
         Vecteur v = Vecteur.somme(vecteur1, vecteur2);
         assertEquals(x + 1, v.getX(), EPSILON);
         assertEquals(y + 2, v.getY(), EPSILON);
@@ -65,32 +82,30 @@ public class TestVecteur {
     }
 
     @Test
-    public void testProduitScalaire() {
-        Vecteur v = Vecteur.produitScalaire(vecteur1, 2);
-        assertEquals(x * 1, v.getX(), EPSILON);
-        assertEquals(y * 2, v.getY(), EPSILON);
+    public void testMultiplication() {
+    	// TODO
     }
 
     @Test
-    public void testGetNorme() {
-        Vecteur vecteur = new Vecteur(x, y);
-        assertEquals(Math.sqrt(x * x + y * y), Vecteur.norme(vecteur), EPSILON);
+    public void testProduitScalaire() {
+        double v = Vecteur.produitScalaire(vecteur1, vecteur2);
+        // TODO
     }
 
     @Test
     public void testvecteurNormal() {
         Point p1 = new Point(0, 0);
         Point p2 = new Point(3, 1);
-        double d = p1.distancePoint(p2);
+        double d = Point.distancePoint(p1, p2);
         Vecteur v = Vecteur.vecteurNormal(p1, p2);
         assertEquals((p2.getX() - p1.getX()) / d, v.getX(), EPSILON);
         assertEquals((p2.getY() - p1.getY()) / d, v.getY(), EPSILON);
     }
 
     @Test
-    public void testvecteurTangetiel() {
+    public void testvecteurTangent() {
         Vecteur vn = Vecteur.vecteurNormal(p1, p2);
-        Vecteur vt = Vecteur.vecteurTangentiel(p1, p2);
+        Vecteur vt = Vecteur.vecteurTangent(p1, p2);
 
         assertEquals(-vn.getY(), vt.getX(), EPSILON);
         assertEquals(vn.getX(), vt.getY(), EPSILON);

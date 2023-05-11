@@ -3,6 +3,8 @@ package affichage;
 import javax.swing.*;
 import java.awt.*;
 
+import modele.*;
+
 public class Menu {
 
     private JFrame frame;
@@ -19,8 +21,8 @@ public class Menu {
         panel.add(launchButton);
         panel.add(new JLabel(""));
 
-        JButton configPartButton = new JButton("Configuration de la partie");
-        panel.add(configPartButton);
+        JButton configRoomButton = new JButton("Configuration de la piece");
+        panel.add(configRoomButton);
         JButton configAgentButton = new JButton("Configuration des agents");
         panel.add(configAgentButton);
         panel.add(new JLabel(""));
@@ -46,11 +48,16 @@ public class Menu {
 
         // Ajouter des action listeners aux buttons
         launchButton.addActionListener(e -> {
-            // Code to launch the simulation
+        	if (SimulationData.murs != null && SimulationData.agents != null && SimulationData.sortie != null) {
+        		Simulation simulation = new Simulation(SimulationData.agents, SimulationData.murs, SimulationData.sortie, drawingPanel);
+        		simulation.start();
+        	} else {
+        		System.out.println("La simulation n'est pas configuré entièrement");
+        	}
         });
-        configPartButton.addActionListener(e -> {
+        configRoomButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
-            MenuObstacles menuObstacles = new MenuObstacles(frame, drawingPanel);
+            MenuObstacles menuObstacles = new MenuObstacles(frame, drawingPanel, panel);
         });
         configAgentButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
@@ -68,7 +75,7 @@ public class Menu {
         exitButton.addActionListener(e -> System.exit(0));
     }
 
-    private class DrawingPanel extends JPanel {
+    public class DrawingPanel extends JPanel {
 
         public DrawingPanel() {
             setPreferredSize(new Dimension(720, 720));
@@ -77,11 +84,34 @@ public class Menu {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            int centerX = getWidth() / 2;
-            int centerY = getHeight() / 2;
-            int radius = 50;
-            g.drawOval(centerX - radius, centerY - radius, radius * 2, radius * 2);
+            
+            // Dessiner les murs
+            if (SimulationData.murs != null) {
+            	g.setColor(Color.BLACK);
+                for (Segment murs : SimulationData.murs) {
+                    g.drawLine((int) murs.getExtremite1().getX(), (int) murs.getExtremite1().getY(), (int) murs.getExtremite2().getX(), (int) murs.getExtremite2().getY());
+                }
+            }
+
+            // Dessiner les agents
+            if (SimulationData.agents != null) {
+            	for (Agent agent : SimulationData.agents) {
+                    int x = (int) agent.getPosition().getX();
+                    int y = (int) agent.getPosition().getY();
+                    int radius = (int) agent.getRayon();
+                    Color color = agent.getCouleur();
+                    g.setColor(color);
+                    g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
+                }
+            }
+
+            // Afficher la sortie
+            if (SimulationData.sortie != null) {
+            	g.setColor(Color.BLACK);
+                g.drawString("Output: " + SimulationData.sortie, 10, getHeight() - 10);
+            }
         }
+
     }
 
 }

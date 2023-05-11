@@ -29,11 +29,14 @@ public class Agent {
 	/** Temps de réaction de l'agent. */
 	private double tau;
 
+	/** Indique si l'agent est sorti. */
+	private boolean estSorti = false;
+
 	/** Pression subie par l'agent. */
 	private double pression;
 
 	/** Couleur de l'agent. */
-	private Color couleur;
+	private Color couleur = Color.red;
 
 	/**  Construire un Agent à partir de ses caractéristiques.
 	 *  @param position	Position de l'agent
@@ -146,6 +149,20 @@ public class Agent {
 	 */
 	public double getTau() {
 		return this.tau;
+	}
+
+	/** Obtenir si l'agent est sorti.
+	 * @return true si l'agent est sorti
+	 */
+	public boolean getEstSorti() {
+		return this.estSorti;
+	}
+
+	/** Modifie si l'agent est sorti ou non.
+	 * @param l'agent est sorti ou non
+	 */
+	public void setEstSorti(boolean estSorti) {
+		this.estSorti = estSorti;
 	}
 
 	/** Obtenir la pression subie par l'agent.

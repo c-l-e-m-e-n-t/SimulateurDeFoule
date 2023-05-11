@@ -1,5 +1,6 @@
 package testPackage;
 
+/**
 import afficheur.Ecran;
 import modele.Agent;
 import modele.Deplacement;
@@ -13,12 +14,12 @@ import java.awt.Color;
 public class Tester_fonctionnalites {
 
 	public static void main(String[] args) {
-/*
+
         JFrame frame = new JFrame("Simulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setVisible(true);       
-*/  
+
 
 		// Construire un écran
 		Ecran ecran = new Ecran("ExempleEcran", 400, 250, 15);
@@ -63,3 +64,4 @@ public class Tester_fonctionnalites {
 	}
 
 }
+*/
