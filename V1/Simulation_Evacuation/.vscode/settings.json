@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "src/interfaceSimulateur/Test/pdfbox-app-3.0.0-alpha3.jar"
+    ]
+}
