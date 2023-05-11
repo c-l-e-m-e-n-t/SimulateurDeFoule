@@ -1,7 +1,6 @@
 package interfaceSimulateur;
 
 import java.awt.BorderLayout;
-import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,7 +32,7 @@ public class FenetreSimulation extends JFrame {
 
         getContentPane().add(paramSimulation, BorderLayout.EAST);
 
-        final Point sortie = new Point(100, 100);
+        final java.awt.Point sortie = new java.awt.Point(100, 100);
         Simulation.ajouterSortie(sortie);
 
         // Ajouter un ChangeListener au JSlider pour écouter les changements de valeur
@@ -46,7 +45,8 @@ public class FenetreSimulation extends JFrame {
                     double vitesse = Math.random() * (parametresSimulation.getVitesseMax() - parametresSimulation.getVitesseMin()) + parametresSimulation.getVitesseMin()+0.01;
                     double masse = Math.random() * (parametresSimulation.getMasseMax() - parametresSimulation.getMasseMin()) + parametresSimulation.getMasseMin();
                     double rayon = (Math.random()*(FenetreSimulation.parametresSimulation.getRayonMin()+FenetreSimulation.parametresSimulation.getRayonMax())/2 + FenetreSimulation.parametresSimulation.getRayonMin())/2;
-                    Simulation.ajouterPersonne(new Agent(new Point(x, y), sortie);
+                    //Simulation.ajouterPersonne(new Agent(new Point(x, y), new Point(sortie.getX(), sortie.getY()), 1.5, 3, 80, 0.5));
+
                 }
                 while (nbPersonnesCourant > nbPersonnes) {
                     Simulation.supprimerPersonne();

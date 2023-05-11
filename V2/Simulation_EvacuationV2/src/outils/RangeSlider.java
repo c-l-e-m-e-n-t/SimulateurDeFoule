@@ -1,7 +1,6 @@
 package outils;
 
-// Merci a @ernieyu pour sa version du slider a 2 curseurs
-
+//Merci a @ernieyu pour sa version du slider a 2 curseurs
 import javax.swing.JSlider;
 
 /**

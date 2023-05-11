@@ -5,7 +5,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.Timer;
-import java.awt.Point;
+
+import modele.*;
+import modele.Point;
+
 
 
 public class PanneauSimulation extends JPanel {
@@ -26,7 +29,7 @@ public class PanneauSimulation extends JPanel {
                 for (Agent p : agents) {
                     Vecteur direction = new Vecteur(0, 0);
                     direction = p.calculDirectionDesiree();
-                    p.setPosition(new Pt((int) p.getPosition().getX() + (int) (direction.getX()*p.getVitesseDesiree()), (int) p.getPosition().getY() + (int) (direction.getY()*p.getVitesseDesiree())));
+                    p.setPosition(new Point((int) p.getPosition().getX() + (int) (direction.getX()*p.getVitesseDesiree()), (int) p.getPosition().getY() + (int) (direction.getY()*p.getVitesseDesiree())));
                     p.getPoint().setLocation((int) p.getPosition().getX() + (int) direction.getX()*p.getVitesseDesiree(), (int) p.getPosition().getY() + (int) direction.getY()*p.getVitesseDesiree());
                     if (p.getPoint().distance(sortie) < 10) {
                         p.setCouleur(Color.WHITE);

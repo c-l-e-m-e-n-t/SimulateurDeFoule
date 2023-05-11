@@ -78,6 +78,13 @@ public class Agent {
 		return this.position;
 	}
 
+	/** Changer la position de l'agent.
+	 * @param la nouvelle position de l'agent
+	 */
+	public void setPosition(Point position) {
+		this.position = position;
+	}
+
 	/** Obtenir la vitesse de l'agent.
 	 * @return la vitesse de l'agent
 	 */

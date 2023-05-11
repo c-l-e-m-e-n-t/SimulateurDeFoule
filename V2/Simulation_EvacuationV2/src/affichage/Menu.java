@@ -44,7 +44,7 @@ public class Menu {
         frame.setSize(1080, 720);
         frame.setVisible(true);
 
-        // Add action listeners to the buttons
+        // Ajouter des action listeners aux buttons
         launchButton.addActionListener(e -> {
             // Code to launch the simulation
         });

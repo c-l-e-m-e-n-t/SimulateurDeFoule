@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import outils.RangeSlider;
+
 import java.awt.*;
 
 public class PanneauDroite extends JPanel {

@@ -5,6 +5,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 
+import outils.RangeSlider;
+
 public class MenuAgents {
 
     private JFrame frame;
@@ -15,11 +17,11 @@ public class MenuAgents {
         this.frame = frame;
         this.drawingPanel = drawingPanel;
 
-        // Create panel and buttons for agent configuration
+        // Créer un panel et des boutons pour la configuration de l'agent
         panel = new JPanel();
         panel.setLayout(new GridLayout(8, 1));
 
-        // Number of agents button
+        // Bouton du nombre d'agents
         JSlider agentSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
         agentSlider.setMajorTickSpacing(20);
         agentSlider.setMinorTickSpacing(5);
@@ -28,8 +30,8 @@ public class MenuAgents {
         panel.add(new JLabel("Nombre d'agents:"));
         panel.add(agentSlider);
 
-        // Mass button
-        JSlider massSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+        // Bouton Masse
+        RangeSlider massSlider = new RangeSlider(0, 100);
         massSlider.setMajorTickSpacing(20);
         massSlider.setMinorTickSpacing(5);
         massSlider.setPaintTicks(true);
@@ -43,8 +45,8 @@ public class MenuAgents {
         panel.add(new JLabel("Masse:"));
         panel.add(massSlider);
 
-        // Radius button
-        JSlider radiusSlider = new JSlider(JSlider.HORIZONTAL, 5, 50, 5);
+        // Bouton Rayon
+        RangeSlider radiusSlider = new RangeSlider(5, 50);
         radiusSlider.setMajorTickSpacing(10);
         radiusSlider.setMinorTickSpacing(5);
         radiusSlider.setPaintTicks(true);
@@ -58,8 +60,8 @@ public class MenuAgents {
         panel.add(new JLabel("Rayon:"));
         panel.add(radiusSlider);
 
-        // Speed button
-        JSlider speedSlider = new JSlider(JSlider.HORIZONTAL, 2, 8, 2);
+        // Bouton Vitesse
+        RangeSlider speedSlider = new RangeSlider(2, 8);
         speedSlider.setMajorTickSpacing(2);
         speedSlider.setMinorTickSpacing(1);
         speedSlider.setPaintTicks(true);
@@ -73,21 +75,21 @@ public class MenuAgents {
         panel.add(new JLabel("Vitesse:"));
         panel.add(speedSlider);
 
-        // Configure an agent button
+        // Bouton Configurer un agent
         JButton configureAgentButton = new JButton("Configurer un agent");
         configureAgentButton.addActionListener(e -> {
             // Code to configure an agent
         });
         panel.add(configureAgentButton);
 
-        // Place randomly button
+        // Bouton placer aleatoirement
         JButton placeRandomlyButton = new JButton("Placer aléatoirement");
         placeRandomlyButton.addActionListener(e -> {
             // Code to place agents randomly
         });
         panel.add(placeRandomlyButton);
 
-        // Back button
+        // Bouton Retour
         JButton backButton = new JButton("Retour");
         backButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
@@ -97,12 +99,12 @@ public class MenuAgents {
         });
         panel.add(backButton);
 
-        // Set layout and add panel to frame
+        // Définir la disposition du panneau et l'ajouter au frame
         frame.getContentPane().add(panel, BorderLayout.EAST);
         frame.getContentPane().add(drawingPanel, BorderLayout.WEST);
         frame.revalidate();
 
-        // Update drawing panel
+        // Update le panel
         frame.repaint();
     }
 }
