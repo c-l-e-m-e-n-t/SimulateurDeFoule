@@ -40,7 +40,7 @@ public class TestVecteur {
         assertEquals(x, vecteur.getX(), EPSILON);
         assertEquals(y, vecteur.getY(), EPSILON);
     }
-
+    
     @Test
     public void testVecteurSegment() {
     	// TODO
