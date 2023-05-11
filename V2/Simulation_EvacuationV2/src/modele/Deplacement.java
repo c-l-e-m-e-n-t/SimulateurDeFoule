@@ -9,7 +9,7 @@ public class Deplacement {
 	private final static double kappa = 2.4*Math.pow(10, 5);
 
 	/** Pas d'intégration. */
-	private static double dt = 0.01;
+	private static double dt = 0.1;
 
 
 	/** Fonction qui renvoie x si x est positif

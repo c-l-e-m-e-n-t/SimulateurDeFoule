@@ -57,8 +57,14 @@ public class Menu {
         	}
         	if (!allNull) {
         		frame.getContentPane().remove(panel);
-        		Simulation simulation = new Simulation(SimulationData.agents, SimulationData.murs, frame, drawingPanel, panel);
-        		simulation.start();
+        		Simulation simulation = new Simulation(frame, drawingPanel, panel);
+        		// Pause between iterations
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+        		simulation.run();
         	} else {
         		System.out.println("La simulation n'est pas configuré entièrement");
         	}

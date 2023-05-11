@@ -11,12 +11,7 @@ public class Simulation {
     private JPanel panel;
     private JPanel drawingPanel;
 
-    private Agent[] agents;
-    private Segment[] murs;
-
-    public Simulation(Agent[] agents, Segment[] murs, JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
-    	this.agents = agents;
-    	this.murs = murs;
+    public Simulation(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
     	
     	this.frame = frame;
         this.drawingPanel = drawingPanel;
@@ -58,16 +53,17 @@ public class Simulation {
         frame.repaint();
     }
 
-    public void start() {
+    public void run() {
         // Time between each iteration (in ms)
-        long sleep = 10;
+        long sleep = 1;
 
         // Main loop
-        while (!agentsSortis()) {
+        if (!agentsSortis()) {
 
             // Update the position of the agents
-            Deplacement.euler(agents, murs);
+            Deplacement.euler(SimulationData.agents, SimulationData.murs);
             drawingPanel.repaint();
+            System.out.println(SimulationData.agents[0].getPosition());
 
             // Pause between iterations
             try {
@@ -75,12 +71,13 @@ public class Simulation {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            run();
         }
     }
 
     private boolean agentsSortis() {
         // Voir si les agents sont sortis
-        for (Agent agent : agents) {
+        for (Agent agent : SimulationData.agents) {
             if (!agent.getEstSorti()) {
                 return false;
             }
