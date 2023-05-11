@@ -48,8 +48,16 @@ public class Menu {
 
         // Ajouter des action listeners aux buttons
         launchButton.addActionListener(e -> {
-        	if (SimulationData.murs != null && SimulationData.agents != null && SimulationData.sortie != null) {
-        		Simulation simulation = new Simulation(SimulationData.agents, SimulationData.murs, SimulationData.sortie, drawingPanel);
+        	boolean allNull = true;
+        	for (Agent agent : SimulationData.agents) {
+        	    if (agent != null) {
+        	        allNull = false;
+        	        break;
+        	    }
+        	}
+        	if (!allNull) {
+        		frame.getContentPane().remove(panel);
+        		Simulation simulation = new Simulation(SimulationData.agents, SimulationData.murs, frame, drawingPanel, panel);
         		simulation.start();
         	} else {
         		System.out.println("La simulation n'est pas configuré entièrement");
@@ -86,16 +94,16 @@ public class Menu {
             super.paintComponent(g);
             
             // Dessiner les murs
-            if (SimulationData.murs != null) {
-            	g.setColor(Color.BLACK);
-                for (Segment murs : SimulationData.murs) {
-                    g.drawLine((int) murs.getExtremite1().getX(), (int) murs.getExtremite1().getY(), (int) murs.getExtremite2().getX(), (int) murs.getExtremite2().getY());
+            g.setColor(Color.BLACK);
+            for (Segment mur : SimulationData.murs) {
+                if (mur != null) {
+                    g.drawLine((int) mur.getExtremite1().getX(), (int) mur.getExtremite1().getY(), (int) mur.getExtremite2().getX(), (int) mur.getExtremite2().getY());
                 }
             }
 
             // Dessiner les agents
-            if (SimulationData.agents != null) {
-            	for (Agent agent : SimulationData.agents) {
+            for (Agent agent : SimulationData.agents) {
+            	if (agent != null) {
                     int x = (int) agent.getPosition().getX();
                     int y = (int) agent.getPosition().getY();
                     int radius = (int) agent.getRayon();
@@ -104,11 +112,13 @@ public class Menu {
                     g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
                 }
             }
-
+            g.setColor(Color.BLACK);
+            g.fillOval(500, 500, 15, 15);
+            
             // Afficher la sortie
             if (SimulationData.sortie != null) {
             	g.setColor(Color.BLACK);
-                g.drawString("Output: " + SimulationData.sortie, 10, getHeight() - 10);
+                g.drawString("Sortie: " + SimulationData.sortie, 10, getHeight() - 10);
             }
         }
 

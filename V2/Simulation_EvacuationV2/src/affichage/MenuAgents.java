@@ -33,6 +33,9 @@ public class MenuAgents {
             @Override
             public void stateChanged(ChangeEvent e) {
                 SimulationData.N = agentSlider.getValue();
+                SimulationData.updateAgents();
+                frame.repaint();
+                
             }
         });
         panel.add(new JLabel("Nombre d'agents:"));
@@ -49,13 +52,14 @@ public class MenuAgents {
             public void stateChanged(ChangeEvent e) {
             	SimulationData.masseMin = massSlider.getValue();
             	SimulationData.masseMax = massSlider.getUpperValue();
+            	SimulationData.updateAgents();
             }
         });
         panel.add(new JLabel("Masse:"));
         panel.add(massSlider);
 
         // Bouton Rayon
-        RangeSlider radiusSlider = new RangeSlider(5, 50);
+        RangeSlider radiusSlider = new RangeSlider(10, 15);
         radiusSlider.setMajorTickSpacing(10);
         radiusSlider.setMinorTickSpacing(5);
         radiusSlider.setPaintTicks(true);
@@ -65,6 +69,7 @@ public class MenuAgents {
             public void stateChanged(ChangeEvent e) {
             	SimulationData.rayonMin = radiusSlider.getValue();
             	SimulationData.rayonMax = radiusSlider.getUpperValue();
+            	SimulationData.updateAgents();
             }
         });
         panel.add(new JLabel("Rayon:"));
@@ -81,6 +86,7 @@ public class MenuAgents {
             public void stateChanged(ChangeEvent e) {
             	SimulationData.vitesseMin = speedSlider.getValue();
             	SimulationData.vitesseMax = speedSlider.getUpperValue();
+            	SimulationData.updateAgents();
             }
         });
         panel.add(new JLabel("Vitesse:"));
@@ -118,4 +124,5 @@ public class MenuAgents {
         // Update le panel
         frame.repaint();
     }
+
 }

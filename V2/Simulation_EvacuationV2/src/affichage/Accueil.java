@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import modele.*;
+import modele.Point;
+
 public class Accueil {
 
     private JFrame frame;
@@ -14,7 +17,7 @@ public class Accueil {
     public Accueil() {
         frame = new JFrame("Simulation d'évacuation");
         panel = new JPanel(new BorderLayout());
-        imageLabel = new JLabel(new ImageIcon("crowd.jpg")); // Image d'accueil
+        imageLabel = new JLabel(new ImageIcon("logo.jpg")); // Image d'accueil
         pressAnyKeyLabel = new JLabel("Appuyer sur une touche", SwingConstants.CENTER);
         pressAnyKeyLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
@@ -38,6 +41,9 @@ public class Accueil {
     }
 
     public static void main(String[] args) {
+        SimulationData.agents = new Agent[0];
+        SimulationData.murs = new Segment[0];
+        SimulationData.sortie = new Point(10, 10);
         Accueil accueil = new Accueil();
     }
 
