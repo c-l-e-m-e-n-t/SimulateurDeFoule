@@ -3,6 +3,8 @@ package affichage;
 import javax.swing.*;
 import java.awt.*;
 
+import modele.*;
+
 public class Menu {
 
     private JFrame frame;
@@ -19,8 +21,8 @@ public class Menu {
         panel.add(launchButton);
         panel.add(new JLabel(""));
 
-        JButton configPartButton = new JButton("Configuration de la partie");
-        panel.add(configPartButton);
+        JButton configRoomButton = new JButton("Configuration de la piece");
+        panel.add(configRoomButton);
         JButton configAgentButton = new JButton("Configuration des agents");
         panel.add(configAgentButton);
         panel.add(new JLabel(""));
@@ -46,11 +48,30 @@ public class Menu {
 
         // Ajouter des action listeners aux buttons
         launchButton.addActionListener(e -> {
-            // Code to launch the simulation
+        	boolean allNull = true;
+        	for (Agent agent : SimulationData.agents) {
+        	    if (agent != null) {
+        	        allNull = false;
+        	        break;
+        	    }
+        	}
+        	if (!allNull) {
+        		frame.getContentPane().remove(panel);
+        		Simulation simulation = new Simulation(frame, drawingPanel, panel);
+        		// Pause between iterations
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+        		simulation.run();
+        	} else {
+        		System.out.println("La simulation n'est pas configuré entièrement");
+        	}
         });
-        configPartButton.addActionListener(e -> {
+        configRoomButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
-            MenuObstacles menuObstacles = new MenuObstacles(frame, drawingPanel);
+            MenuObstacles menuObstacles = new MenuObstacles(frame, drawingPanel, panel);
         });
         configAgentButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
@@ -68,7 +89,7 @@ public class Menu {
         exitButton.addActionListener(e -> System.exit(0));
     }
 
-    private class DrawingPanel extends JPanel {
+    public class DrawingPanel extends JPanel {
 
         public DrawingPanel() {
             setPreferredSize(new Dimension(720, 720));
@@ -77,11 +98,42 @@ public class Menu {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            int centerX = getWidth() / 2;
-            int centerY = getHeight() / 2;
-            int radius = 50;
-            g.drawOval(centerX - radius, centerY - radius, radius * 2, radius * 2);
+            
+            // Dessiner les murs
+            g.setColor(Color.BLACK);
+            for (Segment mur : SimulationData.murs) {
+                if (mur != null) {
+                	int x1 = (int) (mur.getExtremite1().getX() * SimulationData.NORMALISER);
+                	int y1 = (int) (mur.getExtremite1().getY() * SimulationData.NORMALISER);
+                	int x2 = (int) (mur.getExtremite2().getX() * SimulationData.NORMALISER);
+                	int y2 = (int) (mur.getExtremite2().getY() * SimulationData.NORMALISER);
+                    g.drawLine(x1, y1, x2, y2);
+                }
+            }
+
+            // Dessiner les agents
+            for (Agent agent : SimulationData.agents) {
+            	if (agent != null) {
+                    int x = (int) (agent.getPosition().getX() * SimulationData.NORMALISER);
+                    int y = (int) (agent.getPosition().getY() * SimulationData.NORMALISER);
+                    int radius = (int) (agent.getRayon() * SimulationData.NORMALISER);
+                    Color color = agent.getCouleur();
+                    g.setColor(color);
+                    g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
+                }
+            }
+            
+            // Afficher la sortie
+            if (SimulationData.sortie != null) {
+            	g.setColor(Color.BLACK);
+            	int x = (int) (SimulationData.sortie.getX() * SimulationData.NORMALISER);
+            	int y = (int) (SimulationData.sortie.getY() * SimulationData.NORMALISER);
+            	g.drawLine(x - 10, y, x + 10, y);
+                g.drawLine(x, y - 10, x, y + 10);
+                g.drawString("Sortie: " + SimulationData.sortie, 10, getHeight() - 10);
+            }
         }
+
     }
 
 }

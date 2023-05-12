@@ -5,6 +5,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 
+import modele.*;
+import modele.Point;
 import outils.RangeSlider;
 
 public class MenuAgents {
@@ -27,49 +29,76 @@ public class MenuAgents {
         agentSlider.setMinorTickSpacing(5);
         agentSlider.setPaintTicks(true);
         agentSlider.setPaintLabels(true);
+        agentSlider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                SimulationData.N = agentSlider.getValue();
+                SimulationData.updateAgents();
+                frame.repaint();
+                
+            }
+        });
         panel.add(new JLabel("Nombre d'agents:"));
         panel.add(agentSlider);
 
         // Bouton Masse
-        RangeSlider massSlider = new RangeSlider(0, 100);
+        RangeSlider massSlider = new RangeSlider(40, 120);
         massSlider.setMajorTickSpacing(20);
         massSlider.setMinorTickSpacing(5);
         massSlider.setPaintTicks(true);
         massSlider.setPaintLabels(true);
+        SimulationData.masseMin = massSlider.getValue();
+    	SimulationData.masseMax = massSlider.getUpperValue();
+    	SimulationData.updateAgents();
         massSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                // Code to update the mass of agents
+            	SimulationData.masseMin = massSlider.getValue();
+            	SimulationData.masseMax = massSlider.getUpperValue();
+            	SimulationData.updateAgents();
+            	frame.repaint();
             }
         });
         panel.add(new JLabel("Masse:"));
         panel.add(massSlider);
 
         // Bouton Rayon
-        RangeSlider radiusSlider = new RangeSlider(5, 50);
+        RangeSlider radiusSlider = new RangeSlider(35, 45);
         radiusSlider.setMajorTickSpacing(10);
         radiusSlider.setMinorTickSpacing(5);
         radiusSlider.setPaintTicks(true);
         radiusSlider.setPaintLabels(true);
+        SimulationData.rayonMin = (float) radiusSlider.getValue() / 100;
+    	SimulationData.rayonMax = (float) radiusSlider.getUpperValue() / 100;
+    	SimulationData.updateAgents();
         radiusSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                // Code to update the radius of agents
+            	SimulationData.rayonMin = radiusSlider.getValue() / 100;
+            	SimulationData.rayonMax = radiusSlider.getUpperValue() / 100;
+            	SimulationData.updateAgents();
+            	frame.repaint();
             }
         });
         panel.add(new JLabel("Rayon:"));
         panel.add(radiusSlider);
 
         // Bouton Vitesse
-        RangeSlider speedSlider = new RangeSlider(2, 8);
-        speedSlider.setMajorTickSpacing(2);
+        RangeSlider speedSlider = new RangeSlider(1, 3);
+        speedSlider.setMajorTickSpacing(5);
         speedSlider.setMinorTickSpacing(1);
         speedSlider.setPaintTicks(true);
         speedSlider.setPaintLabels(true);
+        SimulationData.vitesseMin = speedSlider.getValue();
+    	SimulationData.vitesseMax = speedSlider.getUpperValue();
+    	SimulationData.updateAgents();
         speedSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                // Code to update the speed of agents
+            	SimulationData.vitesseMin = speedSlider.getValue();
+            	SimulationData.vitesseMax = speedSlider.getUpperValue();
+            	SimulationData.updateAgents();
+            	frame.repaint();
             }
         });
         panel.add(new JLabel("Vitesse:"));
@@ -107,4 +136,5 @@ public class MenuAgents {
         // Update le panel
         frame.repaint();
     }
+
 }

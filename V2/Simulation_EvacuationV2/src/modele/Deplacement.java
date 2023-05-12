@@ -9,7 +9,7 @@ public class Deplacement {
 	private final static double kappa = 2.4*Math.pow(10, 5);
 
 	/** Pas d'intégration. */
-	private static double dt = 0.01;
+	private static double dt = 0.1;
 
 
 	/** Fonction qui renvoie x si x est positif
@@ -135,9 +135,6 @@ public class Deplacement {
 			double tau = agents[i].getTau();
 			double m = agents[i].getMasse();
 			
-			System.out.println(forceMurs[i]);
-			System.out.println(forceAgents[i]);
-			System.out.println();
 
 			// (v0e0 - v) / tau
 			Vecteur a1 = Vecteur.multiplication(Vecteur.difference(v0e0, v), 1 / tau);
@@ -171,6 +168,9 @@ public class Deplacement {
 			// r' = r + v' * dt = r + r1
 			Vecteur r1 = Vecteur.multiplication(vitesseI, dt);
 			positionI.translater(r1.getX(), r1.getY());
+			System.out.println(r1.getX());
+			System.out.println(r1.getY());
+			System.out.println();
 		}
 	}
 
