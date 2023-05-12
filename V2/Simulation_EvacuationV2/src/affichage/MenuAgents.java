@@ -42,51 +42,63 @@ public class MenuAgents {
         panel.add(agentSlider);
 
         // Bouton Masse
-        RangeSlider massSlider = new RangeSlider(0, 100);
+        RangeSlider massSlider = new RangeSlider(40, 120);
         massSlider.setMajorTickSpacing(20);
         massSlider.setMinorTickSpacing(5);
         massSlider.setPaintTicks(true);
         massSlider.setPaintLabels(true);
+        SimulationData.masseMin = massSlider.getValue();
+    	SimulationData.masseMax = massSlider.getUpperValue();
+    	SimulationData.updateAgents();
         massSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
             	SimulationData.masseMin = massSlider.getValue();
             	SimulationData.masseMax = massSlider.getUpperValue();
             	SimulationData.updateAgents();
+            	frame.repaint();
             }
         });
         panel.add(new JLabel("Masse:"));
         panel.add(massSlider);
 
         // Bouton Rayon
-        RangeSlider radiusSlider = new RangeSlider(10, 15);
+        RangeSlider radiusSlider = new RangeSlider(35, 45);
         radiusSlider.setMajorTickSpacing(10);
         radiusSlider.setMinorTickSpacing(5);
         radiusSlider.setPaintTicks(true);
         radiusSlider.setPaintLabels(true);
+        SimulationData.rayonMin = (float) radiusSlider.getValue() / 100;
+    	SimulationData.rayonMax = (float) radiusSlider.getUpperValue() / 100;
+    	SimulationData.updateAgents();
         radiusSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-            	SimulationData.rayonMin = radiusSlider.getValue();
-            	SimulationData.rayonMax = radiusSlider.getUpperValue();
+            	SimulationData.rayonMin = radiusSlider.getValue() / 100;
+            	SimulationData.rayonMax = radiusSlider.getUpperValue() / 100;
             	SimulationData.updateAgents();
+            	frame.repaint();
             }
         });
         panel.add(new JLabel("Rayon:"));
         panel.add(radiusSlider);
 
         // Bouton Vitesse
-        RangeSlider speedSlider = new RangeSlider(2, 8);
-        speedSlider.setMajorTickSpacing(2);
+        RangeSlider speedSlider = new RangeSlider(1, 3);
+        speedSlider.setMajorTickSpacing(5);
         speedSlider.setMinorTickSpacing(1);
         speedSlider.setPaintTicks(true);
         speedSlider.setPaintLabels(true);
+        SimulationData.vitesseMin = speedSlider.getValue();
+    	SimulationData.vitesseMax = speedSlider.getUpperValue();
+    	SimulationData.updateAgents();
         speedSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
             	SimulationData.vitesseMin = speedSlider.getValue();
             	SimulationData.vitesseMax = speedSlider.getUpperValue();
             	SimulationData.updateAgents();
+            	frame.repaint();
             }
         });
         panel.add(new JLabel("Vitesse:"));

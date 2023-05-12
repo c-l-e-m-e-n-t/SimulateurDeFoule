@@ -55,15 +55,17 @@ public class Simulation {
 
     public void run() {
         // Time between each iteration (in ms)
-        long sleep = 1;
+        long sleep = 1000;
 
         // Main loop
-        if (!agentsSortis()) {
+        while (!agentsSortis()) {
 
             // Update the position of the agents
             Deplacement.euler(SimulationData.agents, SimulationData.murs);
-            drawingPanel.repaint();
             System.out.println(SimulationData.agents[0].getPosition());
+
+            // Repaint the drawing panel
+            frame.repaint();
 
             // Pause between iterations
             try {
@@ -71,7 +73,6 @@ public class Simulation {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            run();
         }
     }
 

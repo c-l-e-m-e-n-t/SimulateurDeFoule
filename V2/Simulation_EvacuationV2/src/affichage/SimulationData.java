@@ -22,6 +22,8 @@ public class SimulationData {
     private static final double TAU = 0.5;
     private static final Random random = new Random();
 
+    public static final double NORMALISER = 720 / 20;
+
     public static void updateAgents() {
         agents = new Agent[N];
         for (int i = 0; i < N; i++) {
@@ -38,8 +40,8 @@ public class SimulationData {
         Point position;
         boolean validPosition;
         do {
-            double x = rayon + (600 - 2 * rayon) * random.nextDouble();
-            double y = rayon + (600 - 2 * rayon) * random.nextDouble();
+            double x = 2*rayon + (18 - 2 * rayon) * random.nextDouble();
+            double y = 2*rayon + (18 - 2 * rayon) * random.nextDouble();
             position = new Point((int) x, (int) y);
             validPosition = true;
             for (Agent agent : agents) {

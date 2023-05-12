@@ -103,27 +103,33 @@ public class Menu {
             g.setColor(Color.BLACK);
             for (Segment mur : SimulationData.murs) {
                 if (mur != null) {
-                    g.drawLine((int) mur.getExtremite1().getX(), (int) mur.getExtremite1().getY(), (int) mur.getExtremite2().getX(), (int) mur.getExtremite2().getY());
+                	int x1 = (int) (mur.getExtremite1().getX() * SimulationData.NORMALISER);
+                	int y1 = (int) (mur.getExtremite1().getY() * SimulationData.NORMALISER);
+                	int x2 = (int) (mur.getExtremite2().getX() * SimulationData.NORMALISER);
+                	int y2 = (int) (mur.getExtremite2().getY() * SimulationData.NORMALISER);
+                    g.drawLine(x1, y1, x2, y2);
                 }
             }
 
             // Dessiner les agents
             for (Agent agent : SimulationData.agents) {
             	if (agent != null) {
-                    int x = (int) agent.getPosition().getX();
-                    int y = (int) agent.getPosition().getY();
-                    int radius = (int) agent.getRayon();
+                    int x = (int) (agent.getPosition().getX() * SimulationData.NORMALISER);
+                    int y = (int) (agent.getPosition().getY() * SimulationData.NORMALISER);
+                    int radius = (int) (agent.getRayon() * SimulationData.NORMALISER);
                     Color color = agent.getCouleur();
                     g.setColor(color);
                     g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
                 }
             }
-            g.setColor(Color.BLACK);
-            g.fillOval(500, 500, 15, 15);
             
             // Afficher la sortie
             if (SimulationData.sortie != null) {
             	g.setColor(Color.BLACK);
+            	int x = (int) (SimulationData.sortie.getX() * SimulationData.NORMALISER);
+            	int y = (int) (SimulationData.sortie.getY() * SimulationData.NORMALISER);
+            	g.drawLine(x - 10, y, x + 10, y);
+                g.drawLine(x, y - 10, x, y + 10);
                 g.drawString("Sortie: " + SimulationData.sortie, 10, getHeight() - 10);
             }
         }
