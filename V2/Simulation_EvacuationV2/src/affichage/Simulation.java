@@ -8,13 +8,11 @@ import modele.*;
 /** Classe qui gère la simulation de l'évacuation.*/
 public class Simulation {
 
-    private JFrame frame;
     private JPanel panel;
     private JPanel drawingPanel;
 
     public Simulation(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
     	
-    	this.frame = frame;
         this.drawingPanel = drawingPanel;
 
         // Create the menu panel
@@ -54,9 +52,9 @@ public class Simulation {
         frame.repaint();
     }
 
-    public void run() {
+    public void run(JFrame frame) {
         // Time between each iteration (in ms)
-        long sleep = 1000;
+        long sleep = 10;
 
         // Main loop
         while (!agentsSortis()) {
@@ -66,7 +64,7 @@ public class Simulation {
             System.out.println(SimulationData.agents[0].getPosition());
 
             // Repaint the drawing panel
-            frame.repaint();
+            frame.update(frame.getGraphics()); // Ne pas toucher, ca marche comme ca
 
             // Pause between iterations
             try {
