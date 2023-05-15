@@ -4,6 +4,7 @@ import java.util.Random;
 
 import modele.*;
 
+/** Données importantes de la simulation.*/
 public class SimulationData {
     /** Main data.*/
     public static Agent[] agents;

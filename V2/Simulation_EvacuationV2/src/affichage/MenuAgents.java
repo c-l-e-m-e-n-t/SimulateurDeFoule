@@ -9,6 +9,7 @@ import modele.*;
 import modele.Point;
 import outils.RangeSlider;
 
+/** Classe du menu des agents.*/
 public class MenuAgents {
 
     private JFrame frame;

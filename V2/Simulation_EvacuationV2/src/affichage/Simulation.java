@@ -5,6 +5,7 @@ import java.awt.*;
 
 import modele.*;
 
+/** Classe qui gère la simulation de l'évacuation.*/
 public class Simulation {
 
     private JFrame frame;

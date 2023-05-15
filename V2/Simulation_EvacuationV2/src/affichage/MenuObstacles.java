@@ -6,6 +6,7 @@ import java.awt.*;
 import modele.*;
 import modele.Point;
 
+/** Classe du menu des obstacles.*/
 public class MenuObstacles {
 
     private JFrame frame;

@@ -5,6 +5,7 @@ import java.awt.*;
 
 import modele.*;
 
+/** Classe qui gère les opérations du menu.*/
 public class Menu {
 
     private JFrame frame;
@@ -105,7 +106,7 @@ public class Menu {
                 if (mur != null) {
                 	int x1 = (int) (mur.getExtremite1().getX() * SimulationData.NORMALISER);
                 	int y1 = (int) (mur.getExtremite1().getY() * SimulationData.NORMALISER);
-                	int x2 = (int) (mur.getExtremite2().getX() * SimulationData.NORMALISER);
+                	int x2 = ( int) (mur.getExtremite2().getX() * SimulationData.NORMALISER);
                 	int y2 = (int) (mur.getExtremite2().getY() * SimulationData.NORMALISER);
                     g.drawLine(x1, y1, x2, y2);
                 }

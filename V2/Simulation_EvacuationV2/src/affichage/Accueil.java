@@ -7,6 +7,7 @@ import java.awt.event.*;
 import modele.*;
 import modele.Point;
 
+/** Programme Principal.*/
 public class Accueil {
 
     private JFrame frame;
