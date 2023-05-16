@@ -2,18 +2,18 @@ package affichage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import modele.*;
+
+import javax.swing.Timer;
 
 /** Classe qui gère la simulation de l'évacuation.*/
 public class Simulation {
 
-    private JPanel panel;
-    private JPanel drawingPanel;
+    private Timer timer;
 
     public Simulation(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
-    	
-        this.drawingPanel = drawingPanel;
 
         // Create the menu panel
         JPanel panel = new JPanel();
@@ -22,14 +22,14 @@ public class Simulation {
         // Bouton Pause
         JButton pauseButton = new JButton("Pause");
         pauseButton.addActionListener(e -> {
-            // Code to place agents randomly
+            timer.stop();
         });
         panel.add(pauseButton);
 
         // Bouton Play
         JButton playButton = new JButton("Play");
         playButton.addActionListener(e -> {
-            // Code to place agents randomly
+            timer.start();
         });
         panel.add(playButton);
 
@@ -43,36 +43,33 @@ public class Simulation {
         });
         panel.add(backButton);
 
-     // Définir la disposition du panneau et l'ajouter au frame
+        // Définir la disposition du panneau et l'ajouter au frame
         frame.getContentPane().add(panel, BorderLayout.EAST);
         frame.getContentPane().add(drawingPanel, BorderLayout.WEST);
         frame.revalidate();
 
-        // Update le panel
-        frame.repaint();
+        frame.update(frame.getGraphics()); // Ne pas toucher, ca marche comme ca
     }
 
-    public void run(JFrame frame) {
+    public void run(JPanel frame) {
         // Time between each iteration (in ms)
-        long sleep = 10;
+        int sleep = 16;
+        timer = new Timer(sleep, new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                // Update the position of the agents
+                Deplacement.euler(SimulationData.agents, SimulationData.murs);
+                //System.out.println(SimulationData.agents[0].getPosition());
 
-        // Main loop
-        while (!agentsSortis()) {
+                // Repaint the drawing panel
+                frame.update(frame.getGraphics()); // Ne pas toucher, ca marche comme ca
 
-            // Update the position of the agents
-            Deplacement.euler(SimulationData.agents, SimulationData.murs);
-            System.out.println(SimulationData.agents[0].getPosition());
-
-            // Repaint the drawing panel
-            frame.update(frame.getGraphics()); // Ne pas toucher, ca marche comme ca
-
-            // Pause between iterations
-            try {
-                Thread.sleep(sleep);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                if (agentsSortis()) {
+                    timer.stop();
+                }
             }
-        }
+        });
+        timer.start();
     }
 
     private boolean agentsSortis() {
@@ -84,5 +81,4 @@ public class Simulation {
         }
         return true;
     }
-
 }

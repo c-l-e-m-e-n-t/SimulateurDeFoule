@@ -73,7 +73,12 @@ public class Agent {
 		this.couleur = nouvelleCouleur;
 	}
 
-	 
+	/** Obtenir la distance entre l'agent et sa sortie
+	  * @return distance la distance entre l'agent et sa sortie
+	*/
+	public double getDistanceSortie() {
+		return Point.distancePoint(this.position, this.sortie);
+	}
 
     /** Obtenir la position de l'agent.
 	 * @return la position de l'agent

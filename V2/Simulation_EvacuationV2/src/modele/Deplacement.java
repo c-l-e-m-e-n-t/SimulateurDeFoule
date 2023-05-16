@@ -157,20 +157,28 @@ public class Deplacement {
 	public static void euler(Agent[] agents, Segment[] murs) {
 		Vecteur[] acceleration = calculAcceleration(agents, murs);
 		for (int i = 0; i < agents.length; i++) {
-			Point positionI = agents[i].getPosition();
-			Vecteur vitesseI = agents[i].getVitesse();
-			Vecteur a = acceleration[i];
+			if (!agents[i].getEstSorti()) {
+				Point positionI = agents[i].getPosition();
+				Vecteur vitesseI = agents[i].getVitesse();
+				Vecteur a = acceleration[i];
 
-			// v' = v + a * dt = v + v1
-			Vecteur v1 = Vecteur.multiplication(a, dt);
-			vitesseI.translater(v1.getX(), v1.getY());
+				// v' = v + a * dt = v + v1
+				Vecteur v1 = Vecteur.multiplication(a, dt);
+				vitesseI.translater(v1.getX(), v1.getY());
 
-			// r' = r + v' * dt = r + r1
-			Vecteur r1 = Vecteur.multiplication(vitesseI, dt);
-			positionI.translater(r1.getX(), r1.getY());
-			System.out.println(r1.getX());
-			System.out.println(r1.getY());
-			System.out.println();
+				// r' = r + v' * dt = r + r1
+				Vecteur r1 = Vecteur.multiplication(vitesseI, dt);
+				positionI.translater(r1.getX(), r1.getY());
+
+				if (agents[i].getDistanceSortie() < agents[i].getRayon()) {
+					agents[i].setEstSorti(true);
+					agents[i].setPosition(new Point(10000, 10000));
+				}
+
+				//System.out.println(r1.getX());
+				//System.out.println(r1.getY());
+				//System.out.println();
+			}
 		}
 	}
 

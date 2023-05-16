@@ -65,7 +65,7 @@ public class Menu {
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
-        		simulation.run(frame);
+        		simulation.run(drawingPanel);
         	} else {
         		System.out.println("La simulation n'est pas configuré entièrement");
         	}
