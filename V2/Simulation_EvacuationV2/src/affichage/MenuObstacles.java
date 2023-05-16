@@ -26,19 +26,31 @@ public class MenuObstacles {
         JComboBox<String> roomComboBox = new JComboBox<>(roomTypes);
         roomComboBox.addActionListener(e -> {
             String selectedObstacleType = (String) roomComboBox.getSelectedItem();
+            Segment mur1, mur2, mur3, mur4, mur5, mur6;
+            Segment[] murs;
             switch (selectedObstacleType) {
                 case "Piece 1":
                     // Code to select the wall tool
-                	Segment mur1 = new Segment(new Point(10, 10), new Point(10, 100));
-                	Segment mur2 = new Segment(new Point(10, 100), new Point(100, 100));
-                	Segment mur3 = new Segment(new Point(100, 100), new Point(100, 10));
-                	Segment mur4 = new Segment(new Point(100, 10), new Point(10, 10));
-                	Segment[] murs = {mur1, mur2, mur3, mur4};
+                	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
+                	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
+                	mur3 = new Segment(new Point(15, 5), new Point(15, 15));
+                	mur4 = new Segment(new Point(15, 15), new Point(5, 15));
+                	mur5 = new Segment(new Point(5, 15), new Point(5, 11));
+                	murs = new Segment[]{mur1, mur2, mur3, mur4, mur5};
                 	SimulationData.murs = murs;
                 	frame.repaint();
                     break;
                 case "Piece 2":
-                    // Code to select the obstacle tool
+                    // Code to select the wall tool
+                	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
+                	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
+                	mur3 = new Segment(new Point(15, 5), new Point(15, 15));
+                	mur4 = new Segment(new Point(15, 15), new Point(5, 15));
+                	mur5 = new Segment(new Point(5, 15), new Point(5, 11));
+                	mur6 = new Segment(new Point(8, 8), new Point(8, 12));
+                	murs = new Segment[]{mur1, mur2, mur3, mur4, mur5, mur6};
+                	SimulationData.murs = murs;
+                	frame.repaint();
                     break;
                 case "Piece 3":
                     // Code to select the exit tool

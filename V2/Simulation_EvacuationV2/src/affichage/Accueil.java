@@ -35,7 +35,7 @@ public class Accueil {
                 // Si une touche est pressée, on passe a la fenêtre Menu
                 panel.remove(imageLabel);
                 panel.remove(pressAnyKeyLabel);
-                Menu menu = new Menu();
+                new Menu();
                 frame.dispose();
             }
         });
@@ -44,8 +44,8 @@ public class Accueil {
     public static void main(String[] args) {
         SimulationData.agents = new Agent[0];
         SimulationData.murs = new Segment[0];
-        SimulationData.sortie = new Point(10, 10);
-        Accueil accueil = new Accueil();
+        SimulationData.sortie = new Point(5, 10);
+        new Accueil();
     }
 
 }
