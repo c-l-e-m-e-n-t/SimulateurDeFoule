@@ -5,17 +5,14 @@ import java.awt.*;
 
 import modele.*;
 import modele.Point;
+import outils.Murs;
 
 /** Classe du menu des obstacles.*/
 public class MenuObstacles {
 
-    private JFrame frame;
     private JPanel panel;
-    private JPanel drawingPanel;
 
     public MenuObstacles(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
-        this.frame = frame;
-        this.drawingPanel = drawingPanel;
 
         // Créer un panel et des boutons pour la configuration des obstacles
         panel = new JPanel();
@@ -78,26 +75,34 @@ public class MenuObstacles {
         obstacleButtonGroup.add(exitButton);
 
         // Ajouter des action listeners aux boutons
+        Murs mur = new Murs();
         wallButton.addActionListener(e -> {
-            // Code to select the wall tool
             obstacleButton.setSelected(false);
-            exitButton.setSelected(false);
+            exitButton.setSelected(false);  
+            if (wallButton.isSelected()) {
+                mur.setActif(true);
+                mur.ajoutMur(drawingPanel);
+            }
+            else{
+                mur.setActif(false);
+            }
         });
         obstacleButton.addActionListener(e -> {
-            // Code to select the obstacle tool
             wallButton.setSelected(false);
             exitButton.setSelected(false);
+            mur.setActif(false);
         });
         exitButton.addActionListener(e -> {
-            // Code to select the exit tool
             wallButton.setSelected(false);
             obstacleButton.setSelected(false);
+            mur.setActif(false);
         });
         resetButton.addActionListener(e -> {
             // Code to reset the obstacles
             wallButton.setSelected(false);
             obstacleButton.setSelected(false);
             exitButton.setSelected(false);
+            mur.setActif(false);
         });
 
         JPanel toolButtonPanel = new JPanel(new GridLayout(2, 2));

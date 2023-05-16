@@ -61,7 +61,7 @@ public class Menu {
         		Simulation simulation = new Simulation(frame, drawingPanel, panel);
         		// Pause between iterations
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
@@ -104,10 +104,11 @@ public class Menu {
             g.setColor(Color.BLACK);
             for (Segment mur : SimulationData.murs) {
                 if (mur != null) {
-                	int x1 = (int) (mur.getExtremite1().getX() * SimulationData.NORMALISER);
-                	int y1 = (int) (mur.getExtremite1().getY() * SimulationData.NORMALISER);
-                	int x2 = ( int) (mur.getExtremite2().getX() * SimulationData.NORMALISER);
-                	int y2 = (int) (mur.getExtremite2().getY() * SimulationData.NORMALISER);
+                	int x1 = (int) (mur.getExtremite1().getX());
+                	int y1 = (int) (mur.getExtremite1().getY());
+                	int x2 = (int) (mur.getExtremite2().getX());
+                	int y2 = (int) (mur.getExtremite2().getY());
+                    System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
                     g.drawLine(x1, y1, x2, y2);
                 }
             }
