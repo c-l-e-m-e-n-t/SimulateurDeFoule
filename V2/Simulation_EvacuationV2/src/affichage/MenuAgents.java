@@ -36,7 +36,6 @@ public class MenuAgents {
                 SimulationData.N = agentSlider.getValue();
                 SimulationData.updateAgents();
                 frame.repaint();
-                
             }
         });
         panel.add(new JLabel("Nombre d'agents:"));
