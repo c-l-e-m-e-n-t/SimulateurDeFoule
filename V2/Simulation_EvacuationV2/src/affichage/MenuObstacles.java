@@ -10,9 +10,14 @@ import outils.*;
 /** Classe du menu des obstacles.*/
 public class MenuObstacles {
 
+    private JFrame frame;
     private JPanel panel;
+    private JPanel drawingPanel;
 
     public MenuObstacles(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
+    	this.frame = frame;
+        frame.setTitle("Simulation d'évacuation - Menu Obstacles");
+        this.drawingPanel = drawingPanel;
 
         // Créer un panel et des boutons pour la configuration des obstacles
         panel = new JPanel();

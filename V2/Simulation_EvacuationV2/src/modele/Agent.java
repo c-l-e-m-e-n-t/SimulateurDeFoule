@@ -40,8 +40,6 @@ public class Agent {
 	/** Couleur de l'agent. */
 	private Color couleur = Color.red;
 
-	/** id de l'agent. */
-	private double id;
 
 	/**  Construire un Agent à partir de ses caractéristiques.
 	 *  @param position	Position de l'agent
@@ -61,8 +59,6 @@ public class Agent {
 		this.tau = tau;
 		this.vitesse = this.calculVitesseDesiree();
 		this.couleur = couleur;
-		this.id = SimulationData.id + 1;
-		SimulationData.id++;
 	}
 
 
@@ -127,13 +123,6 @@ public class Agent {
 	 */
 	public Point getSortie() {
 		return this.sortie;
-	}
-
-	/** Obtenir l'Id de l'agent
-	 * @return id l'Id de l'agent
-	 */
-	public double getId() {
-		return this.id;
 	}
 
 	/** Changer la sortie de la simulation.

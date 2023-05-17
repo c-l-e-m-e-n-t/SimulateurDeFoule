@@ -18,6 +18,7 @@ public class MenuAgents {
 
     public MenuAgents(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
         this.frame = frame;
+        frame.setTitle("Simulation d'évacuation - Menu Agents");
         this.drawingPanel = drawingPanel;
 
         // Créer un panel et des boutons pour la configuration de l'agent
@@ -127,6 +128,7 @@ public class MenuAgents {
         backButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
             frame.getContentPane().add(menuPanel, BorderLayout.EAST);
+            frame.setTitle("Simulation d'évacuation - Menu");
             frame.revalidate();
             frame.repaint();
         });
