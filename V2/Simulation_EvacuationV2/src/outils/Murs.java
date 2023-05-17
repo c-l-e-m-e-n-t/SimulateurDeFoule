@@ -41,6 +41,7 @@ public class Murs {
                     this.p2 = new Point(e.getX(), e.getY());
                     SimulationData.addMur(new Segment (this.p1, this.p2));
                     panel.repaint();
+                    new Segment (this.p1, this.p2).afficher();
                 }
             }
 

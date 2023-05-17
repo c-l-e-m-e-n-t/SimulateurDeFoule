@@ -126,7 +126,7 @@ public class Deplacement {
 		Vecteur[] forceMurs = forceMurs(agents, murs);
 
 		for (int i = 0; i < agents.length; i++) {
-			//agents[i].calculCible(murs);
+			agents[i].calculCible(murs);
 
 			agents[i].setPression(Vecteur.norme(forceAgents[i]) + Vecteur.norme(forceMurs[i]));
 

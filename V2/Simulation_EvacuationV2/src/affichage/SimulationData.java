@@ -25,6 +25,8 @@ public class SimulationData {
     public static double vitesseMax;
     public static Color couleur;
     public static double id;
+    public static  int HAUTEUR = 720;
+    public static  int LARGEUR = 1280;
 
     private static final double TAU = 0.5;
     private static final Random random = new Random();

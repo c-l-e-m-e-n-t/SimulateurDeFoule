@@ -1,5 +1,7 @@
 package modele;
 
+import java.io.Serial;
+
 public class Segment {
 
 	/** Début du segment. */
@@ -94,6 +96,50 @@ public class Segment {
 			intersection = new Point(x, y);
 		}
 		return intersection;
+	}
+
+	/** Renvoie le point d'intersection des droites droite1 et droite2.
+	 * @param droite1 la première droite
+	 * @param droite2 la deuxième droite
+	 * @return le point d'intersection des droites droite1 et droite2
+	 */
+	public static Point intersectionSegment(Segment droite1, Segment droite2) {
+
+		Point a = droite1.getExtremite1();
+		Point b = droite1.getExtremite2();
+		Point c = droite2.getExtremite1();
+		Point d = droite2.getExtremite2();
+
+		double det = (b.getX() - a.getX()) * (c.getY() - d.getY()) - (c.getX() - d.getX()) * (b.getY() - a.getY());
+
+		if (det == 0) {
+			return null;
+		} 
+		else {
+			double t1 = ((c.getX()-a.getX())*(c.getY()-d.getY())-(c.getX()-d.getX())*(c.getY()-a.getY()))/det;
+			double t2 = ((b.getX()-a.getX())*(c.getY()-a.getY())-(c.getX()-a.getX())*(b.getY()-a.getY()))/det;
+			System.out.println(!(t1 > 1 || t1 < 0 || t2 > 1 || t2 < 0));
+			if (t1 > 1 || t1 < 0 || t2 > 1 || t2 < 0){
+				return null;
+			}
+			else if (t1 == 0){
+				return a;
+			}
+			else if (t1 == 1){
+				return b;
+			}
+			else if (t2 == 0){
+				return c;
+			}
+			else if (t2 == 1){
+				return d;
+			}
+			else {
+				double x = a.getX() + t1 * (b.getX() - a.getX());
+				double y = a.getY() + t1 * (b.getY() - a.getY());
+				return new Point(x, y);
+			}
+		}
 	}
 
 	/** Renvoie true si le point p appartient au segment.

@@ -248,7 +248,6 @@ public class Agent {
 				Obstacle = murs[i];
 				distance = Point.distancePoint(intersection, position);
 			}
-			
 		}
 		return Obstacle;
 	}

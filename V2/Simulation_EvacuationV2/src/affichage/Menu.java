@@ -2,6 +2,7 @@ package affichage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.Normalizer;
 
 import modele.*;
 import modele.Point;
@@ -29,8 +30,8 @@ public class Menu {
         panel.add(configAgentButton);
         panel.add(new JLabel(""));
 
-        JToggleButton panicButton = new JToggleButton("Panique (ON / OFF)");
-        panel.add(panicButton);
+        JToggleButton supprimer = new JToggleButton("supprimer");
+        panel.add(supprimer);
         JToggleButton externalPhenomenaButton = new JToggleButton("Phénomènes externes (ON / OFF)");
         panel.add(externalPhenomenaButton);
         JToggleButton reportsButton = new JToggleButton("Rapports (ON / OFF)");
@@ -60,6 +61,8 @@ public class Menu {
         	if (!allNull) {
         		frame.getContentPane().remove(panel);
         		Simulation simulation = new Simulation(frame, drawingPanel, panel);
+                SimulationData.HAUTEUR = drawingPanel.getHeight();
+                SimulationData.LARGEUR = drawingPanel.getWidth();
         		// Pause between iterations
                 try {
                     Thread.sleep(500);
@@ -79,8 +82,8 @@ public class Menu {
             frame.getContentPane().remove(panel);
             MenuAgents menuAgents = new MenuAgents(frame, drawingPanel, panel);
         });
-        panicButton.addActionListener(e -> {
-            // Code to toggle panic mode
+        supprimer.addActionListener(e -> {
+            
         });
         externalPhenomenaButton.addActionListener(e -> {
             // Code to toggle external phenomena
@@ -89,6 +92,28 @@ public class Menu {
             // Code to toggle reports
         });
         exitButton.addActionListener(e -> System.exit(0));
+
+        drawingPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (supprimer.isSelected()) {
+                    for (Agent agent : SimulationData.agents) {
+                        if (agent != null){
+                            if (agent.getPosition().distance(new Point(e.getX()/SimulationData.NORMALISER, e.getY()/SimulationData.NORMALISER)) < agent.getRayon()) {
+                                Agent[] tempAgent = new Agent[SimulationData.agents.length];
+                                for (int i = 0; i < SimulationData.agents.length; i++) {
+                                    if (SimulationData.agents[i] != agent) {
+                                        tempAgent[i] = SimulationData.agents[i];
+                                    }
+                                }
+                                SimulationData.agents = tempAgent;
+                                frame.repaint();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 
     public class DrawingPanel extends JPanel {
@@ -133,7 +158,7 @@ public class Menu {
                     int y = (int) (sortie.getY() * SimulationData.NORMALISER);
                     g.drawLine(x - 10, y, x + 10, y);
                     g.drawLine(x, y - 10, x, y + 10);
-                    g.drawString("Sortie: " + SimulationData.sortie, 10, getHeight() - 10);
+                    g.drawString("Sortie: " + sortie, 10, getHeight() - 10);
                 }
             }
         }
