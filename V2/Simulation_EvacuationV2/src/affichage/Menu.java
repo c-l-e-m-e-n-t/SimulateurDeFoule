@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import modele.*;
+import modele.Point;
 
 /** Classe qui gère les opérations du menu.*/
 public class Menu {
@@ -108,7 +109,6 @@ public class Menu {
                 	int y1 = (int) (mur.getExtremite1().getY());
                 	int x2 = (int) (mur.getExtremite2().getX());
                 	int y2 = (int) (mur.getExtremite2().getY());
-                    System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
                     g.drawLine(x1, y1, x2, y2);
                 }
             }
@@ -127,12 +127,14 @@ public class Menu {
             
             // Afficher la sortie
             if (SimulationData.sortie != null) {
-            	g.setColor(Color.BLACK);
-            	int x = (int) (SimulationData.sortie.getX() * SimulationData.NORMALISER);
-            	int y = (int) (SimulationData.sortie.getY() * SimulationData.NORMALISER);
-            	g.drawLine(x - 10, y, x + 10, y);
-                g.drawLine(x, y - 10, x, y + 10);
-                g.drawString("Sortie: " + SimulationData.sortie, 10, getHeight() - 10);
+                g.setColor(Color.BLACK);
+                for (Point sortie : SimulationData.sortie) {
+                    int x = (int) (sortie.getX() * SimulationData.NORMALISER);
+                    int y = (int) (sortie.getY() * SimulationData.NORMALISER);
+                    g.drawLine(x - 10, y, x + 10, y);
+                    g.drawLine(x, y - 10, x, y + 10);
+                    g.drawString("Sortie: " + SimulationData.sortie, 10, getHeight() - 10);
+                }
             }
         }
 

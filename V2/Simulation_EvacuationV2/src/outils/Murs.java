@@ -60,7 +60,6 @@ public class Murs {
 
     public void setActif(Boolean actif) {
         this.actif = actif;
-        System.out.println(actif);
     }
     public Boolean getActif() {
         return this.actif;

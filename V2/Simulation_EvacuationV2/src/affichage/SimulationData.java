@@ -2,6 +2,8 @@ package affichage;
 
 import java.util.Random;
 
+import org.bouncycastle.asn1.isismtt.x509.AdditionalInformationSyntax;
+
 import modele.*;
 
 import java.awt.Color;
@@ -11,7 +13,7 @@ public class SimulationData {
     /** Main data.*/
     public static Agent[] agents;
     public static Segment[] murs;
-    public static Point sortie;
+    public static Point[] sortie;
 
     /** Data agents.*/
     public static int N;
@@ -22,6 +24,7 @@ public class SimulationData {
     public static double vitesseMin;
     public static double vitesseMax;
     public static Color couleur;
+    public static double id;
 
     private static final double TAU = 0.5;
     private static final Random random = new Random();
@@ -39,8 +42,13 @@ public class SimulationData {
                 double rayon = rayonMin + (rayonMax - rayonMin) * random.nextGaussian();
                 double vitesse = vitesseMin + (vitesseMax - vitesseMin) * random.nextGaussian();
                 Point position = getRandomPosition(rayon);
-                Point sortie = SimulationData.sortie;
-                temp[N-1] = new Agent(position, sortie, vitesse, rayon, masse, TAU, couleur);
+                Point sortieProche = sortie[0];
+                for (Point sortie : SimulationData.sortie) {
+                    if (Point.distancePoint(position, sortie) <= Point.distancePoint(position, sortieProche)) {
+                        sortieProche = sortie;
+                    }
+                }
+                temp[N-1] = new Agent(position, sortieProche, vitesse, rayon, masse, TAU, couleur);
             }
         }
         agents = temp;
@@ -92,10 +100,23 @@ public class SimulationData {
             double rayon = rayonMin + (rayonMax - rayonMin) * random.nextInt();
             double vitesse = vitesseMin + (vitesseMax - vitesseMin) * random.nextInt();
             position = new Point(x / NORMALISER, y / NORMALISER);
-            Point sortie = SimulationData.sortie;
-            temp[N-1] = new Agent(position, sortie, vitesse, rayon, masse, TAU, couleur);
-            System.out.println("Agent ajouté");
+            Point sortieProche = sortie[0];
+            for (Point sortie : SimulationData.sortie) {
+                if (Point.distancePoint(position, sortie) <= Point.distancePoint(position, sortieProche)) {
+                    sortieProche = sortie;
+                }
+            }
+            temp[N-1] = new Agent(position, sortieProche, vitesse, rayon, masse, TAU, couleur);
         }
         agents = temp;
+    }
+
+    public static void addSortie(Double x, Double y) {
+        Point[] temp = new Point[sortie.length + 1];
+        for (int i = 0; i < sortie.length; i++) {
+            temp[i] = sortie[i];
+        }
+        temp[sortie.length] = new Point(x / NORMALISER, y / NORMALISER);
+        sortie = temp;
     }
 }

@@ -144,7 +144,6 @@ public class MenuPlacementManuel {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 SimulationData.N += 1;
                 Point position = new Point(e.getX(), e.getY());
-                Point sortie = SimulationData.sortie;
                 double vitesse = SimulationData.vitesseMin;
                 double rayon = SimulationData.rayonMin;
                 double masse = SimulationData.masseMin;

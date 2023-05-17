@@ -5,7 +5,7 @@ import java.awt.*;
 
 import modele.*;
 import modele.Point;
-import outils.Murs;
+import outils.*;
 
 /** Classe du menu des obstacles.*/
 public class MenuObstacles {
@@ -76,10 +76,12 @@ public class MenuObstacles {
 
         // Ajouter des action listeners aux boutons
         Murs mur = new Murs();
+        Sortie sortie = new Sortie();
         wallButton.addActionListener(e -> {
             obstacleButton.setSelected(false);
             exitButton.setSelected(false);  
             if (wallButton.isSelected()) {
+                sortie.setActif(false);
                 mur.setActif(true);
                 mur.ajoutMur(drawingPanel);
             }
@@ -91,11 +93,19 @@ public class MenuObstacles {
             wallButton.setSelected(false);
             exitButton.setSelected(false);
             mur.setActif(false);
+            sortie.setActif(false);
         });
         exitButton.addActionListener(e -> {
             wallButton.setSelected(false);
             obstacleButton.setSelected(false);
-            mur.setActif(false);
+            if (exitButton.isSelected()) {
+                mur.setActif(false);
+                sortie.setActif(true);
+                sortie.ajoutSortie(drawingPanel);
+            }
+            else{
+                sortie.setActif(false);
+            }
         });
         resetButton.addActionListener(e -> {
             // Code to reset the obstacles
@@ -116,6 +126,7 @@ public class MenuObstacles {
         JButton backButton = new JButton("Retour");
         backButton.addActionListener(e -> {
             mur.setActif(false);
+            sortie.setActif(false);
             frame.getContentPane().remove(panel);
             frame.getContentPane().add(menuPanel, BorderLayout.EAST);
             frame.revalidate();
