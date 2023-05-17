@@ -23,7 +23,7 @@ public class SimulationData {
     public static double rayonMax;
     public static double vitesseMin;
     public static double vitesseMax;
-    public static Color couleur;
+    public static Color couleur = Color.RED;
     public static double id;
     public static  int HAUTEUR = 720;
     public static  int LARGEUR = 1280;
