@@ -81,6 +81,15 @@ public class SimulationData {
         return position;
     }
 
+    public static void addAgent(Agent agent){
+        Agent[] temp = new Agent[agents.length + 1];
+        for (int i = 0; i < agents.length; i++) {
+            temp[i] = agents[i];
+        }
+        temp[agents.length] = agent;
+        agents = temp;
+    }
+
     public static void addMur(Segment mur) {
         //ajouter un mur a la liste des murs
         Segment[] mursTemp = new Segment[murs.length + 1];
