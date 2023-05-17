@@ -59,8 +59,7 @@ public class Agent {
 		this.rayon = rayon;
 		this.masse = masse;
 		this.tau = tau;
-		//this.vitesse = this.calculVitesseDesiree();
-		this.vitesse = new Vecteur(5, 5);
+		this.vitesse = this.calculVitesseDesiree();
 		this.couleur = couleur;
 		this.id = SimulationData.id + 1;
 		SimulationData.id++;

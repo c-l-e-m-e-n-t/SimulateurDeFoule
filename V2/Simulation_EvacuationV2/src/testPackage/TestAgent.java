@@ -3,6 +3,8 @@ package testPackage;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import java.awt.Color;
+
 import modele.Agent;
 import modele.Point;
 import modele.Vecteur;
@@ -33,7 +35,7 @@ public class TestAgent {
         rayon = 1;
         masse = 70;
         tau = 1;
-        agent = new Agent(position, sortie, v0, rayon, masse, tau);
+        agent = new Agent(position, sortie, v0, rayon, masse, tau, Color.BLACK);
         vitesse = new Vecteur(0, 0);
         vitesseDesiree = new Vecteur(0.707, 0.707);
         murs = new Segment[] { new Segment(new Point(0, 0), new Point(0, 10)),
@@ -55,7 +57,7 @@ public class TestAgent {
 
     @Test
     public void testAgent() {
-        Agent agent = new Agent(position, sortie, v0, rayon, masse, tau);
+        Agent agent = new Agent(position, sortie, v0, rayon, masse, tau, Color.BLACK);
         memesCoordonnees("Test 1", position, agent.getPosition());
         memesCoordonnees("Test 2", sortie, agent.getCible());
         memesCoordonnees("Test 3", sortie, agent.getSortie());
@@ -90,7 +92,7 @@ public class TestAgent {
 
     @Test
     public void testdistanceAgent() {
-        Agent agent1 = new Agent(new Point(4, 3), sortie, 2, rayon, masse, tau);
+        Agent agent1 = new Agent(new Point(4, 3), sortie, 2, rayon, masse, tau, Color.BLACK);
         double distance = Agent.distanceAgents(agent, agent1);
         assertEquals(5, distance, EPSILON);
     }
@@ -98,7 +100,7 @@ public class TestAgent {
     @Test
     public void testobstacleProche() {
 
-    	Agent agent1 = new Agent(position, sortie, v0, rayon, masse, tau);
+    	Agent agent1 = new Agent(position, sortie, v0, rayon, masse, tau, Color.BLACK);
         Segment direction = new Segment(agent1.getPosition(), new Point(agent1.getPosition(), new Vecteur(1, 1)));
         Segment obstacleProche = agent1.obstacleProche(murs, direction);
         Point pe1 = obstacleProche.getExtremite1();

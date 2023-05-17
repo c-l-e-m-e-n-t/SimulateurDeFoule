@@ -37,8 +37,8 @@ public class Tester_fonctionnalites {
 		Point sortie = new Point(6, 2.5);
 		ecran.dessinerPoint(sortie.getX(), sortie.getY(), Color.green);
 
-		Agent agent1 = new Agent(new Point(4, 2), sortie, 1.5, 0.25, 80, 0.5);
-		Agent agent2 = new Agent(new Point(3.5, 2), sortie, 1.5, 0.25, 80, 0.5);
+		Agent agent1 = new Agent(new Point(4, 2), sortie, 1.5, 0.25, 80, 0.5, Color.BLACK);
+		Agent agent2 = new Agent(new Point(3.5, 2), sortie, 1.5, 0.25, 80, 0.5, Color.BLACK);
 		//Agent agent3 = new Agent(new Point(1.5, 4), sortie, 1.5, 0.25, 80, 0.5);
 		
 		Agent[] agents = {agent1}; //agent1, agent2, agent3};
