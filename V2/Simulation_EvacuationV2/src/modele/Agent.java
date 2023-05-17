@@ -46,7 +46,7 @@ public class Agent {
 	 *  @param masse Masse de l'agent
 	 *  @param tau Temps de réaction de l'agent
 	 */
-	public Agent(Point position, Point sortie, double v0, double rayon, double masse, double tau) {
+	public Agent(Point position, Point sortie, double v0, double rayon, double masse, double tau, Color couleur) {
 		this.position = position;
 		this.cible = sortie;
 		this.sortie = sortie;
@@ -56,6 +56,7 @@ public class Agent {
 		this.tau = tau;
 		//this.vitesse = this.calculVitesseDesiree();
 		this.vitesse = new Vecteur(5, 5);
+		this.couleur = couleur;
 	}
 
 

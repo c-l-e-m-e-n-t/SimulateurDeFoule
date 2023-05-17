@@ -62,7 +62,7 @@ public class Simulation {
                 //System.out.println(SimulationData.agents[0].getPosition());
 
                 // Repaint the drawing panel
-                frame.update(frame.getGraphics()); // Ne pas toucher, ca marche comme ca
+                frame.update(frame.getGraphics()); // Ne pas toucher, ca marche comme ca (a cause du actionperformed)
 
                 if (agentsSortis()) {
                     timer.stop();

@@ -115,6 +115,7 @@ public class MenuObstacles {
         // Bouton Retour
         JButton backButton = new JButton("Retour");
         backButton.addActionListener(e -> {
+            mur.setActif(false);
             frame.getContentPane().remove(panel);
             frame.getContentPane().add(menuPanel, BorderLayout.EAST);
             frame.revalidate();

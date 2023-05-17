@@ -22,7 +22,7 @@ public class MenuAgents {
 
         // Créer un panel et des boutons pour la configuration de l'agent
         panel = new JPanel();
-        panel.setLayout(new GridLayout(8, 1));
+        panel.setLayout(new GridLayout(11, 1));
 
         // Bouton du nombre d'agents
         JSlider agentSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
@@ -105,6 +105,8 @@ public class MenuAgents {
         panel.add(new JLabel("Vitesse:"));
         panel.add(speedSlider);
 
+        
+
         // Bouton Configurer un agent
         JButton configureAgentButton = new JButton("Configurer un agent");
         configureAgentButton.addActionListener(e -> {
@@ -112,12 +114,13 @@ public class MenuAgents {
         });
         panel.add(configureAgentButton);
 
-        // Bouton placer aleatoirement
-        JButton placeRandomlyButton = new JButton("Placer aléatoirement");
-        placeRandomlyButton.addActionListener(e -> {
-            // Code to place agents randomly
+        // Bouton placer manuellement
+        JButton placeManuallyButton = new JButton("Placer manuellement");
+        placeManuallyButton.addActionListener(e -> {
+            frame.getContentPane().remove(panel);
+            MenuPlacementManuel menuPlacementManuel = new MenuPlacementManuel(frame, drawingPanel, panel);
         });
-        panel.add(placeRandomlyButton);
+        panel.add(placeManuallyButton);
 
         // Bouton Retour
         JButton backButton = new JButton("Retour");
@@ -130,8 +133,8 @@ public class MenuAgents {
         panel.add(backButton);
 
         // Définir la disposition du panneau et l'ajouter au frame
-        frame.getContentPane().add(panel, BorderLayout.EAST);
         frame.getContentPane().add(drawingPanel, BorderLayout.WEST);
+        frame.getContentPane().add(panel, BorderLayout.EAST);
         frame.revalidate();
 
         // Update le panel
