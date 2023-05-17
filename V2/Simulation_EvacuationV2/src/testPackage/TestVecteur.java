@@ -10,50 +10,37 @@ import modele.Segment;
 
 public class TestVecteur {
     public final static double EPSILON = 0.001;
-    double x;
-    double y;
-    Vecteur vecteur1;
-    Vecteur vecteur2;
+
+    Vecteur v1, v2, v3;
+    Segment s1;
+
     Point p1;
     Point p2;
 
-    
+    @Before
     public void setUp() {
-        x = 3;
-        y = 1;
-        vecteur1 = new Vecteur(x, y);
-        vecteur2 = new Vecteur(1, 2);
-        p1 = new Point(0, 0);
-        p2 = new Point(2, 1);
+    	s1 = new Segment(new Point(-2, 4), new Point(3, 5));
+        v1 = new Vecteur(3, 4);
+        v2 = new Vecteur(new Point(1, 1), new Point(7, 9));
+        v3 = new Vecteur(s1);
     }
 
     @Test
     public void testVecteur() {
-
-        assertEquals(x, vecteur1.getX(), EPSILON);
-        assertEquals(y, vecteur1.getY(), EPSILON);
+        assertEquals(3, v1.getX(), EPSILON);
+        assertEquals(4, v1.getY(), EPSILON);
     }
 
     @Test
     public void testVecteurPointPoint() {
-        Vecteur vecteur = new Vecteur(p1, p2);
-        assertEquals(x, vecteur.getX(), EPSILON);
-        assertEquals(y, vecteur.getY(), EPSILON);
+        assertEquals(6, v2.getX(), EPSILON);
+        assertEquals(8, v2.getY(), EPSILON);
     }
     
     @Test
     public void testVecteurSegment() {
-    	// TODO
-    }
-
-    @Test
-    public void testGetX() {
-    	// TODO
-    }
-
-    @Test
-    public void testGetY() {
-    	// TODO
+        assertEquals(5, v3.getX(), EPSILON);
+        assertEquals(1, v3.getY(), EPSILON);
     }
 
     @Test
@@ -63,32 +50,33 @@ public class TestVecteur {
 
     @Test
     public void testNorme() {
-    	Vecteur vecteur = new Vecteur(x, y);
-        assertEquals(Math.sqrt(x * x + y * y), Vecteur.norme(vecteur), EPSILON);
+        assertEquals(5, Vecteur.norme(v1), EPSILON);
     }
 
     @Test
     public void testSomme() {
-        Vecteur v = Vecteur.somme(vecteur1, vecteur2);
-        assertEquals(x + 1, v.getX(), EPSILON);
-        assertEquals(y + 2, v.getY(), EPSILON);
+        Vecteur v = Vecteur.somme(v1, v2);
+        assertEquals(9, v.getX(), EPSILON);
+        assertEquals(12, v.getY(), EPSILON);
     }
 
     @Test
     public void testDifference() {
-        Vecteur v = Vecteur.difference(vecteur1, vecteur2);
-        assertEquals(x - 1, v.getX(), EPSILON);
-        assertEquals(y - 2, v.getY(), EPSILON);
+        Vecteur v = Vecteur.difference(v2, v1);
+        assertEquals(3, v.getX(), EPSILON);
+        assertEquals(4, v.getY(), EPSILON);
     }
 
     @Test
     public void testMultiplication() {
-    	// TODO
+    	Vecteur v = Vecteur.multiplication(v1, 2);
+        assertEquals(6, v.getX(), EPSILON);
+        assertEquals(8, v.getY(), EPSILON);
     }
 
     @Test
     public void testProduitScalaire() {
-        double v = Vecteur.produitScalaire(vecteur1, vecteur2);
+        double v = Vecteur.produitScalaire(v1, v3);
         // TODO
     }
 
@@ -113,7 +101,7 @@ public class TestVecteur {
 
     @Test
     public void testcosinus() {
-        assertEquals(0.9262, Vecteur.cosinus(vecteur1, vecteur2), EPSILON);
+        assertEquals(0.9262, Vecteur.cosinus(v1, v2), EPSILON);
     }
 
 }
