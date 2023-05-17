@@ -118,7 +118,7 @@ public class Segment {
 		else {
 			double t1 = ((c.getX()-a.getX())*(c.getY()-d.getY())-(c.getX()-d.getX())*(c.getY()-a.getY()))/det;
 			double t2 = ((b.getX()-a.getX())*(c.getY()-a.getY())-(c.getX()-a.getX())*(b.getY()-a.getY()))/det;
-			System.out.println(!(t1 > 1 || t1 < 0 || t2 > 1 || t2 < 0));
+			//System.out.println(!(t1 > 1 || t1 < 0 || t2 > 1 || t2 < 0));
 			if (t1 > 1 || t1 < 0 || t2 > 1 || t2 < 0){
 				return null;
 			}

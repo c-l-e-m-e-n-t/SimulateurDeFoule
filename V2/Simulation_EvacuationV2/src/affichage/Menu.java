@@ -6,6 +6,7 @@ import java.text.Normalizer;
 
 import modele.*;
 import modele.Point;
+import outils.Sauvegarde;
 
 /** Classe qui gère les opérations du menu.*/
 public class Menu {
@@ -30,19 +31,26 @@ public class Menu {
         panel.add(configAgentButton);
         panel.add(new JLabel(""));
 
-        JToggleButton supprimer = new JToggleButton("supprimer");
+        JToggleButton supprimer = new JToggleButton("Supprimer (ON / OFF)");
         panel.add(supprimer);
         JToggleButton externalPhenomenaButton = new JToggleButton("Phénomènes externes (ON / OFF)");
         panel.add(externalPhenomenaButton);
         JToggleButton reportsButton = new JToggleButton("Rapports (ON / OFF)");
         panel.add(reportsButton);
+
+        JButton saveButton = new JButton("Sauvegarder");
+        panel.add(saveButton);
+
+        JButton loadButton = new JButton("Charger");
+        panel.add(loadButton);
+
         panel.add(new JLabel(""));
 
         JButton exitButton = new JButton("Quitter");
         panel.add(exitButton);
 
         // Définir la disposition du panneau et l'ajouter au frame
-        panel.setLayout(new GridLayout(10, 1));
+        panel.setLayout(new GridLayout(12, 1));
         frame.getContentPane().add(panel, BorderLayout.EAST);
         frame.getContentPane().add(drawingPanel, BorderLayout.WEST);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,6 +98,12 @@ public class Menu {
         });
         reportsButton.addActionListener(e -> {
             // Code to toggle reports
+        });
+        saveButton.addActionListener(e -> {
+            Sauvegarde.sauvegarder();
+        });
+        loadButton.addActionListener(e -> {
+            Sauvegarde.charger(drawingPanel);
         });
         exitButton.addActionListener(e -> System.exit(0));
 
