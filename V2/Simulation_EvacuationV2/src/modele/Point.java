@@ -72,6 +72,15 @@ public class Point {
 					+ Math.pow(p1.getY() - p2.getY(), 2));
 	}
 
+	/** Distance entre deux Points
+	 * @param premier Point
+	 * @return distance entre les deux Points
+	 */
+	public double distance(Point p) {
+		return Math.sqrt(Math.pow(this.x - p.getX(), 2)
+					+ Math.pow(this.y - p.getY(), 2));
+	}
+
 	public String toString() {
 		return "(" + this.x + ", " + this.y + ")";
 	}
@@ -80,5 +89,7 @@ public class Point {
 	public void afficher() {
 		System.out.print(this);
 	}
+
+
 
 }

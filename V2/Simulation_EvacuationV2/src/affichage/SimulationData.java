@@ -118,5 +118,14 @@ public class SimulationData {
         }
         temp[sortie.length] = new Point(x / NORMALISER, y / NORMALISER);
         sortie = temp;
+        for (Agent agent : agents) {
+            Point sortieProche = sortie[0];
+            for (Point sortie : SimulationData.sortie) {
+                if (sortie.distance(agent.getPosition()) <= agent.getPosition().distance(sortieProche)) {
+                    sortieProche = sortie;
+                }
+            }
+            agent.setSortie(sortieProche);
+        }
     }
 }
