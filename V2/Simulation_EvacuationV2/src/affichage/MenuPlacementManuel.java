@@ -119,6 +119,7 @@ public class MenuPlacementManuel {
         // Bouton Retour
         JButton backButton = new JButton("Retour");
         backButton.addActionListener(e -> {
+            //pour rétablir les anciennes valeurs
             SimulationData.vitesseMin = oldViteseMin;
             SimulationData.vitesseMax = oldViteseMax;
             SimulationData.masseMin = oldMasseMin;

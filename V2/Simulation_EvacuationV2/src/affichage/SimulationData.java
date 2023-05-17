@@ -63,6 +63,10 @@ public class SimulationData {
         return n1;
     }
 
+    /** Retourne une position aléatoire qui ne chevauche pas un autre agent
+     * @param rayon rayon de l'agent
+     * @return position une position aléatoire aléatoire
+     */
     private static Point getRandomPosition(double rayon) {
         Point position;
         boolean validPosition;
@@ -81,6 +85,9 @@ public class SimulationData {
         return position;
     }
 
+    /** Ajouter un agent à la liste des agents
+     * @param agent l'agent à ajouter
+    */
     public static void addAgent(Agent agent){
         Agent[] temp = new Agent[agents.length + 1];
         for (int i = 0; i < agents.length; i++) {
@@ -90,6 +97,9 @@ public class SimulationData {
         agents = temp;
     }
 
+    /** Ajouter un mur à la liste des murs
+     * @param mur le mur à ajouter
+     */
     public static void addMur(Segment mur) {
         //ajouter un mur a la liste des murs
         Segment[] mursTemp = new Segment[murs.length + 1];
@@ -100,6 +110,10 @@ public class SimulationData {
         murs = mursTemp;
     }
 
+    /** mettre a jour la liste des agents
+     * @param x abscisse de l'agent
+     * @param y ordonnée de l'agent
+     */
     public static void updateAgents(Double x, Double y) {
         Agent[] temp = new Agent[N];
         Point position;
@@ -122,6 +136,10 @@ public class SimulationData {
         agents = temp;
     }
 
+    /** Ajouter une sortie à la liste des sorties
+     * @param x abscisse de la sortie
+     * @param y ordonnée de la sortie
+     */
     public static void addSortie(Double x, Double y) {
         Point[] temp = new Point[sortie.length + 1];
         for (int i = 0; i < sortie.length; i++) {
