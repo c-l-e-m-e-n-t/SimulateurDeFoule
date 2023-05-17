@@ -94,6 +94,9 @@ public class Deplacement {
 
 		// force = a*n + b*t
 		Vecteur force = Vecteur.somme(Vecteur.multiplication(n, a), Vecteur.multiplication(t, b));
+		System.out.println(a);
+		System.out.println(b);
+		System.out.println();
 		return force;
 	}
 
@@ -126,7 +129,7 @@ public class Deplacement {
 		Vecteur[] forceMurs = forceMurs(agents, murs);
 
 		for (int i = 0; i < agents.length; i++) {
-			agents[i].calculCible(murs);
+			// agents[i].calculCible(murs);
 
 			agents[i].setPression(Vecteur.norme(forceAgents[i]) + Vecteur.norme(forceMurs[i]));
 
@@ -144,11 +147,6 @@ public class Deplacement {
 			Vecteur a3 = Vecteur.multiplication(forceMurs[i], 1 / m);
 
 			acceleration[i] = Vecteur.somme(Vecteur.somme(a1, a2), a3);
-			/*
-			System.out.println(a1);
-			System.out.println(a2);
-			System.out.println(a3);
-			System.out.println();*/
 		}
 		return acceleration;
 	}
