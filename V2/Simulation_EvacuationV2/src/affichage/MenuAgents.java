@@ -75,8 +75,8 @@ public class MenuAgents {
         radiusSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-            	SimulationData.rayonMin = radiusSlider.getValue() / 100;
-            	SimulationData.rayonMax = radiusSlider.getUpperValue() / 100;
+            	SimulationData.rayonMin = (float) radiusSlider.getValue() / 100;
+            	SimulationData.rayonMax = (float) radiusSlider.getUpperValue() / 100;
             	SimulationData.updateAgents();
             	frame.repaint();
             }
