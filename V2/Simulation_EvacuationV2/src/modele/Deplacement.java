@@ -95,7 +95,7 @@ public class Deplacement {
 		// force = a*n + b*t
 		Vecteur force = Vecteur.somme(Vecteur.multiplication(n, a), Vecteur.multiplication(t, b));
 		System.out.println(a);
-		System.out.println(b);
+		System.out.println(n);
 		System.out.println();
 		return force;
 	}

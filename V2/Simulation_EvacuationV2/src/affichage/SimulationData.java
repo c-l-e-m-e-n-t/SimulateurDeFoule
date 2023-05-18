@@ -151,7 +151,7 @@ public class SimulationData {
         for (Agent agent : agents) {
             Point sortieProche = sortie[0];
             for (Point sortie : SimulationData.sortie) {
-                if (sortie.distance(agent.getPosition()) <= agent.getPosition().distance(sortieProche)) {
+                if (Point.distancePoint(sortie, agent.getPosition()) <= Point.distancePoint(agent.getPosition(), sortieProche)) {
                     sortieProche = sortie;
                 }
             }

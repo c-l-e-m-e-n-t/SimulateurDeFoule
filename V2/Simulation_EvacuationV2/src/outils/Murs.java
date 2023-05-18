@@ -44,9 +44,12 @@ public class Murs {
             public void mouseReleased(MouseEvent e) {
                 if(actif){
                     this.p2 = new Point(e.getX(), e.getY());
-                    SimulationData.addMur(new Segment (this.p1, this.p2));
+                    double x1 = p1.getX() / SimulationData.NORMALISER;
+                    double y1 = p1.getY() / SimulationData.NORMALISER;
+        			double x2 = p2.getX() / SimulationData.NORMALISER;
+        			double y2 = p2.getY() / SimulationData.NORMALISER;
+                    SimulationData.addMur(new Segment(new Point(x1, y1), new Point(x2, y2)));
                     panel.repaint();
-                    new Segment (this.p1, this.p2);
                 }
             }
 
