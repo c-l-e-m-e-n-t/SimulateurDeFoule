@@ -36,24 +36,20 @@ public class SimulationData {
 
     public static void updateAgents() {
         Agent[] temp = new Agent[N];
-        for (int i = 0; i < min(agents.length,N); i++) {
-            temp[i] = agents[i];
-        }
-        if (N > agents.length) {
-            for (int i = agents.length; i < N; i++) {
-                double masse = masseMin + (masseMax - masseMin) * random.nextGaussian();
-                double rayon = rayonMin + (rayonMax - rayonMin) * random.nextGaussian();
-                double vitesse = vitesseMin + (vitesseMax - vitesseMin) * random.nextGaussian();
-                Point position = getRandomPosition(rayon);
-                Point sortieProche = sortie[0];
-                for (Point sortie : SimulationData.sortie) {
-                    if (Point.distancePoint(position, sortie) <= Point.distancePoint(position, sortieProche)) {
-                        sortieProche = sortie;
-                    }
+        for (int i = 0; i < N; i++) {
+            double masse = masseMin + (masseMax - masseMin) * random.nextGaussian();
+            double rayon = rayonMin + (rayonMax - rayonMin) * random.nextGaussian();
+            double vitesse = vitesseMin + (vitesseMax - vitesseMin) * random.nextGaussian();
+            Point position = getRandomPosition(rayon);
+            Point sortieProche = sortie[0];
+            for (Point sortie : SimulationData.sortie) {
+                if (Point.distancePoint(position, sortie) <= Point.distancePoint(position, sortieProche)) {
+                    sortieProche = sortie;
                 }
-                temp[N-1] = new Agent(position, sortieProche, vitesse, rayon, masse, TAU, couleur);
             }
+            temp[i] = new Agent(position, sortieProche, vitesse, rayon, masse, TAU, couleur);
         }
+        
         agents = temp;
     }
 
@@ -142,20 +138,12 @@ public class SimulationData {
      * @param y ordonnée de la sortie
      */
     public static void addSortie(Double x, Double y) {
-        Point[] temp = new Point[sortie.length + 1];
-        for (int i = 0; i < sortie.length; i++) {
-            temp[i] = sortie[i];
+        //ajoute une sortie a la fin de la liste
+        Point tempSortie[] = new Point[sortie.length+1];
+        for (int i = 0; i < sortie.length; i++){
+            tempSortie[i] = sortie[i];
         }
-        temp[sortie.length] = new Point(x / NORMALISER, y / NORMALISER);
-        sortie = temp;
-        for (Agent agent : agents) {
-            Point sortieProche = sortie[0];
-            for (Point sortie : SimulationData.sortie) {
-                if (Point.distancePoint(sortie, agent.getPosition()) <= Point.distancePoint(agent.getPosition(), sortieProche)) {
-                    sortieProche = sortie;
-                }
-            }
-            agent.setSortie(sortieProche);
-        }
+        tempSortie[sortie.length] = new Point(x,y);
+        SimulationData.sortie = tempSortie;
     }
 }

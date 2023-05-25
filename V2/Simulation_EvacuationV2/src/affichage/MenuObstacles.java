@@ -114,10 +114,16 @@ public class MenuObstacles {
         });
         resetButton.addActionListener(e -> {
             // Code to reset the obstacles
+        	SimulationData.agents = new Agent[0];
+        	SimulationData.sortie = new Point[0];
+        	SimulationData.murs = new Segment[0];
+        	
             wallButton.setSelected(false);
             obstacleButton.setSelected(false);
             exitButton.setSelected(false);
             mur.setActif(false);
+            
+            frame.repaint();
         });
 
         JPanel toolButtonPanel = new JPanel(new GridLayout(2, 2));

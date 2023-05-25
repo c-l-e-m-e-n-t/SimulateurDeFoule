@@ -7,6 +7,7 @@ import java.text.Normalizer;
 import modele.*;
 import modele.Point;
 import outils.Sauvegarde;
+import outils.Supprimer;
 
 /** Classe qui gère les opérations du menu.*/
 public class Menu {
@@ -110,21 +111,7 @@ public class Menu {
         drawingPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 if (supprimer.isSelected()) {
-                    for (Agent agent : SimulationData.agents) {
-                        if (agent != null){
-                            if (Point.distancePoint(agent.getPosition(), new Point(e.getX()/SimulationData.NORMALISER, e.getY()/SimulationData.NORMALISER)) < agent.getRayon()) {
-                                Agent[] tempAgent = new Agent[SimulationData.agents.length];
-                                for (int i = 0; i < SimulationData.agents.length; i++) {
-                                    if (SimulationData.agents[i] != agent) {
-                                        tempAgent[i] = SimulationData.agents[i];
-                                    }
-                                }
-                                SimulationData.agents = tempAgent;
-                                frame.repaint();
-                                break;
-                            }
-                        }
-                    }
+                    Supprimer.suppression(frame, e);
                 }
             }
         });
@@ -165,18 +152,16 @@ public class Menu {
             }
             
             // Afficher la sortie
-            if (SimulationData.sortie != null) {
-                g.setColor(Color.BLACK);
-                for (Point sortie : SimulationData.sortie) {
-                    int x = (int) (sortie.getX() * SimulationData.NORMALISER);
+            for (Point sortie : SimulationData.sortie) {
+            	if (sortie != null) {
+            		int x = (int) (sortie.getX() * SimulationData.NORMALISER);
                     int y = (int) (sortie.getY() * SimulationData.NORMALISER);
+                    g.setColor(Color.black);
                     g.drawLine(x - 10, y, x + 10, y);
                     g.drawLine(x, y - 10, x, y + 10);
-                    g.drawString("Sortie: " + sortie, 10, getHeight() - 10);
-                }
+            	}
             }
         }
-
     }
 
 }

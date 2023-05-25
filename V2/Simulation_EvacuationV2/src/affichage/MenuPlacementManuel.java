@@ -17,6 +17,7 @@ public class MenuPlacementManuel {
     private double oldRayonMin = SimulationData.rayonMin;
     private double oldRayonMax = SimulationData.rayonMax;
     private Color oldColor = SimulationData.couleur;
+    private boolean actif = true;
 
     private JPanel panel;
 
@@ -24,6 +25,7 @@ public class MenuPlacementManuel {
         
         panel = new JPanel();
         panel.setLayout(new GridLayout(9, 1));
+        
 
         // Slider pour la masse
         JSlider masseSlider = new JSlider(JSlider.HORIZONTAL, 40, 120, 80);
@@ -127,6 +129,7 @@ public class MenuPlacementManuel {
             SimulationData.rayonMin = oldRayonMin;
             SimulationData.rayonMax = oldRayonMax;
             SimulationData.couleur = oldColor;
+            actif = false;
             frame.getContentPane().remove(panel);
             frame.getContentPane().add(menuAgent, BorderLayout.EAST);
             frame.revalidate();
@@ -143,16 +146,19 @@ public class MenuPlacementManuel {
         
         drawingPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                SimulationData.N += 1;
-                Point position = new Point(e.getX(), e.getY());
-                double vitesse = SimulationData.vitesseMin;
-                double rayon = SimulationData.rayonMin;
-                double masse = SimulationData.masseMin;
-                double TAU = 0.5;
-                Color couleur = SimulationData.couleur;
-                SimulationData.updateAgents((double) e.getX(), (double) e.getY());
-
-                drawingPanel.update(drawingPanel.getGraphics());
+            	if (actif) {
+                	SimulationData.N += 1;
+	                Point position = new Point(e.getX(), e.getY());
+	                double vitesse = SimulationData.vitesseMin;
+	                double rayon = SimulationData.rayonMin;
+	                double masse = SimulationData.masseMin;
+	                double TAU = 0.5;
+	                Color couleur = SimulationData.couleur;
+	                SimulationData.updateAgents((double) e.getX(), (double) e.getY());
+	
+	                drawingPanel.update(drawingPanel.getGraphics());
+                }
+                
             }
         });
     }

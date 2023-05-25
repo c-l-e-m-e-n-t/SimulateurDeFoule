@@ -26,7 +26,7 @@ public class MenuAgents {
         panel.setLayout(new GridLayout(11, 1));
 
         // Bouton du nombre d'agents
-        JSlider agentSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+        JSlider agentSlider = new JSlider(JSlider.HORIZONTAL, 0, 20, 0);
         agentSlider.setMajorTickSpacing(20);
         agentSlider.setMinorTickSpacing(5);
         agentSlider.setPaintTicks(true);
