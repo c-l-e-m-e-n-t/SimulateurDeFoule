@@ -138,12 +138,12 @@ public class SimulationData {
      * @param y ordonnée de la sortie
      */
     public static void addSortie(Double x, Double y) {
-        //ajoute une sortie a la fin de la liste
-        Point tempSortie[] = new Point[sortie.length+1];
+        Point tempSortie[] = new Point[SimulationData.sortie.length+1];
         for (int i = 0; i < sortie.length; i++){
-            tempSortie[i] = sortie[i];
+            tempSortie[i] = SimulationData.sortie[i];
         }
         tempSortie[sortie.length] = new Point(x,y);
         SimulationData.sortie = tempSortie;
+        System.out.println(SimulationData.sortie.length);
     }
 }

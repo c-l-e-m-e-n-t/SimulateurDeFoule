@@ -154,11 +154,11 @@ public class Menu {
             // Afficher la sortie
             for (Point sortie : SimulationData.sortie) {
             	if (sortie != null) {
-            		int x = (int) (sortie.getX() * SimulationData.NORMALISER);
-                    int y = (int) (sortie.getY() * SimulationData.NORMALISER);
-                    g.setColor(Color.black);
-                    g.drawLine(x - 10, y, x + 10, y);
-                    g.drawLine(x, y - 10, x, y + 10);
+	        		int x = (int) (sortie.getX());
+	                int y = (int) (sortie.getY());
+	                g.setColor(Color.black);
+	                g.drawLine(x - 10, y, x + 10, y);
+	                g.drawLine(x, y - 10, x, y + 10);
             	}
             }
         }

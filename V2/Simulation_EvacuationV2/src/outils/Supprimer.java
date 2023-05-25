@@ -26,16 +26,19 @@ public class Supprimer {
         }
     
         for (Point sortie : SimulationData.sortie) {
-            if (Point.distancePoint(sortie, new Point(e.getX()/SimulationData.NORMALISER, e.getY()/SimulationData.NORMALISER)) < 10) {
-                Point[] tempSortie = new Point[SimulationData.sortie.length];
-                for (int i = 0; i < SimulationData.sortie.length; i++) {
-                    if (SimulationData.sortie[i] != sortie) {
-                        tempSortie[i] = SimulationData.sortie[i];
-                    }
-                }
-                SimulationData.sortie = tempSortie;
-                frame.repaint();
-            }
+        	if (sortie != null) {
+        		if (sortie.getX()-e.getX() < 10 && sortie.getX()-e.getX() > -10 && sortie.getY()-e.getY() > -10 && sortie.getY()-e.getY() < 10) {
+	                Point[] tempSortie = new Point[SimulationData.sortie.length];
+	                for (int i = 0; i < SimulationData.sortie.length; i++) {
+	                    if (SimulationData.sortie[i] != sortie) {
+	                        tempSortie[i] = SimulationData.sortie[i];
+	                    }
+	                }
+	                SimulationData.sortie = tempSortie;
+	                frame.repaint();
+	            }
+        	}
+            
         }
     }
 }

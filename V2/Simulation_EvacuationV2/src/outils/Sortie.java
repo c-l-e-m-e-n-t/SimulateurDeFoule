@@ -8,7 +8,7 @@ import modele.Point;
 public class Sortie {
     boolean actif;
     public Sortie() {
-        this.actif = false;
+        this.actif = true;
     }
 
     /** ajoute une sortie a partir d'un clic de souris
@@ -18,8 +18,10 @@ public class Sortie {
         //ajouter unmouse listener
         panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                SimulationData.addSortie((double) e.getX(), (double) e.getY());
-                panel.repaint();
+            	if (actif) {
+	                SimulationData.addSortie((double) e.getX(), (double) e.getY());
+	                panel.repaint();
+            	}
             }
         });
     }
