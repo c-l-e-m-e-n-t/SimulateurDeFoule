@@ -1,8 +1,10 @@
 package outils;
 
 import java.awt.Color;
+
 import java.awt.GridLayout;
 import java.io.*;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -11,6 +13,8 @@ import affichage.Menu.DrawingPanel;
 import modele.Agent;
 import modele.Point;
 import modele.Segment;
+
+import java.util.*;
 
 public class Sauvegarde {
     
@@ -118,25 +122,40 @@ public class Sauvegarde {
         JPanel panel = new JPanel();
 
         JButton loadButton = new JButton("Charger");
-        JLabel labelSaveName = new JLabel("Nom de la sauvegarde : ");
-        JTextField saveName = new JTextField("");
+        
+     // Menu déroulant des types de pièce
+        File dir = new File("./saves");
+        File[] listeFile = dir.listFiles();
+        List<String> fileNames = new ArrayList<String>();
+        for (File file : listeFile) {
+        	if (file.getName() != null && file.getName().endsWith(".n7")) {
+        		fileNames.add(file.getName());
+        	}
+        }
+        String[] tableauNoms = new String[fileNames.size()];
+        fileNames.toArray(tableauNoms);
+        JComboBox<String> nomsComboBox = new JComboBox<>(tableauNoms);
+        nomsComboBox.addActionListener(e -> {
+            String name = (String) nomsComboBox.getSelectedItem();
+        });
 
         //graphismes de la fenetre
-        panel.setLayout(new GridLayout(3, 1));
-        panel.add(labelSaveName);
-        panel.add(saveName);
+        panel.setLayout(new GridLayout(2, 1));
+        panel.add(nomsComboBox);
 
         panel.add(loadButton);
 
         frame.getContentPane().add(panel);
-        frame.setSize(400, 550);
+        frame.setSize(150, 200);
         frame.setVisible(true);
 
         // Action listener pour le bouton de chargement
         loadButton.addActionListener(e -> {
-            String name = saveName.getText();
+            String name = (String) nomsComboBox.getSelectedItem();
             if (name.equals("")) {
                 JOptionPane.showMessageDialog(frame, "Veuillez remplir le nom du fchier.");
+            } else if (!name.contains(".n7")) {
+            	JOptionPane.showMessageDialog(frame, "Mauvais type de fichier");
             } else {
                 chargement(name);
                 frame.dispose();
@@ -149,7 +168,7 @@ public class Sauvegarde {
      * @param saveName nom du fichier  de la save à charger
      */
     private static void chargement(String saveName){
-        String path = "./saves/" + saveName + ".n7";
+        String path = "./saves/" + saveName;
 
         try{
             //lecteur du fichier

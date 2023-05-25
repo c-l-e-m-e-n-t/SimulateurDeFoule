@@ -6,6 +6,7 @@ import java.text.Normalizer;
 
 import modele.*;
 import modele.Point;
+import outils.ButtonDesign;
 import outils.Sauvegarde;
 import outils.Supprimer;
 
@@ -22,13 +23,13 @@ public class Menu {
         drawingPanel = new DrawingPanel();
 
         // Ajouter des éléments de menu au panel
-        JButton launchButton = new JButton("Lancer la simulation");
+        ButtonDesign launchButton = new ButtonDesign("Lancer la simulation");
         panel.add(launchButton);
         panel.add(new JLabel(""));
 
-        JButton configRoomButton = new JButton("Configuration de la piece");
+        ButtonDesign configRoomButton = new ButtonDesign("Configuration de la piece");
         panel.add(configRoomButton);
-        JButton configAgentButton = new JButton("Configuration des agents");
+        ButtonDesign configAgentButton = new ButtonDesign("Configuration des agents");
         panel.add(configAgentButton);
         panel.add(new JLabel(""));
 
@@ -39,15 +40,15 @@ public class Menu {
         JToggleButton reportsButton = new JToggleButton("Rapports (ON / OFF)");
         panel.add(reportsButton);
 
-        JButton saveButton = new JButton("Sauvegarder");
+        ButtonDesign saveButton = new ButtonDesign("Sauvegarder");
         panel.add(saveButton);
 
-        JButton loadButton = new JButton("Charger");
+        ButtonDesign loadButton = new ButtonDesign("Charger");
         panel.add(loadButton);
 
         panel.add(new JLabel(""));
 
-        JButton exitButton = new JButton("Quitter");
+        ButtonDesign exitButton = new ButtonDesign("Quitter");
         panel.add(exitButton);
 
         // Définir la disposition du panneau et l'ajouter au frame
