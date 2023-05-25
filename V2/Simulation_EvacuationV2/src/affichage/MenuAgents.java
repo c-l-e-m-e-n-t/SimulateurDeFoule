@@ -3,24 +3,17 @@ package affichage;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import design.ButtonDesign;
 import java.awt.*;
-
-import modele.*;
-import modele.Point;
-import outils.RangeSlider;
+import outils.*;
 
 /** Classe du menu des agents.*/
 public class MenuAgents {
 
-    private JFrame frame;
     private JPanel panel;
-    private JPanel drawingPanel;
 
     public MenuAgents(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
-        this.frame = frame;
         frame.setTitle("Simulation d'évacuation - Menu Agents");
-        this.drawingPanel = drawingPanel;
-
         // Créer un panel et des boutons pour la configuration de l'agent
         panel = new JPanel();
         panel.setLayout(new GridLayout(11, 1));
@@ -108,22 +101,22 @@ public class MenuAgents {
         
 
         // Bouton Configurer un agent
-        JButton configureAgentButton = new JButton("Configurer un agent");
+        ButtonDesign configureAgentButton = new ButtonDesign("Configurer un agent");
         configureAgentButton.addActionListener(e -> {
             // Code to configure an agent
         });
         panel.add(configureAgentButton);
 
         // Bouton placer manuellement
-        JButton placeManuallyButton = new JButton("Placer manuellement");
+        ButtonDesign placeManuallyButton = new ButtonDesign("Placer manuellement");
         placeManuallyButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
-            MenuPlacementManuel menuPlacementManuel = new MenuPlacementManuel(frame, drawingPanel, panel);
+            new MenuPlacementManuel(frame, drawingPanel, panel);
         });
         panel.add(placeManuallyButton);
 
         // Bouton Retour
-        JButton backButton = new JButton("Retour");
+        ButtonDesign backButton = new ButtonDesign("Retour");
         backButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
             frame.getContentPane().add(menuPanel, BorderLayout.EAST);

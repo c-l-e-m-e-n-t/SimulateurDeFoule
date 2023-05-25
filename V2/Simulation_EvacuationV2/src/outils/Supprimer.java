@@ -1,8 +1,6 @@
 package outils;
 
 import javax.swing.JFrame;
-
-import affichage.Menu;
 import affichage.SimulationData;
 import modele.Agent;
 import modele.Point;

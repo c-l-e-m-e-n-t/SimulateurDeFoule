@@ -1,7 +1,5 @@
 package modele;
 
-import java.io.Serial;
-
 public class Segment {
 
 	/** Début du segment. */

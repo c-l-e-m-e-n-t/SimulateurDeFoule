@@ -3,10 +3,9 @@ package affichage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-
 import modele.*;
-
 import javax.swing.Timer;
+import design.ButtonDesign;
 
 /** Classe qui gère la simulation de l'évacuation.*/
 public class Simulation {
@@ -20,21 +19,21 @@ public class Simulation {
         panel.setLayout(new GridLayout(3, 1));
 
         // Bouton Pause
-        JButton pauseButton = new JButton("Pause");
+        ButtonDesign pauseButton = new ButtonDesign("Pause");
         pauseButton.addActionListener(e -> {
             timer.stop();
         });
         panel.add(pauseButton);
 
         // Bouton Play
-        JButton playButton = new JButton("Play");
+        ButtonDesign playButton = new ButtonDesign("Play");
         playButton.addActionListener(e -> {
             timer.start();
         });
         panel.add(playButton);
 
         // Bouton Retour
-        JButton backButton = new JButton("Retour");
+        ButtonDesign backButton = new ButtonDesign("Retour");
         backButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
             frame.getContentPane().add(menuPanel, BorderLayout.EAST);

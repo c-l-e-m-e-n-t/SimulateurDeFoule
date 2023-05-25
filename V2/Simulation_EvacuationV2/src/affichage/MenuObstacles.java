@@ -1,8 +1,8 @@
 package affichage;
 
 import javax.swing.*;
+import design.*;
 import java.awt.*;
-
 import modele.*;
 import modele.Point;
 import outils.*;
@@ -10,15 +10,9 @@ import outils.*;
 /** Classe du menu des obstacles.*/
 public class MenuObstacles {
 
-    private JFrame frame;
     private JPanel panel;
-    private JPanel drawingPanel;
-
     public MenuObstacles(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
-    	this.frame = frame;
-        frame.setTitle("Simulation d'évacuation - Menu Obstacles");
-        this.drawingPanel = drawingPanel;
-
+    	frame.setTitle("Simulation d'évacuation - Menu Obstacles");
         // Créer un panel et des boutons pour la configuration des obstacles
         panel = new JPanel();
         panel.setLayout(new GridLayout(6, 1));
@@ -69,10 +63,10 @@ public class MenuObstacles {
         panel.add(new JLabel("Outils:"));
 
         // Boutons On/Off pour les outils
-        JToggleButton wallButton = new JToggleButton("Mur");
-        JToggleButton obstacleButton = new JToggleButton("Obstacle");
-        JToggleButton exitButton = new JToggleButton("Sortie");
-        JButton resetButton = new JButton("Réinitialiser");
+        ToggleButtonDesignPetit wallButton = new ToggleButtonDesignPetit("Mur");
+        ToggleButtonDesignPetit obstacleButton = new ToggleButtonDesignPetit("Obstacle");
+        ToggleButtonDesignPetit exitButton = new ToggleButtonDesignPetit("Sortie");
+        ButtonDesignPetit resetButton = new ButtonDesignPetit("Réinitialiser");
 
         ButtonGroup obstacleButtonGroup = new ButtonGroup();
         obstacleButtonGroup.add(wallButton);
@@ -134,7 +128,7 @@ public class MenuObstacles {
         panel.add(toolButtonPanel);
 
         // Bouton Retour
-        JButton backButton = new JButton("Retour");
+        ButtonDesign backButton = new ButtonDesign("Retour");
         backButton.addActionListener(e -> {
             mur.setActif(false);
             sortie.setActif(false);

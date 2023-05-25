@@ -1,9 +1,7 @@
 package outils;
 
 import javax.swing.JPanel;
-
 import affichage.SimulationData;
-import modele.Point;
 
 public class Sortie {
     boolean actif;

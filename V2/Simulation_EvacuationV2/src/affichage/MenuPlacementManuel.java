@@ -3,11 +3,8 @@ package affichage;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import design.ButtonDesign;
 import java.awt.*;
-
-import modele.*;
-import modele.Point;
-import outils.RangeSlider;
 
 public class MenuPlacementManuel {
     private double oldViteseMin = SimulationData.vitesseMin;
@@ -119,7 +116,7 @@ public class MenuPlacementManuel {
         panel.add(colorPanel);
 
         // Bouton Retour
-        JButton backButton = new JButton("Retour");
+        ButtonDesign backButton = new ButtonDesign("Retour");
         backButton.addActionListener(e -> {
             //pour rétablir les anciennes valeurs
             SimulationData.vitesseMin = oldViteseMin;
@@ -148,12 +145,6 @@ public class MenuPlacementManuel {
             public void mouseClicked(java.awt.event.MouseEvent e) {
             	if (actif) {
                 	SimulationData.N += 1;
-	                Point position = new Point(e.getX(), e.getY());
-	                double vitesse = SimulationData.vitesseMin;
-	                double rayon = SimulationData.rayonMin;
-	                double masse = SimulationData.masseMin;
-	                double TAU = 0.5;
-	                Color couleur = SimulationData.couleur;
 	                SimulationData.updateAgents((double) e.getX(), (double) e.getY());
 	
 	                drawingPanel.update(drawingPanel.getGraphics());

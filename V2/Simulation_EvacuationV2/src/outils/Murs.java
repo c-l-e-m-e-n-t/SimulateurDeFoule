@@ -1,18 +1,12 @@
 package outils;
 
-import java.awt.Event;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.Serial;
-
 import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicButtonListener;
-
 import affichage.SimulationData;
 import modele.*;
 
 public class Murs {
-    private Segment segment;
     private Boolean actif;
 
     /**
@@ -61,13 +55,6 @@ public class Murs {
             public void mouseExited(MouseEvent e) {
             }
         });
-    }
-
-    /** change la valeur du segment
-     * @param segment
-     */
-    public void setSegment(Segment segment) {
-        this.segment = segment;
     }
 
     /** active ou desactive la construction de murs

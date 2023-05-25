@@ -1,14 +1,11 @@
 package affichage;
 
 import javax.swing.*;
+import design.*;
 import java.awt.*;
-import java.text.Normalizer;
-
 import modele.*;
 import modele.Point;
-import outils.ButtonDesign;
-import outils.Sauvegarde;
-import outils.Supprimer;
+import outils.*;
 
 /** Classe qui gère les opérations du menu.*/
 public class Menu {
@@ -33,11 +30,11 @@ public class Menu {
         panel.add(configAgentButton);
         panel.add(new JLabel(""));
 
-        JToggleButton supprimer = new JToggleButton("Supprimer (ON / OFF)");
+        ToggleButtonDesign supprimer = new ToggleButtonDesign("Supprimer (ON / OFF)");
         panel.add(supprimer);
-        JToggleButton externalPhenomenaButton = new JToggleButton("Phénomènes externes (ON / OFF)");
+        ToggleButtonDesign externalPhenomenaButton = new ToggleButtonDesign("Phénomènes externes (ON / OFF)");
         panel.add(externalPhenomenaButton);
-        JToggleButton reportsButton = new JToggleButton("Rapports (ON / OFF)");
+        ToggleButtonDesign reportsButton = new ToggleButtonDesign("Rapports (ON / OFF)");
         panel.add(reportsButton);
 
         ButtonDesign saveButton = new ButtonDesign("Sauvegarder");
@@ -86,11 +83,11 @@ public class Menu {
         });
         configRoomButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
-            MenuObstacles menuObstacles = new MenuObstacles(frame, drawingPanel, panel);
+            new MenuObstacles(frame, drawingPanel, panel);
         });
         configAgentButton.addActionListener(e -> {
             frame.getContentPane().remove(panel);
-            MenuAgents menuAgents = new MenuAgents(frame, drawingPanel, panel);
+            new MenuAgents(frame, drawingPanel, panel);
         });
         supprimer.addActionListener(e -> {
             

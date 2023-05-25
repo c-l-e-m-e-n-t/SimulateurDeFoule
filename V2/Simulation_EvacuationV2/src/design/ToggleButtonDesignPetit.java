@@ -1,14 +1,14 @@
-package outils;
-import java.awt.Color;
+package design;
 
+import java.awt.Color;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
-public class ButtonDesign extends JButton{
+public class ToggleButtonDesignPetit extends JToggleButton{
 	private static final long serialVersionUID = 1L;
 	 
-	public ButtonDesign(String txt) {
+	public ToggleButtonDesignPetit(String txt) {
 	    super(txt);
 	    
 	    setForeground(Color.WHITE);
@@ -21,8 +21,8 @@ public class ButtonDesign extends JButton{
 	    setHorizontalAlignment(SwingConstants.CENTER);
 	    setHorizontalTextPosition(SwingConstants.CENTER);
 	     
-	    //setIcon(new ImageIcon("./images/button.png"));
-	    //setRolloverIcon(new ImageIcon("./images/button.png"));
-	    }
-
+	    setIcon(new ImageIcon("./img/buttonPetit.png"));
+	    setRolloverIcon(new ImageIcon("./img/buttonPetit_pressed.png"));
+		setSelectedIcon(new ImageIcon("./img/buttonPetit_selected.png"));
+	}
 }

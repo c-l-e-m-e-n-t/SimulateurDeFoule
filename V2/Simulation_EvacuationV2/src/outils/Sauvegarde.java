@@ -1,15 +1,11 @@
 package outils;
 
 import java.awt.Color;
-
 import java.awt.GridLayout;
 import java.io.*;
 import java.util.List;
-
 import javax.swing.*;
-
 import affichage.SimulationData;
-import affichage.Menu.DrawingPanel;
 import modele.Agent;
 import modele.Point;
 import modele.Segment;
@@ -136,7 +132,7 @@ public class Sauvegarde {
         fileNames.toArray(tableauNoms);
         JComboBox<String> nomsComboBox = new JComboBox<>(tableauNoms);
         nomsComboBox.addActionListener(e -> {
-            String name = (String) nomsComboBox.getSelectedItem();
+            nomsComboBox.getSelectedItem();
         });
 
         //graphismes de la fenetre
@@ -178,7 +174,6 @@ public class Sauvegarde {
             //lecture du fichier
             String line = reader.readLine();
             String[] lineSplit;
-            String author;
             String etat  = "";
             while(line != null){
                 switch (etat){
@@ -206,11 +201,10 @@ public class Sauvegarde {
                         SimulationData.addMur(new Segment(p1, p2));
                         break;
                     case "Sortie": //ajout des sorties
-                        if (line == null){
-                            break;
+                        if (line != null){
+                            lineSplit = line.split(";");
+                            SimulationData.addSortie(Double.parseDouble(lineSplit[0]), Double.parseDouble(lineSplit[1]));
                         }
-                        lineSplit = line.split(";");
-                        SimulationData.addSortie(Double.parseDouble(lineSplit[0]), Double.parseDouble(lineSplit[1]));
                         break;
                     default:
                         break;

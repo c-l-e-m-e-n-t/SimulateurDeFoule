@@ -2,9 +2,6 @@ package modele;
 
 import java.awt.Color;
 
-import affichage.SimulationData;
-
-
 public class Agent {
 
 	/** Position de l'agent. */
