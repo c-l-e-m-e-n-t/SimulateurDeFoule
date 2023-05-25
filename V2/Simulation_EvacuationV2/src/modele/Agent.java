@@ -220,21 +220,21 @@ public class Agent {
 	 */
 	public Segment obstacleProche(Segment[] murs, Segment direction) {
 		Segment Obstacle = null;
-		double distance = -1;
+		//double distance = -1;
 		for (int i = 0; i < murs.length; i++) {
 
 			// Calcul des murs sur la trajectoire
-			Point intersection = Segment.intersectionDroites(direction, murs[i]);
+			boolean intersection = Segment.intersectionDroites(direction, murs[i]);
 
-			if (intersection != null // Si il y a une intersection entre le mur et le chemin de l'agent
-					|| Segment.contient(direction, intersection)
+			if (intersection //!= null // Si il y a une intersection entre le mur et le chemin de l'agent
+					/*|| Segment.contient(direction, intersection)
 					|| Vecteur.cosinus(new Vecteur(direction), // Si le mur est sur le chemin de l'agent
 							new Vecteur(direction.getExtremite1(), intersection)) > 0
-					|| Point.distancePoint(intersection, position) < distance || distance == -1) {
+					|| Point.distancePoint(intersection, position) < distance || distance == -1*/) {
 				
 				// Parmi ceux trouvés, on garde le mur le plus proche
 				Obstacle = murs[i];
-				distance = Point.distancePoint(intersection, position);
+				//distance = Point.distancePoint(intersection, position);
 			}
 		}
 		return Obstacle;
@@ -263,13 +263,12 @@ public class Agent {
 					> Vecteur.cosinus(new Vecteur(direction), new Vecteur(this.position, d2))) {
 				this.cible = d1;
 			} else {
-				this.cible = d2;
+				//this.cible = d2;
 			}
-		}
-
-	    // Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
-		if (Point.distancePoint(this.position, this.cible) < 0.1) {
-			this.cible = this.sortie;
+			// Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
+			if (Point.distancePoint(this.position, this.cible) < 0.1) {
+		        this.cible = this.sortie;
+			}
 		}
 	}
 

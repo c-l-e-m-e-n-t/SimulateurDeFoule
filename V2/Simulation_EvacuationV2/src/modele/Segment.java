@@ -74,28 +74,24 @@ public class Segment {
 	 * @param droite2 la deuxième droite
 	 * @return le point d'intersection des droites droite1 et droite2
 	 */
-	public static Point intersectionDroites(Segment droite1, Segment droite2) {
-		Point intersection;
+	public static boolean intersectionDroites(Segment droite1, Segment droite2) {
+		boolean boolInter = false;
+		
+		// Calcul des vecteurs AB, AC et AD
+        Point AB = Point.soustrairePoint(droite1.getExtremite2(), droite1.getExtremite1());
+        Point AC = Point.soustrairePoint(droite2.getExtremite1(), droite1.getExtremite1());
+        Point AD = Point.soustrairePoint(droite2.getExtremite2(), droite1.getExtremite1());
 
-		Point a1 = droite1.getExtremite1();
-		Point a2 = droite1.getExtremite2();
-		Point b1 = droite2.getExtremite1();
-		Point b2 = droite2.getExtremite2();
-
-		// Calcul des coefficients des droites : y = mx + p
-		double m1 = (a2.getY() - a1.getY()) / (a2.getX() - a1.getX());
-		double p1 = a1.getY() - m1 * a1.getX();
-		double m2 = (b2.getY() - b1.getY()) / (b2.getX() - b1.getX());
-		double p2 = b1.getY() - m2 * b1.getX();
-
-		if (Math.abs(m2 - m1) < 0.0001) {
-			intersection = null;
-		} else {
-			double x = (p2 - p1) / (m1 - m2);
-			double y = m1 * x + p1;
-			intersection = new Point(x, y);
-		}
-		return intersection;
+        // Calcul des produits vectoriels
+        double prod1 = Point.prodVecto(AB, AC);
+        double prod2 = Point.prodVecto(AB, AD);
+        
+        // Vérification des signes des produits vectoriels
+        if (prod1 * prod2 < 0) {
+            boolInter = true; // Les segments s'intersectent
+        }
+        
+        return boolInter;
 	}
 
 	/** Renvoie le point d'intersection des droites droite1 et droite2.
