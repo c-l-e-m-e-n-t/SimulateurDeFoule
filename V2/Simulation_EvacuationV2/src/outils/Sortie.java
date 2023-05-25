@@ -30,5 +30,4 @@ public class Sortie {
     public void setActif(boolean actif) {
         this.actif = actif;
     }
-    
 }
