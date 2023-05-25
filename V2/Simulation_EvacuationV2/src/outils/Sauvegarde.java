@@ -68,7 +68,7 @@ public class Sauvegarde {
      * @param author nom de l'auteur de la sauvegarde
      */
     private static void enregistrer(String name, String description, String author){
-        String path = ".\\saves\\" + name + ".n7";
+        String path = "./saves/" + name + ".n7";
         try {
             //création du fichier
             FileWriter fileWriter = new FileWriter(path, false);
@@ -149,7 +149,7 @@ public class Sauvegarde {
      * @param saveName nom du fichier  de la save à charger
      */
     private static void chargement(String saveName){
-        String path = ".\\saves\\" + saveName + ".n7";
+        String path = "./saves/" + saveName + ".n7";
 
         try{
             //lecteur du fichier
