@@ -13,7 +13,6 @@ public class Accueil {
     private JFrame frame;
     private JPanel panel;
     private JLabel imageLabel;
-    private JLabel pressAnyKeyLabel;
 
     public Accueil() {
         frame = new JFrame("Simulation d'évacuation");
