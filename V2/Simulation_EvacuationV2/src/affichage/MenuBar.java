@@ -97,7 +97,6 @@ public class MenuBar {
         aide.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("HELP");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                 // Création des ImageIcon pour les images
 

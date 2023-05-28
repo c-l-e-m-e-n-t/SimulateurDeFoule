@@ -203,6 +203,8 @@ case "Piece 3":
         backButton.addActionListener(e -> {
             mur.setActif(false);
             sortie.setActif(false);
+            bureau.setActif(false);
+            chaise.setActif(false);
             frame.getContentPane().remove(panel);
             frame.getContentPane().add(menuPanel, BorderLayout.EAST);
             frame.setTitle("Simulation d'évacuation - Menu");
