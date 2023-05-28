@@ -6,6 +6,10 @@ import modele.Agent;
 import modele.Point;
 
 public class Supprimer {
+    /** Supprime un agent ou une sortie en fonction de la position de la souris.
+     * @param frame la fenêtre de la simulation
+     * @param e l'évènement de la souris
+     */
     public static void suppression(JFrame frame, java.awt.event.MouseEvent e) {
         for (Agent agent : SimulationData.agents) {
             if (agent != null){

@@ -1,4 +1,4 @@
-import outils;
+package outils;
 
 import java.awt.Color;
 import java.awt.Graphics;
