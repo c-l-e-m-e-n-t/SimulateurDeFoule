@@ -1,6 +1,7 @@
 package affichage;
 
 import javax.swing.*;
+
 import design.*;
 import java.awt.*;
 import modele.*;
@@ -28,7 +29,7 @@ public class MenuObstacles {
         JComboBox<String> roomComboBox = new JComboBox<>(roomTypes);
         roomComboBox.addActionListener(e -> {
             String selectedObstacleType = (String) roomComboBox.getSelectedItem();
-            Segment mur1, mur2, mur3, mur4, mur5, mur6;
+            Segment mur1, mur2, mur3, mur4, mur5, mur6, mur7, mur8, mur9, mur10;
             Segment[] murs;
             switch (selectedObstacleType) {
                 case "Piece 1":
@@ -54,11 +55,35 @@ public class MenuObstacles {
                 	SimulationData.murs = murs;
                 	frame.repaint();
                     break;
-                case "Piece 3":
-                    // Code to select the exit tool
+case "Piece 3":
+                	
+                	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
+                	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
+                	mur3 = new Segment(new Point(15, 5), new Point(15, 15));
+                	mur4 = new Segment(new Point(15, 15), new Point(5, 15));
+                	mur5 = new Segment(new Point(5, 15), new Point(5, 11));
+                    mur6 = new Segment(new Point(9, 5), new Point(9, 7));
+                    mur7 = new Segment(new Point(5, 7), new Point(7, 7));
+                    mur8 = new Segment(new Point(11, 5), new Point(11, 10));
+                    mur9 = new Segment(new Point(11, 12), new Point(11, 15));
+                    murs = new Segment[]{mur1, mur2, mur3, mur4, mur5, mur6, mur7, mur8, mur9};
+                	SimulationData.murs = murs;
+                	frame.repaint();
                     break;
                 case "Piece 4":
-                    // Code to reset the obstacles
+                	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
+                	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
+                	mur3 = new Segment(new Point(15, 5), new Point(15, 15));
+                	mur4 = new Segment(new Point(15, 15), new Point(5, 15));
+                	mur5 = new Segment(new Point(5, 15), new Point(5, 11));
+                    mur6 = new Segment(new Point(9, 5), new Point(9, 7));
+                    mur7 = new Segment(new Point(5, 7), new Point(7, 7));
+                    mur8 = new Segment(new Point(11, 5), new Point(11, 10));
+                    mur9 = new Segment(new Point(11, 12), new Point(11, 15));
+                    mur10 = new Segment(new Point(11, 13), new Point(7, 13));
+                    murs = new Segment[]{mur1, mur2, mur3, mur4, mur5, mur6, mur7, mur8, mur9, mur10};
+                	SimulationData.murs = murs;
+                	frame.repaint();
                     break;
             }
         });
