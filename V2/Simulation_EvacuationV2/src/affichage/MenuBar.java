@@ -7,8 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -96,31 +99,17 @@ public class MenuBar {
 
         aide.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("HELP");
-
-                // Création des ImageIcon pour les images
-
-                ImageIcon imageIcon = new ImageIcon("./img/image1.jpg");
-                //ImageIcon imageIcon2 = new ImageIcon("./img/image2.jpg");
-         
-
-                // Création du JPanel avec les deux images
-                JLabel imageLabel = new JLabel(imageIcon);
-                
-                 JPanel panel = new JPanel() ;
-                 panel.add(imageLabel);
-                  
-                
-                 
-
-                
-
-                
-                frame.pack();
-                frame.setSize(1000, 1000);
-
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
+                File fichier = new File("./docs/Manuel_Utilisateur.pdf");
+                if (Desktop.isDesktopSupported()) { 
+                    Desktop desktop = Desktop.getDesktop(); 
+                    if (desktop.isSupported(Desktop.Action.OPEN)) { 
+                        try { 
+                        desktop.open(fichier); 
+                        } catch (IOException ex) {  
+                            ex.printStackTrace();
+                        } 
+                    } 
+                }
             }
         });
 

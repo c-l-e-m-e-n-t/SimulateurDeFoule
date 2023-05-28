@@ -124,6 +124,7 @@ public class Menu {
                 }
             }
         });
+
     }
 
     public class DrawingPanel extends JPanel {
