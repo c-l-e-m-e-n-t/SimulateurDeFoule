@@ -6,15 +6,21 @@ import java.awt.*;
 import modele.*;
 import modele.Point;
 import outils.*;
+import outils.BureauObstacle;
 
 /** Classe du menu des obstacles.*/
 public class MenuObstacles {
 
     private JPanel panel;
+    /**
+     * @param frame
+     * @param drawingPanel
+     * @param menuPanel
+     */
     public MenuObstacles(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
     	frame.setTitle("Simulation d'évacuation - Menu Obstacles");
         // Créer un panel et des boutons pour la configuration des obstacles
-        panel = new JPanel();
+        panel = new JPanel() ;
         panel.setLayout(new GridLayout(6, 1));
 
         // Menu déroulant des types de pièce
@@ -64,7 +70,8 @@ public class MenuObstacles {
 
         // Boutons On/Off pour les outils
         ToggleButtonDesignPetit wallButton = new ToggleButtonDesignPetit("Mur");
-        ToggleButtonDesignPetit obstacleButton = new ToggleButtonDesignPetit("Obstacle");
+        ToggleButtonDesignPetit obstacleButton = new ToggleButtonDesignPetit("Bureau");
+        ToggleButtonDesignPetit chaiseButton = new ToggleButtonDesignPetit("Chaise");
         ToggleButtonDesignPetit exitButton = new ToggleButtonDesignPetit("Sortie");
         ButtonDesignPetit resetButton = new ButtonDesignPetit("Réinitialiser");
 
@@ -72,33 +79,69 @@ public class MenuObstacles {
         obstacleButtonGroup.add(wallButton);
         obstacleButtonGroup.add(obstacleButton);
         obstacleButtonGroup.add(exitButton);
+        obstacleButtonGroup.add(chaiseButton);
 
         // Ajouter des action listeners aux boutons
         Murs mur = new Murs();
         Sortie sortie = new Sortie();
+        BureauObstacle bureau = new BureauObstacle(40,40);
+        ChaiseObstacle chaise = new ChaiseObstacle();
         wallButton.addActionListener(e -> {
             obstacleButton.setSelected(false);
             exitButton.setSelected(false);  
             if (wallButton.isSelected()) {
                 sortie.setActif(false);
+                bureau.setActif(false);
+                chaise.setActif(false);
                 mur.setActif(true);
                 mur.ajoutMur(drawingPanel);
             }
             else{
                 mur.setActif(false);
             }
+        
         });
         obstacleButton.addActionListener(e -> {
             wallButton.setSelected(false);
             exitButton.setSelected(false);
             mur.setActif(false);
             sortie.setActif(false);
+            if (obstacleButton.isSelected()) {
+                mur.setActif(false);
+                sortie.setActif(false);
+                chaise.setActif(false);
+                bureau.setActif(true);
+                bureau.ajouterObstacle(drawingPanel);
+            }else {
+                bureau.setActif(false);   
+             }
+            
         });
+
+        chaiseButton.addActionListener(e -> {
+            wallButton.setSelected(false);
+            exitButton.setSelected(false);
+            mur.setActif(false);
+            sortie.setActif(false);
+            if (chaiseButton.isSelected()) {
+                mur.setActif(false);
+                sortie.setActif(false);
+                bureau.setActif(false);
+                chaise.setActif(true);
+                chaise.ajouterchaise(drawingPanel);
+            }else {
+                chaise.setActif(false);   
+             }
+            
+        });
+
         exitButton.addActionListener(e -> {
             wallButton.setSelected(false);
             obstacleButton.setSelected(false);
             if (exitButton.isSelected()) {
                 mur.setActif(false);
+                bureau.setActif(false);
+                chaise.setActif(false);
                 sortie.setActif(true);
                 sortie.ajoutSortie(drawingPanel);
             }
@@ -111,6 +154,8 @@ public class MenuObstacles {
         	SimulationData.agents = new Agent[0];
         	SimulationData.sortie = new Point[0];
         	SimulationData.murs = new Segment[0];
+            SimulationData.bureau = new BureauObstacle[0];
+            SimulationData.chaise = new ChaiseObstacle[0];
         	
             wallButton.setSelected(false);
             obstacleButton.setSelected(false);
@@ -120,11 +165,12 @@ public class MenuObstacles {
             frame.repaint();
         });
 
-        JPanel toolButtonPanel = new JPanel(new GridLayout(2, 2));
+        JPanel toolButtonPanel = new JPanel(new GridLayout(3, 2));
         toolButtonPanel.add(wallButton);
-        toolButtonPanel.add(obstacleButton);
         toolButtonPanel.add(exitButton);
+        toolButtonPanel.add(obstacleButton);
         toolButtonPanel.add(resetButton);
+        toolButtonPanel.add(chaiseButton);
         panel.add(toolButtonPanel);
 
         // Bouton Retour
@@ -147,5 +193,24 @@ public class MenuObstacles {
 
         // Update le panel
         frame.repaint();
+    
+   
+        wallButton.setSelected(false);
+        exitButton.setSelected(false);
+        mur.setActif(false);
+        sortie.setActif(false);
+        bureau.setActif(false);
+        if (chaiseButton.isSelected()) {
+            mur.setActif(false);
+            sortie.setActif(false);
+            bureau.setActif(false);
+            chaise.setActif(true);
+            chaise.ajouterchaise(drawingPanel);
+        }else {
+            chaise.setActif(false);
+   
+        }
     }
 }
+
+
