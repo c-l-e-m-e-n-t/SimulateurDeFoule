@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.List;
 import javax.swing.*;
 import affichage.SimulationData;
+import design.ButtonDesign;
 import modele.Agent;
 import modele.Point;
 import modele.Segment;
@@ -20,7 +21,7 @@ public class Sauvegarde {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
 
-        JButton saveButton = new JButton("Sauvegarder");
+        ButtonDesign saveButton = new ButtonDesign("Sauvegarder");
         JLabel labelSaveName = new JLabel("Nom de la sauvegarde : ");
         JLabel labelSaveDescription = new JLabel("Description de la sauvegarde : ");
         JLabel labelAuteur = new JLabel("Nom de l'auteur :");
@@ -117,7 +118,7 @@ public class Sauvegarde {
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
 
-        JButton loadButton = new JButton("Charger");
+        ButtonDesign loadButton = new ButtonDesign("Charger");
         
      // Menu déroulant des types de pièce
         File dir = new File("./saves");
