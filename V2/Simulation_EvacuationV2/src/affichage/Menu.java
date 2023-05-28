@@ -3,11 +3,13 @@ package affichage;
 import javax.swing.*;
 import design.*;
 import java.awt.*;
+
 import modele.*;
 import modele.Point;
 import outils.*;
+import outils.BureauObstacle;
 
-/** Classe qui gère les opérations du menu.*/
+/** Classe qui gère les opérations du menu. */
 public class Menu {
 
     private JFrame frame;
@@ -18,6 +20,9 @@ public class Menu {
         frame = new JFrame("Simulation d'évacuation - Menu");
         panel = new JPanel();
         drawingPanel = new DrawingPanel();
+
+        JMenuBar menuBar = MenuBar.createMenu();
+        frame.setJMenuBar(menuBar);
 
         // Ajouter des éléments de menu au panel
         ButtonDesign launchButton = new ButtonDesign("Lancer la simulation");
@@ -59,30 +64,31 @@ public class Menu {
         // Ajouter des action listeners aux buttons
         launchButton.addActionListener(e -> {
             supprimer.setSelected(false);
-        	boolean allNull = true;
-        	for (Agent agent : SimulationData.agents) {
-        	    if (agent != null) {
-        	        allNull = false;
-        	        break;
-        	    }
-        	}
-        	if (!allNull) {
-        		frame.getContentPane().remove(panel);
-        		Simulation simulation = new Simulation(frame, drawingPanel, panel);
+            boolean allNull = true;
+            for (Agent agent : SimulationData.agents) {
+                if (agent != null) {
+                    allNull = false;
+                    break;
+                }
+            }
+            if (!allNull) {
+                frame.getContentPane().remove(panel);
+                Simulation simulation = new Simulation(frame, drawingPanel, panel);
                 SimulationData.HAUTEUR = drawingPanel.getHeight();
                 SimulationData.LARGEUR = drawingPanel.getWidth();
-        		// Pause between iterations
+                // Pause between iterations
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
-        		simulation.run(drawingPanel);
-        	} else {
-        		System.out.println("La simulation n'est pas configuré entièrement");
-        	}
+                simulation.run(drawingPanel);
+            } else {
+                System.out.println("La simulation n'est pas configuré entièrement");
+            }
         });
         configRoomButton.addActionListener(e -> {
+
             supprimer.setSelected(false);
             frame.getContentPane().remove(panel);
             new MenuObstacles(frame, drawingPanel, panel);
@@ -93,13 +99,13 @@ public class Menu {
             new MenuAgents(frame, drawingPanel, panel);
         });
         supprimer.addActionListener(e -> {
-            
+
         });
         externalPhenomenaButton.addActionListener(e -> {
             // Code to toggle external phenomena
         });
         reportsButton.addActionListener(e -> {
-            // annulé, la biblio pdf bug trop sur linux
+            // Code to toggle reports
         });
         saveButton.addActionListener(e -> {
             supprimer.setSelected(false);
@@ -129,22 +135,22 @@ public class Menu {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            
+
             // Dessiner les murs
             g.setColor(Color.BLACK);
             for (Segment mur : SimulationData.murs) {
                 if (mur != null) {
-                	int x1 = (int) (mur.getExtremite1().getX() * SimulationData.NORMALISER);
-                	int y1 = (int) (mur.getExtremite1().getY() * SimulationData.NORMALISER);
-                	int x2 = (int) (mur.getExtremite2().getX() * SimulationData.NORMALISER);
-                	int y2 = (int) (mur.getExtremite2().getY() * SimulationData.NORMALISER);
+                    int x1 = (int) (mur.getExtremite1().getX() * SimulationData.NORMALISER);
+                    int y1 = (int) (mur.getExtremite1().getY() * SimulationData.NORMALISER);
+                    int x2 = (int) (mur.getExtremite2().getX() * SimulationData.NORMALISER);
+                    int y2 = (int) (mur.getExtremite2().getY() * SimulationData.NORMALISER);
                     g.drawLine(x1, y1, x2, y2);
                 }
             }
 
             // Dessiner les agents
             for (Agent agent : SimulationData.agents) {
-            	if (agent != null) {
+                if (agent != null) {
                     int x = (int) (agent.getPosition().getX() * SimulationData.NORMALISER);
                     int y = (int) (agent.getPosition().getY() * SimulationData.NORMALISER);
                     int radius = (int) (agent.getRayon() * SimulationData.NORMALISER);
@@ -153,18 +159,36 @@ public class Menu {
                     g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
                 }
             }
-            
+
             // Afficher la sortie
             for (Point sortie : SimulationData.sortie) {
-            	if (sortie != null) {
-	        		int x = (int) (sortie.getX());
-	                int y = (int) (sortie.getY());
-	                g.setColor(Color.black);
-	                g.drawLine(x - 10, y, x + 10, y);
-	                g.drawLine(x, y - 10, x, y + 10);
-            	}
+                if (sortie != null) {
+                    int x = (int) (sortie.getX());
+                    int y = (int) (sortie.getY());
+                    g.setColor(Color.black);
+                    g.drawLine(x - 10, y, x + 10, y);
+                    g.drawLine(x, y - 10, x, y + 10);
+                }
             }
-        }
-    }
 
+            // desiner els obstacles
+            Graphics2D g2d = (Graphics2D) g;
+            for (BureauObstacle bureau : SimulationData.bureau) {
+                if (bureau != null) {
+                    bureau.paint(g2d);
+
+                }
+            }
+            for (ChaiseObstacle chaise : SimulationData.chaise) {
+                if (chaise != null) {
+                    chaise.paint(g2d);
+                }
+            }
+
+            g2d.scale(MenuBar.scale, MenuBar.scale);
+            panel.repaint();
+
+        }
+
+    }
 }
