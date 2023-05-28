@@ -58,6 +58,7 @@ public class Menu {
 
         // Ajouter des action listeners aux buttons
         launchButton.addActionListener(e -> {
+            supprimer.setSelected(false);
         	boolean allNull = true;
         	for (Agent agent : SimulationData.agents) {
         	    if (agent != null) {
@@ -82,10 +83,12 @@ public class Menu {
         	}
         });
         configRoomButton.addActionListener(e -> {
+            supprimer.setSelected(false);
             frame.getContentPane().remove(panel);
             new MenuObstacles(frame, drawingPanel, panel);
         });
         configAgentButton.addActionListener(e -> {
+            supprimer.setSelected(false);
             frame.getContentPane().remove(panel);
             new MenuAgents(frame, drawingPanel, panel);
         });
@@ -96,12 +99,14 @@ public class Menu {
             // Code to toggle external phenomena
         });
         reportsButton.addActionListener(e -> {
-            // Code to toggle reports
+            // annulé, la biblio pdf bug trop sur linux
         });
         saveButton.addActionListener(e -> {
+            supprimer.setSelected(false);
             Sauvegarde.sauvegarder();
         });
         loadButton.addActionListener(e -> {
+            supprimer.setSelected(false);
             Sauvegarde.charger(drawingPanel);
         });
         exitButton.addActionListener(e -> System.exit(0));
