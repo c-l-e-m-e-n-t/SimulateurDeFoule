@@ -171,23 +171,25 @@ public class Menu {
                 }
             }
 
-            // desiner els obstacles
+            // desiner les obstacles
             Graphics2D g2d = (Graphics2D) g;
-            for (BureauObstacle bureau : SimulationData.bureau) {
-                if (bureau != null) {
-                    bureau.paint(g2d);
-
+            if(SimulationData.bureau != null){
+                for (BureauObstacle bureau : SimulationData.bureau) {
+                    if (bureau != null) {
+                        bureau.paint(g2d);
+                    }
                 }
             }
-            for (ChaiseObstacle chaise : SimulationData.chaise) {
-                if (chaise != null) {
-                    chaise.paint(g2d);
+            if(SimulationData.chaise != null){
+                for (ChaiseObstacle chaise : SimulationData.chaise) {
+                    if (chaise != null) {
+                        chaise.paint(g2d);
+                    }
                 }
-            }
 
-            g2d.scale(MenuBar.scale, MenuBar.scale);
+                g2d.scale(MenuBar.scale, MenuBar.scale);
+            }
             panel.repaint();
-
         }
 
     }

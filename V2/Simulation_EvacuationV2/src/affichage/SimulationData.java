@@ -153,12 +153,19 @@ public class SimulationData {
      * @param y ordonnée de l'obstacle
      */
     public static void addbureau(double x, double y) {
-        BureauObstacle[] tempObstacle = new BureauObstacle[SimulationData.bureau.length+1];
-        for (int i = 0; i < bureau.length; i++){
-            tempObstacle[i] = SimulationData.bureau[i];
+        BureauObstacle[] tempObstacle;
+        if (bureau == null){
+            tempObstacle = new BureauObstacle[1];
+            tempObstacle[0] = new BureauObstacle(x,y);
+        } else {
+            tempObstacle = new BureauObstacle[SimulationData.bureau.length+1];
+            for (int i = 0; i < bureau.length; i++){
+                tempObstacle[i] = SimulationData.bureau[i];
+            }
+            tempObstacle[bureau.length] = new BureauObstacle(x,y);
         }
-        tempObstacle[bureau.length] = new BureauObstacle(x,y);
         SimulationData.bureau = tempObstacle;
+        System.out.println(SimulationData.bureau.length);
     }
 
     /**ajoueter un chaise
@@ -166,11 +173,17 @@ public class SimulationData {
      * @param y ordonnée de l'obstacle
      */
     public static void addchaise(double x, double y) {
-        ChaiseObstacle[] tempObstacle = new ChaiseObstacle[SimulationData.chaise.length+1];
-        for (int i = 0; i < chaise.length; i++){
-            tempObstacle[i] = SimulationData.chaise[i];
+        ChaiseObstacle[] tempObstacle;
+        if (chaise == null){
+            tempObstacle = new ChaiseObstacle[1];
+            tempObstacle[0] = new ChaiseObstacle(x,y);
+        } else {
+            tempObstacle = new ChaiseObstacle[SimulationData.chaise.length+1];
+            for (int i = 0; i < chaise.length; i++){
+                tempObstacle[i] = SimulationData.chaise[i];
+            }
+            tempObstacle[chaise.length] = new ChaiseObstacle(x,y);
         }
-        tempObstacle[chaise.length] = new ChaiseObstacle(x,y);
         SimulationData.chaise = tempObstacle;
     }
 }
