@@ -31,6 +31,9 @@ public class Agent {
 	/** Indique si l'agent est sorti. */
 	public boolean estSorti = false;
 
+	/** Indique si l'agent est mort. */
+	public boolean estMort = false;
+
 	/** Pression subie par l'agent. */
 	private double pression;
 

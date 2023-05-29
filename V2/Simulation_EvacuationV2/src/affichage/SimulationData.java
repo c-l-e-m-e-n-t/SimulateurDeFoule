@@ -173,7 +173,6 @@ public class SimulationData {
             tempObstacle[bureau.length] = new BureauObstacle(x,y);
         }
         SimulationData.bureau = tempObstacle;
-        System.out.println(SimulationData.bureau.length);
     }
 
     /**ajoueter un chaise

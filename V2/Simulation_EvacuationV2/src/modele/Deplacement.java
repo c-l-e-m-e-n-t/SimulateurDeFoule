@@ -139,7 +139,9 @@ public class Deplacement {
 			agents[i].calculCible(murs);
 
 			agents[i].setPression(Vecteur.norme(forceAgents[i]) + Vecteur.norme(forceMurs[i]));
-			System.out.println(agents[i].getPression());
+			if (agents[i].getPression() > 2000) {
+				agents[i].estMort = true;
+			}
 
 			Vecteur v0e0 = agents[i].calculVitesseDesiree();
 			Vecteur v = agents[i].getVitesse();
@@ -168,7 +170,7 @@ public class Deplacement {
 	public static void euler(Agent[] agents, Segment[] murs) {
 		Vecteur[] acceleration = calculAcceleration(agents, murs);
 		for (int i = 0; i < agents.length; i++) {
-			if (!agents[i].estSorti) {
+			if (!agents[i].estSorti && !agents[i].estMort) {
 				Point positionI = agents[i].getPosition();
 				Vecteur vitesseI = agents[i].getVitesse();
 				Vecteur a = acceleration[i];
@@ -181,7 +183,7 @@ public class Deplacement {
 				Vecteur r1 = Vecteur.multiplication(vitesseI, dt);
 				positionI.translater(r1.getX(), r1.getY());
 
-				if (agents[i].getDistanceSortie() < agents[i].getRayon()) {
+				if (agents[i].getDistanceSortie() < agents[i].getRayon()+ 0.3) {
 					agents[i].estSorti = true;
 					agents[i].setPosition(new Point(10000, 10000));
 				}

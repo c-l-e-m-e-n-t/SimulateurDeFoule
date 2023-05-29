@@ -117,7 +117,11 @@ public class Sauvegarde {
         //déclarations
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
-
+        SimulationData.agents = new Agent[0];
+        SimulationData.murs = new Segment[0];
+        SimulationData.sortie = new Point[0];
+        SimulationData.chaise = new ChaiseObstacle[0];
+        SimulationData.bureau = new BureauObstacle[0];
         ButtonDesign loadButton = new ButtonDesign("Charger");
         
      // Menu déroulant des types de pièce
@@ -176,6 +180,7 @@ public class Sauvegarde {
             String line = reader.readLine();
             String[] lineSplit;
             String etat  = "";
+            int nbAgents = 0;
             while(line != null){
                 switch (etat){
                     case "Agents": //ajout des agents
@@ -191,6 +196,7 @@ public class Sauvegarde {
                         double tau = Double.parseDouble(lineSplit[7]);
                         Color couleur = new Color(Integer.parseInt(lineSplit[8]), Integer.parseInt(lineSplit[9]), Integer.parseInt(lineSplit[10]));
                         SimulationData.addAgent(new Agent(position, sortie, vitesse, rayon, masse, tau, couleur));
+                        nbAgents++;
                         break;
                     case "Murs": //ajout des murs
                         if (line.contains("Sortie")){
@@ -210,6 +216,7 @@ public class Sauvegarde {
                     default:
                         break;
                 }
+                SimulationData.N = nbAgents;
                 //changement de type de donnée
                 if (line.contains("Agents")){
                     etat = "Agents";

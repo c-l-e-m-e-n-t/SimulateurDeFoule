@@ -58,8 +58,8 @@ public class MenuAgents {
 
         // Bouton Rayon
         RangeSlider radiusSlider = new RangeSlider(35, 45);
-        radiusSlider.setMajorTickSpacing(10);
-        radiusSlider.setMinorTickSpacing(5);
+        radiusSlider.setMajorTickSpacing(5);
+        radiusSlider.setMinorTickSpacing(1);
         radiusSlider.setPaintTicks(true);
         radiusSlider.setPaintLabels(true);
         SimulationData.rayonMin = (float) radiusSlider.getValue() / 100;
@@ -78,13 +78,13 @@ public class MenuAgents {
         panel.add(radiusSlider);
 
         // Bouton Vitesse
-        RangeSlider speedSlider = new RangeSlider(1, 3);
-        speedSlider.setMajorTickSpacing(5);
+        RangeSlider speedSlider = new RangeSlider(5, 20);
+        speedSlider.setMajorTickSpacing(10);
         speedSlider.setMinorTickSpacing(1);
         speedSlider.setPaintTicks(true);
         speedSlider.setPaintLabels(true);
-        SimulationData.vitesseMin = speedSlider.getValue();
-    	SimulationData.vitesseMax = speedSlider.getUpperValue();
+        SimulationData.vitesseMin = speedSlider.getValue()/10;
+    	SimulationData.vitesseMax = speedSlider.getUpperValue()/10;
     	SimulationData.updateAgents();
         speedSlider.addChangeListener(new ChangeListener() {
             @Override

@@ -65,6 +65,7 @@ public class Menu {
         launchButton.addActionListener(e -> {
             supprimer.setSelected(false);
             boolean allNull = true;
+            Simulation.tps = 0;
             for (Agent agent : SimulationData.agents) {
                 if (agent != null) {
                     allNull = false;
@@ -165,6 +166,10 @@ public class Menu {
                     Color color = new Color(red, green, blue);
                     g.setColor(color);
                     g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
+                    if (agent.estMort){
+                        Image img = new ImageIcon("./img/mort.png").getImage();
+                        g.drawImage(img, (x - 15), (y - 15), drawingPanel);
+                    }
                 }
             }
 
