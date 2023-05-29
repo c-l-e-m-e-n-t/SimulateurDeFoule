@@ -260,12 +260,12 @@ public class Agent {
 					> Vecteur.cosinus(new Vecteur(direction), new Vecteur(this.position, d2))) {
 				this.cible = d1;
 			} else {
-				//this.cible = d2;
+				this.cible = d2;
 			}
-			// Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
-			if (Point.distancePoint(this.position, this.cible) < 0.1) {
-		        this.cible = this.sortie;
-			}
+		}
+		// Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
+		if (Point.distancePoint(this.position, this.cible) < 0.1) {
+	        this.cible = this.sortie;
 		}
 	}
 
