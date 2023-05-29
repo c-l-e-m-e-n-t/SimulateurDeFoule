@@ -27,14 +27,14 @@ import outils.Sauvegarde;
 public class MenuBar {
     public static double scale;
 
-    public static JMenuBar createMenu() {
+    public static JMenuBar createMenu(JFrame frame) {
 
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = new JMenu("Fichier");
         JMenu editMenu = new JMenu("Édition");
         JMenu helpMenu = new JMenu("Aide");
-        JMenu reinitialiserMenu = new JMenu("Reinitialiser");
+        JMenuItem reinitialiserMenu = new JMenuItem("Reinitialiser");
         JMenuItem newpage = new JMenuItem("nouvelle simulation");
         JMenuItem openItem = new JMenuItem("Ouvrir");
         JMenuItem saveItem = new JMenuItem("Enregistrer");
@@ -77,8 +77,7 @@ public class MenuBar {
                 SimulationData.murs = new Segment[0];
                 SimulationData.bureau = new BureauObstacle[0];
                 SimulationData.chaise = new ChaiseObstacle[0];
-                System.exit(0);
-
+                frame.repaint();
             }
         });
 

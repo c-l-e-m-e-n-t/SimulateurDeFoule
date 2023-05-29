@@ -55,8 +55,8 @@ public class MenuObstacles {
                 	SimulationData.murs = murs;
                 	frame.repaint();
                     break;
-case "Piece 3":
-                	
+                    
+                    case "Piece 3":
                 	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
                 	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
                 	mur3 = new Segment(new Point(15, 5), new Point(15, 15));
