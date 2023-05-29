@@ -17,7 +17,7 @@ public class Sortie {
         panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
             	if (actif) {
-	                SimulationData.addSortie((double) e.getX()/SimulationData.NORMALISER, (double) e.getY()/SimulationData.NORMALISER);
+	                SimulationData.addSortie((double) e.getX(), (double) e.getY());
 	                panel.repaint();
             	}
             }

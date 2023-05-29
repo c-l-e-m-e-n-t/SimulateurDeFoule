@@ -4,47 +4,25 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-
-import javax.swing.JPanel;
-
-
-import affichage.SimulationData;
 
 public class BureauObstacle {
     private int largeur;
     private int longueur;
-    private Color color ;
-    public double x;
-    public double y;
-    boolean actif;
+    private Color color = Color.BLACK;
+    int x, y;
 
-    
-   
- 
-    public BureauObstacle(double x, double y) {
+    public BureauObstacle(int x, int y, int largeur, int longueur) {
         this.x = x;
         this.y = y;
-        this.largeur = 40;
-        this.longueur = 40;
-        this.actif = true;
-        
-    }
-    public BureauObstacle(int largeur, int longueur) {
-        this.x = 100;
-        this.y = 100;
-        this.largeur = 40;
-        this.longueur = 40;
-        this.color = Color.black;
-        this.actif = true;
-       
+        this.largeur = largeur;
+        this.longueur = longueur;
     }
 
     public Shape getHitbox() {
-        double centerX = x;
-        double centerY = y;
+        int centerX = x;
+        int centerY = y;
         int width = largeur / 2;
         int height = longueur / 2;
         Rectangle2D.Double rect = new Rectangle2D.Double(centerX - width, centerY - height, largeur, longueur);
@@ -61,33 +39,4 @@ public class BureauObstacle {
         g2d.fill(hitbox);
     }
 
-    public void ajouterObstacle(JPanel panel) {
-        panel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                if (actif){
-                    SimulationData.addbureau((double) e.getX(), (double) e.getY());
-                    panel.repaint();
-                }
-            }
-        });
-        
-    }
-
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
-
-    boolean getActif() {
-        return this.actif;
-    }
-
-    
-    }
-
-
-
-    
-
-   
-
-
+}

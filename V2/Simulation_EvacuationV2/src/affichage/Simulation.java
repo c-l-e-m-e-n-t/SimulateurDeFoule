@@ -50,9 +50,9 @@ public class Simulation {
         frame.update(frame.getGraphics()); // Ne pas toucher, ca marche comme ca
     }
 
-    public void run(JFrame frame) {
+    public void run(JPanel frame) {
         // Time between each iteration (in ms)
-        int sleep = 30;
+        int sleep = 16;
         timer = new Timer(sleep, new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -61,7 +61,7 @@ public class Simulation {
                 //System.out.println(SimulationData.agents[0].getPosition());
 
                 // Repaint the drawing panel
-                frame.repaint(); // Ne pas toucher, ca marche comme ca (a cause du actionperformed)
+                frame.update(frame.getGraphics()); // Ne pas toucher, ca marche comme ca (a cause du actionperformed)
 
                 if (agentsSortis()) {
                     timer.stop();

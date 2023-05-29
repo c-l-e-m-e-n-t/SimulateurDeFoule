@@ -221,7 +221,7 @@ public class Agent {
 		for (int i = 0; i < murs.length; i++) {
 
 			// Calcul des murs sur la trajectoire
-			boolean intersection = Segment.intersectionSegment(new Segment(position, this.getSortie()), murs[i]);
+			boolean intersection = Segment.intersectionDroites(direction, murs[i]);
 
 			if (intersection //!= null // Si il y a une intersection entre le mur et le chemin de l'agent
 					/*|| Segment.contient(direction, intersection)
@@ -260,20 +260,12 @@ public class Agent {
 					> Vecteur.cosinus(new Vecteur(direction), new Vecteur(this.position, d2))) {
 				this.cible = d1;
 			} else {
-<<<<<<< HEAD
 				//this.cible = d2;
 			}
 			// Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
 			if (Point.distancePoint(this.position, this.cible) < 0.5) {
 		        this.cible = this.sortie;
-=======
-				this.cible = d2;
->>>>>>> 6b615df3174292f10dbbc77a2d8944a4b7c2d524
 			}
-		}
-		// Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
-		if (Point.distancePoint(this.position, this.cible) < 0.1) {
-	        this.cible = this.sortie;
 		}
 	}
 
