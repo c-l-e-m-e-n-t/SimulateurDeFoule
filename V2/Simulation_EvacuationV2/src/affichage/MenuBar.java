@@ -1,11 +1,6 @@
 package affichage;
 
-
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;

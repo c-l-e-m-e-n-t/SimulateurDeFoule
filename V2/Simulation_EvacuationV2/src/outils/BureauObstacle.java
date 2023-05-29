@@ -81,6 +81,13 @@ public class BureauObstacle {
         return this.actif;
     }
 
+    public int getX(){
+        return (int) this.x;
+    }
+
+    public int getY(){
+        return (int) this.y;
+    }
     
     }
 
