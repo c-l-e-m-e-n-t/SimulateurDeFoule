@@ -75,7 +75,7 @@ public class Simulation {
     private boolean agentsSortis() {
         // Voir si les agents sont sortis
         for (Agent agent : SimulationData.agents) {
-            if (!agent.getEstSorti()) {
+            if (!agent.estSorti) {
                 return false;
             }
         }

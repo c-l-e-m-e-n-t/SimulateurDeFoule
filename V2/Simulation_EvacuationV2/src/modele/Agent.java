@@ -29,7 +29,7 @@ public class Agent {
 	private double tau;
 
 	/** Indique si l'agent est sorti. */
-	private boolean estSorti = false;
+	public boolean estSorti = false;
 
 	/** Pression subie par l'agent. */
 	private double pression;
@@ -155,20 +155,6 @@ public class Agent {
 	 */
 	public double getTau() {
 		return this.tau;
-	}
-
-	/** Obtenir si l'agent est sorti.
-	 * @return true si l'agent est sorti
-	 */
-	public boolean getEstSorti() {
-		return this.estSorti;
-	}
-
-	/** Modifie si l'agent est sorti ou non.
-	 * @param l'agent est sorti ou non
-	 */
-	public void setEstSorti(boolean estSorti) {
-		this.estSorti = estSorti;
 	}
 
 	/** Obtenir la pression subie par l'agent.
