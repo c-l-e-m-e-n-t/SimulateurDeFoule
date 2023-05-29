@@ -149,7 +149,20 @@ public class Menu {
                     int x = (int) (agent.getPosition().getX() * SimulationData.NORMALISER);
                     int y = (int) (agent.getPosition().getY() * SimulationData.NORMALISER);
                     int radius = (int) (agent.getRayon() * SimulationData.NORMALISER) + 4;
-                    Color color = agent.getCouleur();
+                    Double pression = agent.getPression();
+                    int red = agent.getCouleur().getRed() - (int) (pression/5);
+                    if (red < 0) {
+                        red = 0;
+                    }
+                    int green = agent.getCouleur().getGreen() - (int) (pression/5);
+                    if (green < 0) {
+                        green = 0;
+                    }
+                    int blue = agent.getCouleur().getBlue() - (int) (pression/5);
+                    if (blue < 0) {
+                        blue = 0;
+                    }
+                    Color color = new Color(red, green, blue);
                     g.setColor(color);
                     g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
                 }
