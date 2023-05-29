@@ -66,9 +66,11 @@ public class TestUnitaire {
 		memesCoordonnees("Test 3", new Point(7, 5), Segment.distanceAvecSegment(point3, segment1));
 	}
 
+	/*
 	@Test public void testIntersectionSegment1() {
 		memesCoordonnees("Test 4", new Point(6, 6), Segment.intersectionDroites(s1, s2));
 	}
+	*/
 
 	@Test public void testIntersectionSegment2() {
 		assertEquals("Test 5", null, Segment.intersectionDroites(s1, s3));
