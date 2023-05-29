@@ -221,7 +221,7 @@ public class Agent {
 		for (int i = 0; i < murs.length; i++) {
 
 			// Calcul des murs sur la trajectoire
-			boolean intersection = Segment.intersectionDroites(direction, murs[i]);
+			boolean intersection = Segment.intersectionSegment(new Segment(position, this.getSortie()), murs[i]);
 
 			if (intersection //!= null // Si il y a une intersection entre le mur et le chemin de l'agent
 					/*|| Segment.contient(direction, intersection)
