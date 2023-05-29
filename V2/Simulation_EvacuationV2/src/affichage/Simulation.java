@@ -35,6 +35,7 @@ public class Simulation {
         // Bouton Retour
         ButtonDesign backButton = new ButtonDesign("Retour");
         backButton.addActionListener(e -> {
+            timer.stop();
             frame.getContentPane().remove(panel);
             frame.getContentPane().add(menuPanel, BorderLayout.EAST);
             frame.revalidate();
