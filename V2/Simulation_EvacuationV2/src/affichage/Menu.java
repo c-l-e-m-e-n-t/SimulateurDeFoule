@@ -14,7 +14,7 @@ public class Menu {
 
     private JFrame frame;
     private JPanel panel;
-    private JPanel drawingPanel;
+    public static JPanel drawingPanel;
 
     public Menu() {
         frame = new JFrame("Simulation d'évacuation - Menu");
@@ -76,13 +76,7 @@ public class Menu {
                 Simulation simulation = new Simulation(frame, drawingPanel, panel);
                 SimulationData.HAUTEUR = drawingPanel.getHeight();
                 SimulationData.LARGEUR = drawingPanel.getWidth();
-                // Pause between iterations
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-                simulation.run(drawingPanel);
+                simulation.run(frame);
             } else {
                 System.out.println("La simulation n'est pas configuré entièrement");
             }
@@ -164,8 +158,8 @@ public class Menu {
             // Afficher la sortie
             for (Point sortie : SimulationData.sortie) {
                 if (sortie != null) {
-                    int x = (int) (sortie.getX());
-                    int y = (int) (sortie.getY());
+                    int x = (int) (sortie.getX()* SimulationData.NORMALISER);
+                    int y = (int) (sortie.getY()* SimulationData.NORMALISER);
                     g.setColor(Color.black);
                     g.drawLine(x - 10, y, x + 10, y);
                     g.drawLine(x, y - 10, x, y + 10);

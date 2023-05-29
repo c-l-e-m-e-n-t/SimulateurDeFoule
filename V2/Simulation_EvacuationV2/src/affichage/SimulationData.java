@@ -145,7 +145,6 @@ public class SimulationData {
         }
         tempSortie[sortie.length] = new Point(x,y);
         SimulationData.sortie = tempSortie;
-        System.out.println(SimulationData.sortie.length);
     }
 
     /**ajoueter un bureau

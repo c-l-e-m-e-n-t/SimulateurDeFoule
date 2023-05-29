@@ -46,8 +46,7 @@ public class MenuBar {
         // Ajouter un écouteur d'événement pour l'élément "Ouvrir"
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Sauvegarde.charger(Accueil.panel);
-
+                Sauvegarde.charger(Menu.drawingPanel);
             }
         });
 
