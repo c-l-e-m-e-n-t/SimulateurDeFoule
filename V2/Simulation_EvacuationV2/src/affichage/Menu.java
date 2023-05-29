@@ -21,7 +21,7 @@ public class Menu {
         panel = new JPanel();
         drawingPanel = new DrawingPanel();
 
-        JMenuBar menuBar = MenuBar.createMenu();
+        JMenuBar menuBar = MenuBar.createMenu(frame);
         frame.setJMenuBar(menuBar);
 
         // Ajouter des éléments de menu au panel

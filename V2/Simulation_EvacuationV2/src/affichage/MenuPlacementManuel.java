@@ -80,7 +80,8 @@ public class MenuPlacementManuel {
         JSlider gSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
         JSlider bSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
         JPanel colorPanel = new JPanel();
-        
+        rSlider.setValue(255);
+
         //ajouter les slider a la grid
         JPanel frameRGB = new JPanel();
         panel.add(frameRGB);
@@ -112,7 +113,7 @@ public class MenuPlacementManuel {
         });
 
         //afficher une case avec un bg coloré
-        colorPanel.setBackground(Color.BLACK);
+        colorPanel.setBackground(Color.RED);
         panel.add(colorPanel);
 
         // Bouton Retour

@@ -1,6 +1,10 @@
 package affichage;
 
 import java.util.Random;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import modele.*;
 import outils.BureauObstacle;
 import outils.ChaiseObstacle;
@@ -37,18 +41,23 @@ public class SimulationData {
 
     public static void updateAgents() {
         Agent[] temp = new Agent[N];
+        JFrame frame = new JFrame();
         for (int i = 0; i < N; i++) {
             double masse = masseMin + (masseMax - masseMin) * random.nextGaussian();
             double rayon = rayonMin + (rayonMax - rayonMin) * random.nextGaussian();
             double vitesse = vitesseMin + (vitesseMax - vitesseMin) * random.nextGaussian();
             Point position = getRandomPosition(rayon);
-            Point sortieProche = sortie[0];
-            for (Point sortie : SimulationData.sortie) {
-                if (Point.distancePoint(position, sortie) <= Point.distancePoint(position, sortieProche)) {
-                    sortieProche = sortie;
+            if (sortie.length == 0) {
+                JOptionPane.showMessageDialog(frame, "Veuillez placer une sortie.");
+            } else{
+                Point sortieProche = sortie[0];
+                for (Point sortie : SimulationData.sortie) {
+                    if (Point.distancePoint(position, sortie) <= Point.distancePoint(position, sortieProche)) {
+                        sortieProche = sortie;
+                    }
                 }
+                temp[i] = new Agent(position, sortieProche, vitesse, rayon, masse, TAU, couleur);
             }
-            temp[i] = new Agent(position, sortieProche, vitesse, rayon, masse, TAU, couleur);
         }
         
         agents = temp;

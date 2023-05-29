@@ -29,14 +29,16 @@ public class Supprimer {
     
         for (Point sortie : SimulationData.sortie) {
         	if (sortie != null) {
-        		if (sortie.getX()-e.getX() < 10 && sortie.getX()-e.getX() > -10 && sortie.getY()-e.getY() > -10 && sortie.getY()-e.getY() < 10) {
-	                Point[] tempSortie = new Point[SimulationData.sortie.length];
-	                for (int i = 0; i < SimulationData.sortie.length; i++) {
-	                    if (SimulationData.sortie[i] != sortie) {
-	                        tempSortie[i] = SimulationData.sortie[i];
-	                    }
-	                }
-	                SimulationData.sortie = tempSortie;
+        		if (sortie.getX()/SimulationData.NORMALISER-e.getX()/SimulationData.NORMALISER < 10 && sortie.getX()/SimulationData.NORMALISER-e.getX()/SimulationData.NORMALISER > -10 && sortie.getY()/SimulationData.NORMALISER-e.getY()/SimulationData.NORMALISER > -10 && sortie.getY()/SimulationData.NORMALISER-e.getY()/SimulationData.NORMALISER < 10) {
+	                Point[] tempSortie = new Point[SimulationData.sortie.length-1];
+                    if (SimulationData.sortie.length != 0) {
+                        for (int i = 0; i < SimulationData.sortie.length; i++) {
+                            if (SimulationData.sortie[i] != sortie) {
+                                tempSortie[i] = SimulationData.sortie[i];
+                            }
+                        }
+                        SimulationData.sortie = tempSortie;
+                    }
 	                frame.repaint();
 	            }
         	}
