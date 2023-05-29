@@ -2,9 +2,6 @@ package affichage;
 
 import java.util.Random;
 import modele.*;
-import outils.BureauObstacle;
-import outils.ChaiseObstacle;
-
 import java.awt.Color;
 
 /** Données importantes de la simulation.*/
@@ -13,8 +10,6 @@ public class SimulationData {
     public static Agent[] agents;
     public static Segment[] murs;
     public static Point[] sortie;
-    public static BureauObstacle[] bureau;
-    public static ChaiseObstacle[] chaise;
 
     /** Data agents.*/
     public static int N;
@@ -145,44 +140,6 @@ public class SimulationData {
         }
         tempSortie[sortie.length] = new Point(x,y);
         SimulationData.sortie = tempSortie;
-    }
-
-    /**ajoueter un bureau
-     * @param x abscisse de l'obstacle
-     * @param y ordonnée de l'obstacle
-     */
-    public static void addbureau(double x, double y) {
-        BureauObstacle[] tempObstacle;
-        if (bureau == null){
-            tempObstacle = new BureauObstacle[1];
-            tempObstacle[0] = new BureauObstacle(x,y);
-        } else {
-            tempObstacle = new BureauObstacle[SimulationData.bureau.length+1];
-            for (int i = 0; i < bureau.length; i++){
-                tempObstacle[i] = SimulationData.bureau[i];
-            }
-            tempObstacle[bureau.length] = new BureauObstacle(x,y);
-        }
-        SimulationData.bureau = tempObstacle;
-        System.out.println(SimulationData.bureau.length);
-    }
-
-    /**ajoueter un chaise
-     * @param x abscisse de l'obstacle
-     * @param y ordonnée de l'obstacle
-     */
-    public static void addchaise(double x, double y) {
-        ChaiseObstacle[] tempObstacle;
-        if (chaise == null){
-            tempObstacle = new ChaiseObstacle[1];
-            tempObstacle[0] = new ChaiseObstacle(x,y);
-        } else {
-            tempObstacle = new ChaiseObstacle[SimulationData.chaise.length+1];
-            for (int i = 0; i < chaise.length; i++){
-                tempObstacle[i] = SimulationData.chaise[i];
-            }
-            tempObstacle[chaise.length] = new ChaiseObstacle(x,y);
-        }
-        SimulationData.chaise = tempObstacle;
+        System.out.println(SimulationData.sortie.length);
     }
 }

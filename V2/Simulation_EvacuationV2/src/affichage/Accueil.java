@@ -11,7 +11,7 @@ import modele.Point;
 public class Accueil {
 
     private JFrame frame;
-    public static JPanel panel;
+    private JPanel panel;
     private JLabel imageLabel;
 
     public Accueil() {

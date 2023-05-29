@@ -6,54 +6,31 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Path2D;
 
-import javax.swing.JPanel;
-
-import affichage.SimulationData;
-
 public class ChaiseObstacle {
     private int taille;
     private Color couleur;
-    double x, y;
-    boolean actif;
+    int x, y;
 
-  
-
-    public ChaiseObstacle(double x, double y) {
+    public ChaiseObstacle(int x, int y, int taille, Color couleur) {
         this.x = x;
         this.y = y;
-        this.taille = 20;
-        this.couleur = Color.red;
-        this.actif = true;
-    }
-    public ChaiseObstacle() {
-        this.x = 100;
-        this.y = 100;
-        this.taille = 20;
-        this.couleur = Color.red;
-        this.actif = true;
+        this.taille = taille;
+        this.couleur = couleur;
     }
 
-    public void setActif(boolean actif) {
-        this.actif = actif;
-    }
-
-    public boolean getActif() {
-        return this.actif;
-    }
-
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public double getX() {
+    public int getX() {
         return this.x;
     }
 
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
 
-    public double getY() {
+    public int getY() {
         return this.y;
     }
 
@@ -74,8 +51,8 @@ public class ChaiseObstacle {
     }
 
     public Shape getHitbox() {
-        double centerX = getX();
-        double centerY = getY();
+        int centerX = getX();
+        int centerY = getY();
         int size = getTaille();
         Path2D.Double path = new Path2D.Double();
         path.moveTo(centerX, centerY - size / 2);
@@ -93,19 +70,5 @@ public class ChaiseObstacle {
         g2d.setColor(getCouleur());
         g2d.fill(hitbox);
     }
-
-    public void ajouterchaise(JPanel panel) {
-        panel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                if (actif){
-                    SimulationData.addchaise((double) e.getX(), (double) e.getY());
-                    panel.repaint();
-                }
-            }
-        });
-        
-    }
-
-
 
 }
