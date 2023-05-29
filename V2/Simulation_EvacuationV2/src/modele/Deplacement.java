@@ -1,5 +1,7 @@
 package modele;
 
+import affichage.SimulationData;
+
 public class Deplacement {
 
 	/** Constantes. */
@@ -7,7 +9,6 @@ public class Deplacement {
 	private final static double B = 0.08;
 	private final static double k = 1.2*Math.pow(10, 5);
 	private final static double kappa = 2.4*Math.pow(10, 5);
-	private static boolean boolForce = true;
 
 	/** Pas d'intégration. */
 	private static double dt = 0.1;
@@ -51,15 +52,8 @@ public class Deplacement {
 		
 		// force = a*n + b*t
 		Vecteur force = Vecteur.somme(Vecteur.multiplication(n, a), Vecteur.multiplication(t, b));
-		if (Vecteur.norme(force) > 500) {
-			if (boolForce) {
-				force.setX(300);
-				force.setY(100);
-			} else {
-				force.setX(100);
-				force.setY(300);
-			}
-			boolForce = !boolForce;
+		if (Vecteur.norme(force) > 600) {
+			force = Vecteur.multiplication(force, 600 /Vecteur.norme(force));
 		}
 		return force;
 	}
@@ -80,6 +74,55 @@ public class Deplacement {
 		return forceTotale;
 	}
 
+	/** Renvoie la force exercée par le mur j sur l'agent i.
+	 * @param agents les agents de la simulation
+	 * @param murs les murs de la simulation
+	 * @param i numéro de l'agent
+	 * @param j numéro du mur
+	 * @return la force exercée par le mur j sur l'agent i 
+	 */
+	public static Vecteur forceEntreMurEtAgent(Agent[] agents, Segment[] murs, int i, int j) {
+
+		Point positionI = agents[i].getPosition();
+		Vecteur vitesseI = agents[i].getVitesse();
+		double rayonI = agents[i].getRayon();
+		Segment murJ = murs[j];
+
+		Point pointProche = Segment.pointProche(positionI, murJ);
+		double d = Point.distancePoint(positionI, pointProche);
+		Vecteur n = Vecteur.vecteurNormal(pointProche, positionI);
+		Vecteur t = Vecteur.vecteurTangent(pointProche, positionI);
+		double deltaV = - Vecteur.produitScalaire(vitesseI, t);
+
+		double a = A * Math.exp((rayonI - d) / B) + (k * g(rayonI - d));
+		double b = kappa * g(rayonI - d) * deltaV;
+
+		// force = a*n + b*t
+		Vecteur force = Vecteur.somme(Vecteur.multiplication(n, a), Vecteur.multiplication(t, b));
+		
+		if (Vecteur.norme(force) > 1500) {
+			force = Vecteur.multiplication(force, 1500 /Vecteur.norme(force));
+		}
+
+		return force;
+	}
+
+	/** Renvoie la force exercée par les murs sur les agents.
+	 * @param agents les agents de la simulation
+	 * @param murs les murs de la simulation
+	 * @return la force exercée par les murs sur les agents 
+	 */
+	private static Vecteur[] forceMurs(Agent[] agents, Segment[] murs) {
+		Vecteur[] forceTotale = Vecteur.initialiser(agents.length);
+		for (int i = 0; i < agents.length; i++) {
+			for (int j = 0; j < murs.length; j++) {
+				Vecteur force = forceEntreMurEtAgent(agents, murs, i, j);
+				forceTotale[i] = Vecteur.somme(forceTotale[i], force);
+			}
+		}
+		return forceTotale;
+	}
+
 	/** Renvoie l'accéleration subie par les agents.
 	 * @param agents les agents de la simulation
 	 * @param murs les murs de la simulation
@@ -89,11 +132,12 @@ public class Deplacement {
 
 		Vecteur[] acceleration = new Vecteur[agents.length];
 		Vecteur[] forceAgents = forceAgents(agents);
+		Vecteur[] forceMurs = forceMurs(agents, murs);
 
 		for (int i = 0; i < agents.length; i++) {
 			agents[i].calculCible(murs);
 
-			agents[i].setPression(Vecteur.norme(forceAgents[i]));
+			agents[i].setPression(Vecteur.norme(forceAgents[i]) + Vecteur.norme(forceMurs[i]));
 
 			Vecteur v0e0 = agents[i].calculVitesseDesiree();
 			Vecteur v = agents[i].getVitesse();
@@ -105,8 +149,10 @@ public class Deplacement {
 			Vecteur a1 = Vecteur.multiplication(Vecteur.difference(v0e0, v), 1 / tau);
 			// forceAgents / m
 			Vecteur a2 = Vecteur.multiplication(forceAgents[i], 1 / m);
+			// forceMurs / m
+			Vecteur a3 = Vecteur.multiplication(forceMurs[i], 1 / m);
 
-			acceleration[i] = Vecteur.somme(a1, a2);
+			acceleration[i] = Vecteur.somme(Vecteur.somme(a1, a2), a3);
 		}
 		return acceleration;
 	}

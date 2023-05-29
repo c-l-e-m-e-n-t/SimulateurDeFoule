@@ -55,15 +55,15 @@ public class TestUnitaire {
 
 
 	@Test public void testDistanceSegment1() {
-		memesCoordonnees("Test 1", new Point(5, 5), Segment.distanceAvecSegment(point1, segment1));
+		memesCoordonnees("Test 1", new Point(5, 5), Segment.pointProche(point1, segment1));
 	}
 
 	@Test public void testDistanceSegment2() {
-		memesCoordonnees("Test 2", new Point(6, 5), Segment.distanceAvecSegment(point2, segment1));
+		memesCoordonnees("Test 2", new Point(6, 5), Segment.pointProche(point2, segment1));
 	}
 
 	@Test public void testDistanceSegment3() {
-		memesCoordonnees("Test 3", new Point(7, 5), Segment.distanceAvecSegment(point3, segment1));
+		memesCoordonnees("Test 3", new Point(7, 5), Segment.pointProche(point3, segment1));
 	}
 
 	/*
@@ -73,7 +73,7 @@ public class TestUnitaire {
 	*/
 
 	@Test public void testIntersectionSegment2() {
-		assertEquals("Test 5", null, Segment.intersectionDroites(s1, s3));
+		assertEquals("Test 5", null, Segment.intersectionSegment(s1, s3));
 	}
 
 }

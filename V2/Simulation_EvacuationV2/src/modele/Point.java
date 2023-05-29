@@ -4,6 +4,7 @@ package modele;
  * repère cartésien.
  */
 public class Point {
+
 	private double x;		// abscisse
 	private double y;		// ordonnée
 
@@ -80,15 +81,5 @@ public class Point {
 	public void afficher() {
 		System.out.print(this);
 	}
-
-	// Méthode pour soustraire deux points et retourner un nouveau point résultant
-    public static Point soustrairePoint(Point p1, Point p2) {
-        return new Point(p1.x - p2.x, p1.y - p2.y);
-    }
-    
-    // Méthode pour calculer le produit vectoriel de deux points
-    public static double prodVecto(Point p1, Point p2) {
-        return (p1.x * p2.y) - (p1.y * p2.x);
-    }
 
 }

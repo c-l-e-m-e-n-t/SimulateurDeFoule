@@ -53,7 +53,7 @@ public class Segment {
 	 * @param segment Le segment
 	 * @return Le point du segment le plus proche du point en entrée
 	 */
-	public static Point distanceAvecSegment(Point p, Segment segment) {
+	public static Point pointProche(Point p, Segment segment) {
 		// v1 = AP
 		Vecteur v1 = new Vecteur(segment.getExtremite1(), p);
 		// v2 = AB
@@ -61,41 +61,16 @@ public class Segment {
 
 		// temp = AP.AB / ||AB|| ^ 2
 		double temp = Vecteur.produitScalaire(v1, v2) / Math.pow(Vecteur.norme(v2), 2);
-		temp = Math.min( Math.max( 0, temp), 1);
+		temp = Math.min(Math.max(0, temp), 1);
 		Vecteur v3 = Vecteur.multiplication(v2, temp);
 		Point pointProche = new Point(segment.getExtremite1(), v3);
 		return pointProche;
 	}
 
-	/** Renvoie le point d'intersection des droites droite1 et droite2.
-	 * @param droite1 la première droite
-	 * @param droite2 la deuxième droite
-	 * @return le point d'intersection des droites droite1 et droite2
-	 */
-	public static boolean intersectionDroites(Segment droite1, Segment droite2) {
-		boolean boolInter = false;
-		
-		// Calcul des vecteurs AB, AC et AD
-        Point AB = Point.soustrairePoint(droite1.getExtremite2(), droite1.getExtremite1());
-        Point AC = Point.soustrairePoint(droite2.getExtremite1(), droite1.getExtremite1());
-        Point AD = Point.soustrairePoint(droite2.getExtremite2(), droite1.getExtremite1());
-
-        // Calcul des produits vectoriels
-        double prod1 = Point.prodVecto(AB, AC);
-        double prod2 = Point.prodVecto(AB, AD);
-        
-        // Vérification des signes des produits vectoriels
-        if (prod1 * prod2 < 0) {
-            boolInter = true; // Les segments s'intersectent
-        }
-        
-        return boolInter;
-	}
-
-	/** Renvoie le point d'intersection des droites droite1 et droite2.
-	 * @param droite1 la première droite
-	 * @param droite2 la deuxième droite
-	 * @return le point d'intersection des droites droite1 et droite2
+	/** Renvoie true si les deux segments s'intersectent.
+	 * @param droite1 le premièr segments
+	 * @param droite2 le deuxième segments
+	 * @return True si il y a intersection entre les deux segments
 	 */
 	public static boolean intersectionSegment(Segment droite1, Segment droite2) {
 

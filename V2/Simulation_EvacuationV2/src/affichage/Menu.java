@@ -148,7 +148,7 @@ public class Menu {
                 if (agent != null) {
                     int x = (int) (agent.getPosition().getX() * SimulationData.NORMALISER);
                     int y = (int) (agent.getPosition().getY() * SimulationData.NORMALISER);
-                    int radius = (int) (agent.getRayon() * SimulationData.NORMALISER);
+                    int radius = (int) (agent.getRayon() * SimulationData.NORMALISER) + 4;
                     Color color = agent.getCouleur();
                     g.setColor(color);
                     g.fillOval(x - radius, y - radius, radius * 2, radius * 2);

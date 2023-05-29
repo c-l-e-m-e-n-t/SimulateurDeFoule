@@ -217,17 +217,13 @@ public class Agent {
 	 */
 	public Segment obstacleProche(Segment[] murs, Segment direction) {
 		Segment Obstacle = null;
-		//double distance = -1;
+		double distance = -1;
 		for (int i = 0; i < murs.length; i++) {
 
 			// Calcul des murs sur la trajectoire
 			boolean intersection = Segment.intersectionSegment(new Segment(position, this.getSortie()), murs[i]);
 
-			if (intersection //!= null // Si il y a une intersection entre le mur et le chemin de l'agent
-					/*|| Segment.contient(direction, intersection)
-					|| Vecteur.cosinus(new Vecteur(direction), // Si le mur est sur le chemin de l'agent
-							new Vecteur(direction.getExtremite1(), intersection)) > 0
-					|| Point.distancePoint(intersection, position) < distance || distance == -1*/) {
+			if (intersection) {
 				
 				// Parmi ceux trouvés, on garde le mur le plus proche
 				Obstacle = murs[i];
@@ -264,8 +260,8 @@ public class Agent {
 			}
 		}
 		// Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
-		if (Point.distancePoint(this.position, this.cible) < 0.1) {
-	        this.cible = this.sortie;
+		if (Point.distancePoint(this.position, this.cible) < 0.5) {
+	        this.cible = this.sortie; 
 		}
 	}
 

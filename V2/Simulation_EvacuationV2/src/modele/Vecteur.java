@@ -117,7 +117,16 @@ public class Vecteur {
 	 * @return v1 . v2
 	 */
 	public static double produitScalaire(Vecteur v1, Vecteur v2) {
-		return (v1.getX() * v2.getX()) + (v1.getX() * v2.getY());
+		return (v1.getX() * v2.getX()) + (v1.getY() * v2.getY());
+	}
+
+	/** Renvoie le produit vectoriel entre v1 et v2.
+	 * @param v1 premier vecteur
+	 * @param v2 deuxième vecteur
+	 * @return v1 ^ v2
+	 */
+	public static double produitVectoriel(Vecteur v1, Vecteur v2) {
+		return (v1.getX() * v2.getY()) - (v1.getY() * v2.getX());
 	}
 
 	/** Vecteur normal de p1 vers p2.
