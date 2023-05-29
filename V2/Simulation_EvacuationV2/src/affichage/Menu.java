@@ -66,6 +66,11 @@ public class Menu {
             supprimer.setSelected(false);
             boolean allNull = true;
             Simulation.tps = 0;
+            Simulation.nbAgentsSortis = 0;
+            Simulation.nbMorts = 0;
+            Simulation.pMax = 0;
+            Simulation.nbt = 0;
+            Simulation.temps = new double[SimulationData.agents.length];
             for (Agent agent : SimulationData.agents) {
                 if (agent != null) {
                     allNull = false;

@@ -16,15 +16,20 @@ public class Simulation {
     private static JLabel tempsSortie;
     private static JLabel AgentsSortis;
     private static JLabel PressionMax;
-    private static int nbMorts;
-    public static int nbAgentsSortis;
+    private static JLabel TempsMoyen;
+    public static int nbMorts = 0;
+    public static int nbAgentsSortis = 0;
     public static double tps = 0;
+    public static double pMax = 0;
+    public static double[] temps = new double[SimulationData.agents.length];
+    public static double tpsMoyen = 0;
+    public static int nbt = 0;
 
     public Simulation(JFrame frame, JPanel drawingPanel, JPanel menuPanel) {
 
         // Create the menu panel
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(7, 1));
+        panel.setLayout(new GridLayout(9, 1));
 
         // Bouton Pause
         ButtonDesign pauseButton = new ButtonDesign("Pause");
@@ -50,18 +55,25 @@ public class Simulation {
             frame.repaint();
         });
 
+        for (int i=0 ; i<temps.length ; i++) {
+            temps[i] = 0;
+        }
+
         //ajout de stats 
         nbAgents = new JLabel("Nombre d'agents : " + SimulationData.N);
         tempsSortie = new JLabel("Temps de sortie : " + tps);
         AgentsSortis = new JLabel("Agents sortis : " + nbAgentsSortis);
         nbMorts = 0;
-        nbMort = new JLabel("Nombre de morts : " + nbMorts);
+        nbMort = new JLabel("Nombre de morts : " + 0);
+        PressionMax = new JLabel("Pression maximale : " + 0);
+        TempsMoyen = new JLabel("Temps de sortie moyen : " + 0);
 
         panel.add(nbAgents);
         panel.add(AgentsSortis);
         panel.add(tempsSortie);
+        panel.add(PressionMax);
         panel.add(nbMort);
-
+        panel.add(TempsMoyen);
 
         panel.add(backButton);
 
@@ -83,19 +95,30 @@ public class Simulation {
                 Deplacement.euler(SimulationData.agents, SimulationData.murs);
                 Simulation.tps += 0.03;
                 //System.out.println(SimulationData.agents[0].getPosition());
-                nbMorts = 0;
-                nbAgentsSortis = 0;
-                for (Agent agent : SimulationData.agents) {
-                    if (agent.estMort) {
+                for (int i=0 ; i<SimulationData.agents.length ; i++) {
+                    if (SimulationData.agents[i].estMort) {
                         nbMorts++;
                     }
-                    if (agent.estSorti) {
+                    if (SimulationData.agents[i].estSorti) {
                         nbAgentsSortis++;
+                        if (temps[i] <= 0.02) {
+                            temps[i] = Simulation.tps;
+                            nbt++;
+                        }
+                    }
+                    if (SimulationData.agents[i].getPression() > pMax) {
+                        pMax = SimulationData.agents[i].getPression();
                     }
                 }
+                for (int i=0 ; i<temps.length ; i++) {
+                    tpsMoyen += temps[i];
+                }
+                if (nbt != 0) tpsMoyen = tpsMoyen / nbt;
                 nbAgents.setText("Nombre d'agents : " + SimulationData.N);
                 AgentsSortis.setText("Agents sortis : " + nbAgentsSortis);
                 tempsSortie.setText("Temps de sortie : " + Simulation.tps);
+                PressionMax.setText("Pression maximale : " + pMax);
+                TempsMoyen.setText("Temps de sortie moyen : " + tpsMoyen);
                 nbMort.setText("Nombre de morts : " + nbMorts);
 
 
