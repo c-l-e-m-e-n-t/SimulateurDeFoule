@@ -263,7 +263,7 @@ public class Agent {
 				//this.cible = d2;
 			}
 			// Une fois la cible temporaire franchie, mettre à jour la nouvelle cible vers la sortie.
-			if (Point.distancePoint(this.position, this.cible) < 0.1) {
+			if (Point.distancePoint(this.position, this.cible) < 0.5) {
 		        this.cible = this.sortie;
 			}
 		}
