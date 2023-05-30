@@ -1,6 +1,5 @@
 package modele;
 
-import affichage.SimulationData;
 
 public class Deplacement {
 

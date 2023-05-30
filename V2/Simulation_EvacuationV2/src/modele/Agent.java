@@ -206,7 +206,6 @@ public class Agent {
 	 */
 	public Segment obstacleProche(Segment[] murs, Segment direction) {
 		Segment Obstacle = null;
-		double distance = -1;
 		for (int i = 0; i < murs.length; i++) {
 
 			// Calcul des murs sur la trajectoire

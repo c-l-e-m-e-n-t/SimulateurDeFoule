@@ -77,7 +77,7 @@ public class TestVecteur {
     @Test
     public void testProduitScalaire() {
         double v = Vecteur.produitScalaire(v1, v3);
-        // TODO
+        assertEquals(v, v, EPSILON);
     }
 
     @Test
