@@ -89,8 +89,8 @@ public class MenuAgents {
         speedSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-            	SimulationData.vitesseMin = speedSlider.getValue();
-            	SimulationData.vitesseMax = speedSlider.getUpperValue();
+            	SimulationData.vitesseMin = (double) speedSlider.getValue()/10;
+            	SimulationData.vitesseMax = (double) speedSlider.getUpperValue()/10;
             	SimulationData.updateAgents();
             	frame.repaint();
             }

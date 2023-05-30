@@ -130,6 +130,7 @@ public class Agent {
 	 */
 	public void setSortie(Point nouvelleSortie) {
 		this.sortie = nouvelleSortie;
+		this.cible = nouvelleSortie;
 	}
 
 	/** Obtenir la vitesse désirée de l'agent.
