@@ -41,6 +41,8 @@ public class MenuObstacles {
                 	mur5 = new Segment(new Point(5, 15), new Point(5, 11));
                 	murs = new Segment[]{mur1, mur2, mur3, mur4, mur5};
                 	SimulationData.murs = murs;
+                	SimulationData.sortie = new Point[1];
+                    SimulationData.sortie[0] = new Point(5, 10);
                 	frame.repaint();
                     break;
                 case "Piece 2":
@@ -53,6 +55,8 @@ public class MenuObstacles {
                 	mur6 = new Segment(new Point(8, 8), new Point(8, 12));
                 	murs = new Segment[]{mur1, mur2, mur3, mur4, mur5, mur6};
                 	SimulationData.murs = murs;
+                	SimulationData.sortie = new Point[1];
+                    SimulationData.sortie[0] = new Point(5, 10);
                 	frame.repaint();
                     break;
                     
@@ -68,6 +72,8 @@ public class MenuObstacles {
                     mur9 = new Segment(new Point(11, 12), new Point(11, 15));
                     murs = new Segment[]{mur1, mur2, mur3, mur4, mur5, mur6, mur7, mur8, mur9};
                 	SimulationData.murs = murs;
+                	SimulationData.sortie = new Point[1];
+                    SimulationData.sortie[0] = new Point(5, 10);
                 	frame.repaint();
                     break;
                 case "Piece 4":
@@ -83,6 +89,8 @@ public class MenuObstacles {
                     mur10 = new Segment(new Point(11, 13), new Point(7, 13));
                     murs = new Segment[]{mur1, mur2, mur3, mur4, mur5, mur6, mur7, mur8, mur9, mur10};
                 	SimulationData.murs = murs;
+                	SimulationData.sortie = new Point[1];
+                    SimulationData.sortie[0] = new Point(5, 10);
                 	frame.repaint();
                     break;
             }

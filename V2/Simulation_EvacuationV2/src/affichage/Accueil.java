@@ -44,8 +44,7 @@ public class Accueil {
     public static void main(String[] args) {
         SimulationData.agents = new Agent[0];
         SimulationData.murs = new Segment[0];
-        SimulationData.sortie = new Point[1];
-        SimulationData.sortie[0] = new Point(5, 10);
+        SimulationData.sortie = new Point[0];
         new Accueil();
     }
 

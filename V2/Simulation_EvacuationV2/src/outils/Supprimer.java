@@ -29,7 +29,7 @@ public class Supprimer {
     
         for (Point sortie : SimulationData.sortie) {
         	if (sortie != null) {
-        		if (sortie.getX()/SimulationData.NORMALISER-e.getX()/SimulationData.NORMALISER < 10 && sortie.getX()/SimulationData.NORMALISER-e.getX()/SimulationData.NORMALISER > -10 && sortie.getY()/SimulationData.NORMALISER-e.getY()/SimulationData.NORMALISER > -10 && sortie.getY()/SimulationData.NORMALISER-e.getY()/SimulationData.NORMALISER < 10) {
+        		if ((sortie.getX()*SimulationData.NORMALISER-e.getX()) < 10 && (e.getX()-sortie.getX()*SimulationData.NORMALISER) < 10 && (sortie.getY()*SimulationData.NORMALISER-e.getY()) < 10 && (e.getY()-sortie.getY()*SimulationData.NORMALISER)< 10) {
 	                Point[] tempSortie = new Point[SimulationData.sortie.length-1];
                     if (SimulationData.sortie.length != 0) {
                         for (int i = 0; i < SimulationData.sortie.length; i++) {
