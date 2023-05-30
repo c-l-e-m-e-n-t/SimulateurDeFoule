@@ -25,14 +25,14 @@ public class MenuObstacles {
         panel.setLayout(new GridLayout(6, 1));
 
         // Menu déroulant des types de pièce
-        String[] roomTypes = {"Piece 1", "Piece 2", "Piece 3", "Piece 4"};
+        String[] roomTypes = {"Piece simple", "Piece simple avec obstacles", "Piece complexe 1", "Piece complexe 2"};
         JComboBox<String> roomComboBox = new JComboBox<>(roomTypes);
         roomComboBox.addActionListener(e -> {
             String selectedObstacleType = (String) roomComboBox.getSelectedItem();
             Segment mur1, mur2, mur3, mur4, mur5, mur6, mur7, mur8, mur9, mur10;
             Segment[] murs;
             switch (selectedObstacleType) {
-                case "Piece 1":
+                case "Piece simple":
                     // Code to select the wall tool
                 	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
                 	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
@@ -45,7 +45,7 @@ public class MenuObstacles {
                     SimulationData.sortie[0] = new Point(5, 10);
                 	frame.repaint();
                     break;
-                case "Piece 2":
+                case "Piece simple avec obstacles":
                     // Code to select the wall tool
                 	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
                 	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
@@ -60,7 +60,7 @@ public class MenuObstacles {
                 	frame.repaint();
                     break;
                     
-                    case "Piece 3":
+                    case "Piece complexe 1":
                 	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
                 	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
                 	mur3 = new Segment(new Point(15, 5), new Point(15, 15));
@@ -76,7 +76,7 @@ public class MenuObstacles {
                     SimulationData.sortie[0] = new Point(5, 10);
                 	frame.repaint();
                     break;
-                case "Piece 4":
+                case "Piece complexe 2":
                 	mur1 = new Segment(new Point(5, 9), new Point(5, 5));
                 	mur2 = new Segment(new Point(5, 5), new Point(15, 5));
                 	mur3 = new Segment(new Point(15, 5), new Point(15, 15));

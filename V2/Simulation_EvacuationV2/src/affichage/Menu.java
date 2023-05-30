@@ -84,7 +84,7 @@ public class Menu {
                 SimulationData.LARGEUR = drawingPanel.getWidth();
                 simulation.run(frame);
             } else {
-                System.out.println("La simulation n'est pas configuré entièrement");
+                JOptionPane.showMessageDialog(frame, "La simulation n'est pas configuré entièrement.");
             }
         });
         configRoomButton.addActionListener(e -> {

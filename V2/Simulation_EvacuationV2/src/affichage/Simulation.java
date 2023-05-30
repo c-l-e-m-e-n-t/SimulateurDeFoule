@@ -115,12 +115,13 @@ public class Simulation {
                 for (int i=0 ; i<temps.length ; i++) {
                     tpsMoyen += temps[i];
                 }
+                //System.out.printf("et aussi\n%f avec deux decimales : %.2f\n", d, d);
                 if (nbt != 0) tpsMoyen = tpsMoyen / nbt;
                 nbAgents.setText("Nombre d'agents : " + SimulationData.N);
                 AgentsSortis.setText("Agents sortis : " + nbAgentsSortis);
-                tempsSortie.setText("Temps de sortie : " + Simulation.tps);
-                PressionMax.setText("Pression maximale : " + pMax);
-                TempsMoyen.setText("Temps de sortie moyen : " + tpsMoyen);
+                tempsSortie.setText(String.format("Temps de sortie : %.2f", Simulation.tps));
+                PressionMax.setText(String.format("Pression maximale : %.2f", pMax));
+                TempsMoyen.setText(String.format("Temps de sortie moyen : %.2f", tpsMoyen));
                 nbMort.setText("Nombre de morts : " + nbMorts);
 
 
