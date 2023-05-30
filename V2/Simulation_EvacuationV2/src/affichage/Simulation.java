@@ -94,6 +94,8 @@ public class Simulation {
                 // Update the position of the agents
                 Deplacement.euler(SimulationData.agents, SimulationData.murs);
                 Simulation.tps += 0.03;
+                Simulation.nbMorts = 0;
+                Simulation.nbAgentsSortis = 0;
                 //System.out.println(SimulationData.agents[0].getPosition());
                 for (int i=0 ; i<SimulationData.agents.length ; i++) {
                     if (SimulationData.agents[i].estMort) {
